@@ -6,7 +6,7 @@
 #    By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/10 11:39:32 by grass-kw          #+#    #+#              #
-#    Updated: 2016/09/28 15:43:08 by ozdek            ###   ########.fr        #
+#    Updated: 2016/09/29 07:11:41 by ozdek            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	make -C $(DIRFT) fclean
-	make -C $(DIRCLST) fclean
 
 re: fclean all
 
