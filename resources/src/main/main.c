@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/09/28 22:32:31 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/09/29 21:08:15 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,30 @@ static void get_line(void)
 	get_next_line(0, &line);
 	affiche(line);
 }
+
+static void player_number(t_env *e)
+{
+	char *line;
+
+	line = NULL;
+	get_next_line(0, &line);
+	if (ft_strnequ(line, "$$$ exec p1", 11))
+		e->player = 1;
+	else if (ft_strnequ(line, "$$$ exec p2", 11))
+		e->player = 2;
+	ft_putnbr_fd(e->player, 2);
+	ft_strclean(line);
+}
+
+// static void map(t_env *e)
+// {
+// }
+
 int main(int ac, char **av)
 {
-	for (int i = 0; i < 2;i++)
-	{
-		get_line();
-	}
+	t_env	e;
+
+	ft_bzero(&e, sizeof(t_env));
+	player_number(&e);
 	return (0);
 }
