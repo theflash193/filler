@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/09/30 17:44:25 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/09/30 18:28:26 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define FILLER_H
 # include "libft.h"
 # include <stdio.h>
+
+typedef enum	e_booleen
+{
+	 p1 = 'o',
+	 p2 = 'x'
+}				t_boolen;
 
 typedef struct	s_env
 {
