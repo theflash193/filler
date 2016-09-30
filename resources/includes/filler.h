@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/09/30 18:28:26 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/09/30 23:51:02 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 # include "libft.h"
 # include <stdio.h>
 
-typedef enum	e_booleen
+typedef enum	e_map
 {
-	 p1 = 'o',
-	 p2 = 'x'
-}				t_boolen;
+	p1 = 'O',
+	p1_recent = 'o',
+	p2 = 'x',
+	p2_recent = 'X',
+	empty = '.',
+	new_piece = '*'
+}				t_map;
 
 typedef struct	s_env
 {
@@ -32,4 +36,12 @@ typedef struct	s_env
 	int			piece_colonne;
 }				t_env;
 
+void	clear_env(t_env *e);
+void	ft_put_array_fd(char **tab, int fd);
+
+void	player_number(t_env *e);
+void	map_dimension(t_env *e);
+void	map(t_env *e);
+void	piece_dimension(t_env *e);
+void	piece(t_env *e);
 #endif

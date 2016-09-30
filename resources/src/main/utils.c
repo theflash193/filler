@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/09/30 23:52:47 by ozdek            ###   ########.fr       */
+/*   Created: 2016/09/30 23:46:07 by ozdek             #+#    #+#             */
+/*   Updated: 2016/09/30 23:51:29 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int main(int ac, char **av)
+void clear_env(t_env *e)
 {
-	t_env	e;
+	if (e->map != NULL)
+		ft_free_tab(e->map);
+	if (e->piece != NULL)
+		ft_free_tab(e->piece);
+	ft_bzero(e, sizeof(t_env));
+}
 
-	ft_bzero(&e, sizeof(t_env));
-	player_number(&e);
-	while (42)
+void	ft_put_array_fd(char **tab, int fd)
+{
+	int	i;
+
+	i = 0;
+	ft_putendl_fd("array(", fd);
+	while (tab[i])
 	{
-		map(&e);
-		piece(&e);
+		ft_putstr_fd("\t", fd);
+		ft_putnbr_fd(i, fd);
+		ft_putstr_fd(" => ", fd);
+		ft_putendl_fd(tab[i], fd);
+		i++;
 	}
-	clear_env(&e);
-	return (0);
+	ft_putendl_fd("    )", fd);
 }
