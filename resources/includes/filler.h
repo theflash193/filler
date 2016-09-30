@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/09/30 16:19:21 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/09/30 17:44:25 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ typedef struct	s_env
 	char		**map;
 	int			line;
 	int			colonne;
+	char		**piece;
+	int			piece_line;
+	int			piece_colonne;
 }				t_env;
 
 #endif

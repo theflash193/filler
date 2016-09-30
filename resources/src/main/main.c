@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/09/30 17:18:19 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/09/30 17:44:39 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void clear_env(t_env *e)
 {
 	if (e->map != NULL)
 		ft_free_tab(e->map);
+	if (e->piece != NULL)
+		ft_free_tab(e->piece);
 	ft_bzero(e, sizeof(t_env));
 }
 
@@ -81,7 +83,28 @@ static void map(t_env *e)
 		ft_strclean(line);
 	}
 	e->map[i] = 0;
-	ft_put_array_fd(e->map, 2);
+}
+
+static void piece_dimension(t_env *e)
+{
+	char	*line;
+	char	**tab;
+
+	line = NULL;
+	get_next_line(0, &line);
+	tab = ft_strsplit(line, ' ');
+	e->piece_line = atoi(tab[1]);
+	e->piece_colonne = atoi(tab[2]);
+	ft_strclean(line);
+	ft_free_tab(tab);
+}
+
+static void piece(t_env *e)
+{
+	char	*line;
+
+	line = NULL;
+	piece_dimension(e);
 }
 
 int main(int ac, char **av)
@@ -91,6 +114,7 @@ int main(int ac, char **av)
 	ft_bzero(&e, sizeof(t_env));
 	player_number(&e);
 	map(&e);
+	piece(&e);
 	clear_env(&e);
 	return (0);
 }
