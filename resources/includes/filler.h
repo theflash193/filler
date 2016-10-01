@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/09/30 23:51:02 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/01 12:23:35 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 # define FILLER_H
 # include "libft.h"
 # include <stdio.h>
+
+// typedef enum	e_player1
+// {
+// 	p1
+// }
+
+
+// typedef enum	e_player2
+// {
+
+// }
 
 typedef enum	e_map
 {
@@ -25,6 +36,12 @@ typedef enum	e_map
 	new_piece = '*'
 }				t_map;
 
+typedef struct	s_coord
+{
+	int			x;
+	int			y;
+}				t_coord;
+
 typedef struct	s_env
 {
 	int			player;
@@ -34,6 +51,8 @@ typedef struct	s_env
 	char		**piece;
 	int			piece_line;
 	int			piece_colonne;
+	int			choice_x;
+	int			choice_y;
 }				t_env;
 
 void	clear_env(t_env *e);
