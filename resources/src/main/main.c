@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/01 12:27:21 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/05 09:08:31 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,20 @@ static char	**try_place_piece(t_env *e, int x, int y, char **new_map)
 	int	nbr_piece;
 
 	if (x + e->piece_line > e->line || y + e->piece_colonne > e->colonne)
-		return (0);
-
+		return (NULL);
+	i = x;
+	while (i < e->piece_line)
+	{
+		j = y;
+		while (j < e->piece_colonne)
+		{
+			if (e->player == 1 && ((new_map[x][y] == PLAYER_1_PIECE && e->piece == NEW_PIECE) || (new_map[x][y] == PLAYER_1_LAST_MOVE && e->piece == NEW_PIECE)))
+				return (NULL);
+			if (e->player == 2 && ((new_map[x][y] == PLAYER_2_PIECE && e->piece == NEW_PIECE) || (new_map[x][y] == PLAYER_2_LAST_MOVE)))
+				return (NULL);		
+		}
+	}
+	return (new_map);
 }
 
 static void find_all_possibility(t_env *e)

@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,7 +7,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/01 12:23:35 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/05 08:55:43 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +16,12 @@
 # include "libft.h"
 # include <stdio.h>
 
-// typedef enum	e_player1
-// {
-// 	p1
-// }
-
-
-// typedef enum	e_player2
-// {
-
-// }
+# define PLAYER_1_PIECE 'O'
+# define PLAYER_1_LAST_MOVE 'o'
+# define PLAYER_2_PIECE'X'
+# define PLAYER_2_LAST_MOVE 'x'
+# define EMPTY '.'
+# define NEW_PIECE '*'
 
 typedef enum	e_map
 {
