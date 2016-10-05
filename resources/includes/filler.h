@@ -1,15 +1,15 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/05 08:55:43 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/05 16:51:19 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FILLER_H
 # define FILLER_H
@@ -18,7 +18,7 @@
 
 # define PLAYER_1_PIECE 'O'
 # define PLAYER_1_LAST_MOVE 'o'
-# define PLAYER_2_PIECE'X'
+# define PLAYER_2_PIECE 'X'
 # define PLAYER_2_LAST_MOVE 'x'
 # define EMPTY '.'
 # define NEW_PIECE '*'
@@ -41,7 +41,7 @@ typedef struct	s_coord
 
 typedef struct	s_env
 {
-	int			player;
+	int			nb_player;
 	char		**map;
 	int			line;
 	int			colonne;
@@ -50,6 +50,9 @@ typedef struct	s_env
 	int			piece_colonne;
 	int			choice_x;
 	int			choice_y;
+	char		ennemy;
+	char		player;
+	char		player_lm;
 }				t_env;
 
 void	clear_env(t_env *e);

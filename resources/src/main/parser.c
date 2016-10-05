@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:42:51 by ozdek             #+#    #+#             */
-/*   Updated: 2016/09/30 23:46:53 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/05 16:51:10 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,19 @@ void player_number(t_env *e)
 	line = NULL;
 	get_next_line(0, &line);
 	if (ft_strnequ(line, "$$$ exec p1", 11))
-		e->player = 1;
+	{
+		e->nb_player = 1;
+		e->ennemy = PLAYER_2_PIECE;
+		e->player = PLAYER_1_PIECE;
+		e->player_lm = PLAYER_1_LAST_MOVE;
+	}
 	else if (ft_strnequ(line, "$$$ exec p2", 11))
-		e->player = 2;
+	{
+		e->nb_player = 2;
+		e->ennemy = PLAYER_1_PIECE;
+		e->player = PLAYER_2_PIECE;
+		e->player_lm = PLAYER_2_LAST_MOVE;
+	}
 	ft_strclean(line);
 }
 

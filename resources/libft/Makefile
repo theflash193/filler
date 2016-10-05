@@ -6,7 +6,7 @@
 #    By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/26 16:37:37 by grass-kw          #+#    #+#              #
-#    Updated: 2016/08/16 09:41:06 by grass-kw         ###   ########.fr        #
+#    Updated: 2016/10/05 16:53:03 by grass-kw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ FILES= ft_memset.c ft_bzero.c ft_strlen.c ft_strcpy.c \
 		ft_lstmap.c ft_lst_push_back.c ft_strndup.c ft_capitalize.c \
 		bit_display.c padding_left.c padding_right.c recovered_bit.c \
 		ft_joinclr.c get_next_line.c ft_strclean.c ft_strclean2.c ft_atol.c\
+		ft_put_array.c ft_array_len.c \
 
 
 OBJ=$(FILES:.c=.o)
