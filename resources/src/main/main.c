@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/05 16:53:25 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/10/05 17:29:08 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ static char	**array_cpy(char **src)
 	int		i;
 
 	len = ft_array_len(src);
-	new_array = (char **)malloc(sizeof(char *) * len);
+	new_array = (char **)malloc(sizeof(char *) * len + 1);
 	i = 0;
-	while (new_array[i])
+	while (src[i])
 	{
 		new_array[i] = ft_strdup(src[i]);
 		i++;
 	}
+	new_array[i] = 0;
 	return (new_array);
 }
 
@@ -92,8 +93,7 @@ static void find_all_possibility(t_env *e)
 		while (j < e->colonne)
 		{
 			new_map = array_cpy(e->map);
-			ft_put_array(new_map);
-			exit(0);
+			ft_put_array_fd(new_map, 2);
 			if (try_place_piece(e, i, j, e->map) != NULL)
 			{
 				e->choice_x = i;
