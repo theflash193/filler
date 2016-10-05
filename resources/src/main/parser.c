@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:42:51 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/05 16:51:10 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/10/05 17:26:25 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,5 @@ void piece(t_env *e)
 		ft_strclean(line);
 	}
 	e->piece[i] = 0;
-	ft_put_array_fd(e->piece, 2);
+	// ft_put_array_fd(e->piece, 2);
 }
