@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/05 17:42:21 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/10/05 22:30:36 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static char	**try_place_piece(t_env *e, int x, int y, char **new_map)
 	int	k;
 	int	l;
 
-	k = 0;
 	form_replace_piece = 0;
 	if (x + e->piece_line > e->line || y + e->piece_colonne > e->colonne)
 		return (NULL);
@@ -45,14 +44,14 @@ static char	**try_place_piece(t_env *e, int x, int y, char **new_map)
 		k = l;
 		while (j < e->piece_colonne)
 		{
-			if (is_ennemy(new_map[x][y], e) && e->piece[k][y] == NEW_PIECE)
+			if (is_ennemy(new_map[i][j], e) && e->piece[k][l] == NEW_PIECE)
 				return (NULL);
-			if (form_replace_piece == 1 && (is_player(new_map[x][y], e) && e->piece[k][j] == NEW_PIECE))
+			if (form_replace_piece == 1 && (is_player(new_map[i][j], e) && e->piece[k][l] == NEW_PIECE))
 				return (NULL);
-			if (form_replace_piece == 0 && is_player(new_map[x][y], e))
+			if (form_replace_piece == 0 && is_player(new_map[i][j], e))
 				form_replace_piece = 1;
-			if (new_map[x][y] == EMPTY && e->piece[k][l] == NEW_PIECE)
-				new_map[x][y] = ft_toupper(e->player_lm);
+			if (new_map[i][j] == EMPTY && e->piece[k][l] == NEW_PIECE)
+				new_map[i][j] = e->player_lm;
 			j++;
 			l++;
 		}
