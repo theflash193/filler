@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/05 22:30:36 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/06 12:07:36 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,13 @@ static void find_all_possibility(t_env *e)
 				e->choice_y = j;
 				return ;
 			}
-			// ft_free_tab(new_map);
+			ft_free_tab(new_map);
+			// ft_putendl_fd("1", 2);
 			j++;
 		}
 		i++;
 	}
+	// ft_putendl_fd("2", 2);
 	e->choice_x = 0;
 	e->choice_y = 0;
 	e->game_over = 1;
@@ -111,10 +113,10 @@ static void find_all_possibility(t_env *e)
 
 static void	final_decision(t_env *e)
 {
-	ft_putnbr_fd(e->choice_x, 2);
-	ft_putchar_fd(' ', 2);
-	ft_putnbr_fd(e->choice_x, 2);
-	ft_putendl_fd("", 2);
+	ft_putnbr_fd(e->choice_x, 1);
+	ft_putchar_fd(' ', 1);
+	ft_putnbr_fd(e->choice_x, 1);
+	ft_putendl_fd("", 1);
 }
 
 static void	thinking_strategy(t_env *e)
@@ -128,13 +130,21 @@ int main(int ac, char **av)
 
 	ft_bzero(&e, sizeof(t_env));
 	player_number(&e);
-	while (e.game_over == 0)
-	{
+	// while (e.game_over == 0)
+	// {
+		// ft_putendl_fd("nouveau tour", 2);
+		// ft_putendl_fd("map", 2);
 		map(&e);
+		// ft_putendl_fd("piece", 2);
 		piece(&e);
-		thinking_strategy(&e);
+		// ft_putendl_fd("thinking_startegy", 2);
+		// thinking_strategy(&e);
+		// ft_putendl_fd("final_decision", 2);
 		final_decision(&e);
-	}
+		// prepare_next_turn(&e);
+
+	// }
+	// ft_putendl_fd("3", 2);
 	clear_env(&e);
 	return (0);
 }
