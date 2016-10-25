@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/05 17:40:03 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/10/25 18:17:37 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct	s_env
 	char		ennemy;
 	char		player;
 	char		player_lm;
-	int			game_over;
+	int			game_continue;
 }				t_env;
 
 void	clear_env(t_env *e);

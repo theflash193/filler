@@ -6,11 +6,29 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/06 14:41:59 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/10/25 23:25:26 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+void	affiche_position(int i, int j)
+{
+	ft_putstr_fd("position : ", 2);
+	ft_putnbr_fd(i, 2);
+	ft_putchar_fd(' ', 2);
+	ft_putnbr_fd(j, 2);
+	ft_putchar_fd('\n', 2);
+}
+
+void	affiche_piece(char i, char j)
+{
+	ft_putstr_fd("comparaison piece : ", 2);
+	ft_putchar_fd(i, 2);
+	ft_putchar_fd(' ', 2);
+	ft_putchar_fd(j, 2);
+	ft_putchar_fd('\n', 2);
+}
 
 int		is_ennemy(char c, t_env *e)
 {
@@ -26,52 +44,84 @@ int		is_player(char c, t_env *e)
 	return (c == PLAYER_2_PIECE || c == PLAYER_2_LAST_MOVE);
 }
 
-static char	**try_place_piece(t_env *e, int x, int y, char **new_map)
+static int	piece_non_inserable(t_env *e, int x, int y, char **new_map)
 {
 	int i;
 	int	j;
-	int	form_replace_piece;
 	int	k;
 	int	l;
+	int	nombre_de_piece_joueur;
 
-	form_replace_piece = 0;
-	if (x + e->piece_line > e->line || y + e->piece_colonne > e->colonne)
-		return (NULL);
+	nombre_de_piece_joueur = 0;
 	i = x;
-	ft_putendl_fd("1", 2);
+	j = y;
+	if (x + e->piece_line > e->line || y + e->piece_colonne > e->colonne)
+		return (1);
 	k = 0;
-	while (i < e->piece_line)
+	while (k < e->piece_line)
 	{
-		j = y;
 		l = 0;
-		while (j < e->piece_colonne)
+		j = y;
+		while (l < e->piece_colonne)
 		{
-			// ft_putendl_fd("2", 2);
-			if (is_ennemy(new_map[i][j], e) && e->piece[k][l] == NEW_PIECE)
-				return (NULL);
-			// ft_putendl_fd("3", 2);
-			if (form_replace_piece == 1 && (is_player(new_map[i][j], e) && e->piece[k][l] == NEW_PIECE))
-				return (NULL);
-			// ft_putendl_fd("4", 2);
-			if (form_replace_piece == 0 && is_player(new_map[i][j], e))
-				form_replace_piece = 1;
-			// ft_putendl_fd("5", 2);
-			if (new_map[i][j] == EMPTY && e->piece[k][l] == NEW_PIECE)
-				new_map[i][j] = e->player_lm;
-			// ft_putendl_fd("6", 2);
-			j++;
+			affiche_piece(new_map[i][j], e->piece[k][l] == '*');
+			if (is_ennemy(new_map[i][j], e) && e->piece[k][l] == '*')
+			{
+				ft_putendl_fd("piece pose sur ennemy", 2);
+				return (1);
+			}
+			if (is_player(new_map[i][j], e) && e->piece[k][l] == '*')
+			{
+				nombre_de_piece_joueur++;
+				ft_putendl_fd("piece pose sur joeur", 2);
+			}
 			l++;
+			j++;
 		}
 		i++;
 		k++;
 	}
-	if (form_replace_piece != 1)
+	ft_putnbr_fd(nombre_de_piece_joueur, 2);
+	if (nombre_de_piece_joueur != 1)
+		return (1);
+	return (0);
+}
+
+static char	**insertion_de_piece(t_env *e, int x, int y, char **new_map)
+{
+	int i;
+	int	j;
+	int	k;
+	int	l;
+
+	i = x;
+	j = y;
+	k = 0;
+	while (k < e->piece_line)
 	{
-		ft_putendl_fd("pas d'emplacement", 2);
-		return (NULL);
+		l = 0;
+		j = y;
+		while (l < e->piece_colonne)
+		{
+			if (e->piece[k][l] == '*')
+				new_map[i][j] = e->player;
+			l++;
+			j++;
+		}
+		i++;
+		k++;
 	}
-	ft_putendl_fd("7", 2);
+	ft_put_array_fd(new_map, 2);
 	return (new_map);
+}
+
+
+static char	**tentative_insertion_de_piece(t_env *e, int x, int y, char **new_map)
+{
+	// affiche_position(x, y);
+	if (piece_non_inserable(e, x, y, new_map) == 1)
+		return (NULL);
+	return (insertion_de_piece(e, x, y, new_map));
 }
 
 static char	**array_cpy(char **src)
@@ -105,9 +155,9 @@ static void find_all_possibility(t_env *e)
 		while (j < e->colonne)
 		{
 			new_map = array_cpy(e->map);
-			if (try_place_piece(e, i, j, e->map) != NULL)
+			if (tentative_insertion_de_piece(e, i, j, new_map) != NULL)
 			{
-				ft_put_array_fd(new_map, 2);
+				ft_putendl_fd("insertion piece possible", 2);
 				e->choice_x = i;
 				e->choice_y = j;
 				return ;
@@ -117,6 +167,7 @@ static void find_all_possibility(t_env *e)
 		}
 		i++;
 	}
+	ft_putendl_fd("aucun place trouver", 2);
 	e->choice_x = 0;
 	e->choice_y = 0;
 	e->game_continue = 0;
@@ -135,24 +186,30 @@ static void	thinking_strategy(t_env *e)
 	find_all_possibility(e);
 }
 
-int main(int ac, char **av)
+static void	preparation_du_prochain_tour(t_env *e)
+{
+
+}
+
+int			main(int ac, char **av)
 {
 	t_env	e;
 
 	ft_bzero(&e, sizeof(t_env));
 	player_number(&e);
+	e.game_continue = 1;
 	while (e.game_continue)
 	{
-		ft_putendl_fd("nouveau tour", 2);
-		ft_putendl_fd("map", 2);
+		// ft_putendl_fd("nouveau tour", 2);
+		// ft_putendl_fd("map", 2);
 		map(&e);
-		ft_putendl_fd("piece", 2);
+		// ft_putendl_fd("piece", 2);
 		piece(&e);
-		ft_putendl_fd("thinking_startegy", 2);
+		// ft_putendl_fd("thinking_startegy", 2);
 		thinking_strategy(&e);
-		ft_putendl_fd("final_decision", 2);
+		// ft_putendl_fd("final_decision", 2);
 		final_decision(&e);
-		prepare_next_turn(&e);
+		preparation_du_prochain_tour(&e);
 	}
 	// ft_putendl_fd("3", 2);
 	clear_env(&e);

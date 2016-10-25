@@ -6,14 +6,13 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/01 00:24:02 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/25 17:32:06 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "play.h"
 
 void	final_decision(t_env *e)
 {
-	
+
 }
 
 void 	play(t_env *e)
