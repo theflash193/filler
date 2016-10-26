@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:42:51 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/25 17:20:29 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/26 11:51:24 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void piece_dimension(t_env *e)
 
 	line = NULL;
 	get_next_line(0, &line);
+	// ft_putendl_fd(line, 2);
 	tab = ft_strsplit(line, ' ');
 	e->piece_line = atoi(tab[1]);
 	e->piece_colonne = atoi(tab[2]);

@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/25 23:25:26 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/26 11:58:19 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,17 @@ static int	piece_non_inserable(t_env *e, int x, int y, char **new_map)
 		j = y;
 		while (l < e->piece_colonne)
 		{
-			affiche_piece(new_map[i][j], e->piece[k][l] == '*');
+			// affiche_piece(new_mp[i][j], e->piece[k][l] == '*');
 			if (is_ennemy(new_map[i][j], e) && e->piece[k][l] == '*')
-			{
-				ft_putendl_fd("piece pose sur ennemy", 2);
 				return (1);
-			}
 			if (is_player(new_map[i][j], e) && e->piece[k][l] == '*')
-			{
 				nombre_de_piece_joueur++;
-				ft_putendl_fd("piece pose sur joeur", 2);
-			}
 			l++;
 			j++;
 		}
 		i++;
 		k++;
 	}
-	ft_putnbr_fd(nombre_de_piece_joueur, 2);
 	if (nombre_de_piece_joueur != 1)
 		return (1);
 	return (0);
@@ -157,7 +150,7 @@ static void find_all_possibility(t_env *e)
 			new_map = array_cpy(e->map);
 			if (tentative_insertion_de_piece(e, i, j, new_map) != NULL)
 			{
-				ft_putendl_fd("insertion piece possible", 2);
+				// ft_putendl_fd("insertion piece possible", 2);
 				e->choice_x = i;
 				e->choice_y = j;
 				return ;
@@ -167,7 +160,7 @@ static void find_all_possibility(t_env *e)
 		}
 		i++;
 	}
-	ft_putendl_fd("aucun place trouver", 2);
+	// ft_putendl_fd("aucun place trouver", 2);
 	e->choice_x = 0;
 	e->choice_y = 0;
 	e->game_continue = 0;
@@ -188,7 +181,12 @@ static void	thinking_strategy(t_env *e)
 
 static void	preparation_du_prochain_tour(t_env *e)
 {
-
+	e->piece_line = 0;
+	e->piece_colonne = 0;
+	if (e->piece != NULL)
+		ft_free_tab(e->piece);
+	e->choice_x = 0;
+	e->choice_y = 0;
 }
 
 int			main(int ac, char **av)
@@ -200,18 +198,13 @@ int			main(int ac, char **av)
 	e.game_continue = 1;
 	while (e.game_continue)
 	{
-		// ft_putendl_fd("nouveau tour", 2);
-		// ft_putendl_fd("map", 2);
 		map(&e);
-		// ft_putendl_fd("piece", 2);
 		piece(&e);
-		// ft_putendl_fd("thinking_startegy", 2);
 		thinking_strategy(&e);
-		// ft_putendl_fd("final_decision", 2);
 		final_decision(&e);
 		preparation_du_prochain_tour(&e);
+		exit(0);
 	}
-	// ft_putendl_fd("3", 2);
 	clear_env(&e);
 	return (0);
 }
