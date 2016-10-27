@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/26 11:58:19 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/27 09:59:40 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static char	**insertion_de_piece(t_env *e, int x, int y, char **new_map)
 		i++;
 		k++;
 	}
-	ft_put_array_fd(new_map, 2);
+	// ft_put_array_fd(new_map, 2);
 	return (new_map);
 }
 
@@ -160,7 +160,6 @@ static void find_all_possibility(t_env *e)
 		}
 		i++;
 	}
-	// ft_putendl_fd("aucun place trouver", 2);
 	e->choice_x = 0;
 	e->choice_y = 0;
 	e->game_continue = 0;
@@ -170,7 +169,7 @@ static void	final_decision(t_env *e)
 {
 	ft_putnbr_fd(e->choice_x, 1);
 	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(e->choice_x, 1);
+	ft_putnbr_fd(e->choice_y, 1);
 	ft_putendl_fd("", 1);
 }
 
@@ -181,14 +180,24 @@ static void	thinking_strategy(t_env *e)
 
 static void	preparation_du_prochain_tour(t_env *e)
 {
+	char *line;
+
+	line = NULL;
 	e->piece_line = 0;
 	e->piece_colonne = 0;
 	if (e->piece != NULL)
+	{
 		ft_free_tab(e->piece);
+		e->piece = NULL;
+	}
 	e->choice_x = 0;
 	e->choice_y = 0;
 }
 
+void 	message(char *s)
+{
+	ft_putendl_fd(s, 2);
+}
 int			main(int ac, char **av)
 {
 	t_env	e;
@@ -203,7 +212,6 @@ int			main(int ac, char **av)
 		thinking_strategy(&e);
 		final_decision(&e);
 		preparation_du_prochain_tour(&e);
-		exit(0);
 	}
 	clear_env(&e);
 	return (0);

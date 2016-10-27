@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:42:51 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/26 11:51:24 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/27 09:59:57 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ void	map_dimension(t_env *e)
 
 	line = NULL;
 	get_next_line(0, &line);
+	// ft_putendl_fd(line, 2);
 	tab = ft_strsplit(line, ' ');
 	e->line = atoi(tab[1]);
 	e->colonne = atoi(tab[2]);
 	ft_strclean(line);
 	ft_free_tab(tab);
+	// ft_putendl_fd("jojo", 2);
 }
 
 void map(t_env *e)
@@ -76,7 +78,6 @@ void piece_dimension(t_env *e)
 
 	line = NULL;
 	get_next_line(0, &line);
-	// ft_putendl_fd(line, 2);
 	tab = ft_strsplit(line, ' ');
 	e->piece_line = atoi(tab[1]);
 	e->piece_colonne = atoi(tab[2]);
