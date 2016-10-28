@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/27 09:59:40 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 02:13:18 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ static void find_all_possibility(t_env *e)
 			if (tentative_insertion_de_piece(e, i, j, new_map) != NULL)
 			{
 				// ft_putendl_fd("insertion piece possible", 2);
+				ft_free_tab(new_map);
 				e->choice_x = i;
 				e->choice_y = j;
 				return ;
