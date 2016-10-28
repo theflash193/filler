@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/28 23:07:18 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:22:58 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,15 @@ void	map(t_env *e);
 void	piece_dimension(t_env *e);
 void	piece(t_env *e);
 void	delete_map(void *content, size_t content_size);
+
+void	thinking_strategy(t_env *e);
+void	final_decision(t_env *e);
+
+void	affiche_piece(char i, char j);
+void	affiche_position(int i, int j);
+void	print_possibilite(t_list *elem);
+int		is_ennemy(char c, t_env *e);
+int		is_player(char c, t_env *e);
+char	**array_cpy(char **src);
 
 #endif
