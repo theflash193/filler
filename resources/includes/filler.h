@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/25 18:17:37 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 21:57:36 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,6 @@
 # define PLAYER_2_LAST_MOVE 'x'
 # define EMPTY '.'
 # define NEW_PIECE '*'
-
-typedef enum	e_map
-{
-	p1 = 'O',
-	p1_recent = 'o',
-	p2 = 'x',
-	p2_recent = 'X',
-	empty = '.',
-	new_piece = '*'
-}				t_map;
 
 typedef struct	s_coord
 {
@@ -54,7 +44,13 @@ typedef struct	s_env
 	char		player;
 	char		player_lm;
 	int			game_continue;
+	t_list		*liste_possibilite;
 }				t_env;
+
+typedef struct	s_map
+{
+	char		**map;
+}				t_map;
 
 void	clear_env(t_env *e);
 void	ft_put_array_fd(char **tab, int fd);
