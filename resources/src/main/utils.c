@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:46:07 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/27 09:57:49 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:06:35 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,15 @@ void	ft_put_array_fd(char **tab, int fd)
 		i++;
 	}
 	ft_putendl_fd("    )", fd);
+}
+
+void	delete_map(void *content, size_t content_size)
+{
+	t_map	*choix;
+
+	choix = (t_map *)content;
+	ft_free_tab(choix->map);
+	free(content);
+	content_size = 0;
+	content = NULL;
 }

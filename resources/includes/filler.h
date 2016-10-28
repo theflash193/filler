@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/28 21:57:36 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:07:18 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ void	map_dimension(t_env *e);
 void	map(t_env *e);
 void	piece_dimension(t_env *e);
 void	piece(t_env *e);
+void	delete_map(void *content, size_t content_size);
+
 #endif
