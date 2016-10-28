@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/28 22:57:31 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:13:42 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ static void	final_decision(t_env *e)
 
 void	selectionne_la_meilleur_possibilite(t_env *e)
 {
+	ft_lstiter(e->liste_possibilite, print_possibilite);
 }
 
 static void	thinking_strategy(t_env *e)
@@ -205,6 +206,11 @@ static void	preparation_du_prochain_tour(t_env *e)
 	{
 		ft_free_tab(e->piece);
 		e->piece = NULL;
+	}
+	if (e->liste_possibilite != 0)
+	{
+		ft_lstdel(&(e->liste_possibilite), delete_map);
+		e->liste_possibilite = NULL;
 	}
 	e->choice_x = 0;
 	e->choice_y = 0;
