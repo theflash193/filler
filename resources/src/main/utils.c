@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:46:07 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/28 23:18:33 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:24:19 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	print_possibilite(t_list *elem)
 	t_map	*choix;
 
 	choix = (t_map *)elem->content;
-	printf("%p\n", choix);
 	ft_put_array_fd(choix->map, 2);
 }
 

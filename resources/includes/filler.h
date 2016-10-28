@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/28 23:22:58 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:25:46 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	delete_map(void *content, size_t content_size);
 
 void	thinking_strategy(t_env *e);
 void	final_decision(t_env *e);
+void	preparation_du_prochain_tour(t_env *e);
 
 void	affiche_piece(char i, char j);
 void	affiche_position(int i, int j);

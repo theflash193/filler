@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/28 23:21:58 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:25:54 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,27 @@ void	final_decision(t_env *e)
 void	selectionne_la_meilleur_possibilite(t_env *e)
 {
 	ft_lstiter(e->liste_possibilite, print_possibilite);
+}
+
+void	preparation_du_prochain_tour(t_env *e)
+{
+	char *line;
+
+	line = NULL;
+	e->piece_line = 0;
+	e->piece_colonne = 0;
+	if (e->piece != NULL)
+	{
+		ft_free_tab(e->piece);
+		e->piece = NULL;
+	}
+	if (e->liste_possibilite != 0)
+	{
+		ft_lstdel(&(e->liste_possibilite), delete_map);
+		e->liste_possibilite = NULL;
+	}
+	e->choice_x = 0;
+	e->choice_y = 0;
 }
 
 void	thinking_strategy(t_env *e)
