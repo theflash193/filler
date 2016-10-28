@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/28 23:25:46 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:30:20 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct	s_env
 typedef struct	s_map
 {
 	char		**map;
+	int			x;
+	int			y;
 }				t_map;
 
 void	clear_env(t_env *e);

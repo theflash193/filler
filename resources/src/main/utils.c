@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:46:07 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/28 23:24:19 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:32:34 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	delete_map(void *content, size_t content_size)
 
 	choix = (t_map *)content;
 	ft_free_tab(choix->map);
+	choix->x = 0;
+	choix->y = 0;
 	free(content);
 	content_size = 0;
 	content = NULL;

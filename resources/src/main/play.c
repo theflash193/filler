@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/28 23:25:54 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/10/28 23:31:46 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ static void find_all_possibility(t_env *e)
 			{
 				choix = (t_map *)malloc(sizeof(t_map));
 				choix->map = tentative;
+				choix->x = i;
+				choix->y = j;
+				affiche_position(choix->x, choix->y);
 				ft_lst_push_back(&(e->liste_possibilite), ft_lstnew(choix, sizeof(choix)));
 				e->choice_x = i;
 				e->choice_y = j;
@@ -127,7 +130,7 @@ void	final_decision(t_env *e)
 
 void	selectionne_la_meilleur_possibilite(t_env *e)
 {
-	ft_lstiter(e->liste_possibilite, print_possibilite);
+	// ft_lstiter(e->liste_possibilite, print_possibilite);
 }
 
 void	preparation_du_prochain_tour(t_env *e)
