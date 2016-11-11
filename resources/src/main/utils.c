@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:46:07 by ozdek             #+#    #+#             */
-/*   Updated: 2016/10/28 23:32:34 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/11 22:43:37 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,27 @@ int		is_player(char c, t_env *e)
 	return (c == PLAYER_2_PIECE || c == PLAYER_2_LAST_MOVE);
 }
 
+
+void test(t_map *choix)
+{
+	ft_put_array_fd(choix->map, 2);
+	ft_putstr_fd("points_player1: ", 2);
+	ft_putnbr_fd(calcul_player_points(choix, 1), 2);
+	ft_putstr_fd(" points_player2: ", 2);
+	ft_putnbr_fd(calcul_player_points(choix, 2), 2);
+	ft_putendl_fd("", 2);
+	ft_putstr_fd("p1 potentiel: ", 2);
+	ft_putnbr_fd(choix->score_potentiel, 2);
+	ft_putendl_fd("", 2);
+}
+
 void	print_possibilite(t_list *elem)
 {
 	t_map	*choix;
 
 	choix = (t_map *)elem->content;
-	ft_put_array_fd(choix->map, 2);
+	test(choix);
+	// ft_put_array_fd(choix->map, 2);
 }
 
 void	affiche_position(int i, int j)

@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/11/09 17:13:16 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/11 22:49:34 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct	s_map
 	int			points_ennemy;
 	int			line;
 	int			colonne;
-	int			point_apres_placement;
 	int			score_potentiel;
 }				t_map;
 
@@ -90,5 +89,6 @@ void	print_possibilite(t_list *elem);
 int		is_ennemy(char c, t_env *e);
 int		is_player(char c, t_env *e);
 char	**array_cpy(char **src);
+void test(t_map *choix);
 
 #endif

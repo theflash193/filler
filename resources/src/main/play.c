@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/09 17:32:26 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/11 22:55:29 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,17 +140,6 @@ static char	**tentative_insertion_de_piece(t_env *e, int x, int y)
 	return (insertion_de_piece(e, x, y));
 }
 
-void test(t_map *choix) {
-	ft_put_array_fd(choix->map, 2);
-	ft_putstr_fd("points_player1: ", 2);
-	ft_putnbr_fd(calcul_player_points(choix, 1), 2);
-	ft_putstr_fd(" points_player2: ", 2);
-	ft_putnbr_fd(calcul_player_points(choix, 2), 2);
-	ft_putendl_fd("", 2);
-	ft_putstr_fd("p1 potentiel: ", 2);
-	ft_putnbr_fd(choix->score_potentiel, 2);
-	ft_putendl_fd("", 2);
-}
 
 static void find_all_possibility(t_env *e)
 {
@@ -158,6 +147,7 @@ static void find_all_possibility(t_env *e)
 	int		j;
 	t_map	*choix;
 	char	**tentative;
+	int point_apres_placement;
 
 	choix = NULL;
 	i = 0;
@@ -175,12 +165,10 @@ static void find_all_possibility(t_env *e)
 				choix->y = j;
 				choix->line = e->line;
 				choix->colonne = e->colonne;
-				int point_apres_placement;
-
 				point_apres_placement = calcul_player_points(choix, e->nb_player);
 				choix->score_potentiel = point_apres_placement - e->p1_point_debut_tour;
-				test(choix);
-				ft_lst_push_back(&(e->liste_possibilite), ft_lstnew(choix, sizeof(choix)));
+				// test(choix);
+				ft_lst_push_back(&(e->liste_possibilite), ft_lstnew(choix, sizeof(t_map)));
 				e->choice_x = i;
 				e->choice_y = j;
 				return ;
@@ -210,7 +198,16 @@ void	selectionne_la_meilleur_possibilite(t_env *e)
 void	preparation_du_prochain_tour(t_env *e)
 {
 	char *line;
+	t_map *choix;
 
+	if (e->liste_possibilite != NULL)
+	{
+		choix = (t_map *)e->liste_possibilite->content;
+		e->score_p1 += choix->score_potentiel;
+	}
+	ft_putstr_fd("score p1 : ", 2);
+	ft_putnbr_fd(e->score_p1, 2);
+	ft_putendl_fd("", 2);
 	line = NULL;
 	e->piece_line = 0;
 	e->piece_colonne = 0;
