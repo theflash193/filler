@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/11/11 22:49:34 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/11 23:40:43 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ typedef struct	s_env
 	char		player;
 	char		player_lm;
 	int			game_continue;
-	int			p1_point_debut_tour;
-	int			p1_point_apres_placement;
-	int			score_p1;
-	int			score_p2;
 	t_list		*liste_possibilite;
 }				t_env;
 
@@ -62,7 +58,6 @@ typedef struct	s_map
 	int			points_ennemy;
 	int			line;
 	int			colonne;
-	int			score_potentiel;
 }				t_map;
 
 void	clear_env(t_env *e);

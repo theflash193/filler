@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/11 22:55:29 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/11 23:47:30 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ static void find_all_possibility(t_env *e)
 	int		j;
 	t_map	*choix;
 	char	**tentative;
-	int point_apres_placement;
 
 	choix = NULL;
 	i = 0;
@@ -165,9 +164,6 @@ static void find_all_possibility(t_env *e)
 				choix->y = j;
 				choix->line = e->line;
 				choix->colonne = e->colonne;
-				point_apres_placement = calcul_player_points(choix, e->nb_player);
-				choix->score_potentiel = point_apres_placement - e->p1_point_debut_tour;
-				// test(choix);
 				ft_lst_push_back(&(e->liste_possibilite), ft_lstnew(choix, sizeof(t_map)));
 				e->choice_x = i;
 				e->choice_y = j;
@@ -200,19 +196,9 @@ void	preparation_du_prochain_tour(t_env *e)
 	char *line;
 	t_map *choix;
 
-	if (e->liste_possibilite != NULL)
-	{
-		choix = (t_map *)e->liste_possibilite->content;
-		e->score_p1 += choix->score_potentiel;
-	}
-	ft_putstr_fd("score p1 : ", 2);
-	ft_putnbr_fd(e->score_p1, 2);
-	ft_putendl_fd("", 2);
 	line = NULL;
 	e->piece_line = 0;
 	e->piece_colonne = 0;
-	if (e->game_continue == 0)
-		ft_putnbr_fd(e->score_p1, 2);
 	if (e->piece != NULL)
 	{
 		ft_free_tab(e->piece);
@@ -225,13 +211,10 @@ void	preparation_du_prochain_tour(t_env *e)
 	}
 	e->choice_x = 0;
 	e->choice_y = 0;
-	e->p1_point_debut_tour = 0;
-	e->p1_point_apres_placement = 0;
 }
 
 void	thinking_strategy(t_env *e)
 {
-	ft_putendl_fd("nouveau tour", 2);
 	find_all_possibility(e);
 	selectionne_la_meilleur_possibilite(e);
 }
