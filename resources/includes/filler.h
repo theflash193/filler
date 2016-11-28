@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/11/11 23:40:43 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/28 23:25:12 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct	s_map
 	int			y;
 	int			points_player;
 	int			points_ennemy;
+	int			influence_player;
+	int			influence_ennemy;
 	int			line;
 	int			colonne;
 }				t_map;

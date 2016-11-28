@@ -6,11 +6,28 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/11 23:47:30 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/28 23:25:35 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+void	influence_horizontal(t_map *choix, int coord_x, int coord_y)
+{}
+
+void	influence_vertical(t_map *choix, int coord_x, int coord_y)
+{}
+
+int		pts_influence(t_map *choix, int player)
+{	
+}
+
+void	influence_player(t_list *elem)
+{
+	t_map *choix;
+
+	choix = (t_map *)elem->content;
+}
 
 int 	calcul_player_points2(t_env *e, int player)
 {
@@ -140,7 +157,6 @@ static char	**tentative_insertion_de_piece(t_env *e, int x, int y)
 	return (insertion_de_piece(e, x, y));
 }
 
-
 static void find_all_possibility(t_env *e)
 {
 	int		i;
@@ -188,7 +204,9 @@ void	final_decision(t_env *e)
 
 void	selectionne_la_meilleur_possibilite(t_env *e)
 {
-	// ft_lstiter(e->liste_possibilite, print_possibilite);
+	ft_lstiter(e->liste_possibilite, influence_player);
+	print_possibilite(e->liste_possibilite);
+	exit(0);
 }
 
 void	preparation_du_prochain_tour(t_env *e)
