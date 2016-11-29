@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/11/29 00:16:53 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/29 11:19:14 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct	s_env
 typedef struct	s_map
 {
 	char		**map;
-	char		**influence_player;
+	char		**influence_p1;
+	char		**influence_p2;
 	int			x;
 	int			y;
 	int			points_player;
@@ -89,5 +90,6 @@ int		is_player(char c, t_env *e);
 char	**array_cpy(char **src);
 void	test(t_map *choix);
 void	test_p1(t_map *choix);
+void test_p2(t_map *choix);
 
 #endif

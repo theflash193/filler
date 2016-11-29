@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:46:07 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/29 00:58:12 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/29 11:22:36 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,12 @@ void test(t_map *choix)
 
 void test_p1(t_map *choix)
 {
-	ft_put_array_fd(choix->influence_player, 2);
+	ft_put_array_fd(choix->influence_p1, 2);
+}
+
+void test_p2(t_map *choix)
+{
+	ft_put_array_fd(choix->influence_p2, 2);
 }
 
 void	print_possibilite(t_list *elem)
@@ -101,6 +106,7 @@ void	print_possibilite(t_list *elem)
 	choix = (t_map *)elem->content;
 	test(choix);
 	test_p1(choix);
+	test_p2(choix);
 	// ft_put_array_fd(choix->map, 2);
 }
 
