@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:46:07 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/29 11:22:36 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/29 17:38:04 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,11 @@ void	print_possibilite(t_list *elem)
 	test(choix);
 	test_p1(choix);
 	test_p2(choix);
+	ft_putstr_fd("influence p1: ", 2);
+	ft_putnbr_fd(choix->points_influence_p1, 2);
+	ft_putstr_fd(" p2: ", 2);
+	ft_putnbr_fd(choix->points_influence_p2, 2);
+	ft_putchar_fd('\n', 2);
 	// ft_put_array_fd(choix->map, 2);
 }
 

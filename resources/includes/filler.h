@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/11/29 11:19:14 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/29 17:47:24 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ int		is_player(char c, t_env *e);
 char	**array_cpy(char **src);
 void	test(t_map *choix);
 void	test_p1(t_map *choix);
-void test_p2(t_map *choix);
+void	test_p2(t_map *choix);
+
+void	influence(t_list *elem);
+int		calcul_influence(char **map, int player);
+void	marquage_influence(t_map *choix, int player);
+void	influence_horizontal(t_map *choix, t_coord coord, int player);
+void	influence_vertical(t_map *choix, t_coord coord, int player);
 
 #endif

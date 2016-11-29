@@ -1,4 +1,4 @@
-MAIN	:= main.c utils.c parser.c play.c \
+MAIN	:= main.c utils.c parser.c play.c influence.c \
 
 OBJ		:= $(OBJ) $(MAIN:.c=.o)
 
