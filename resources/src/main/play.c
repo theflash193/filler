@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/29 00:59:18 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/29 11:09:43 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,23 @@ void	influence_horizontal(t_map *choix, t_coord coord, int player)
 	}
 }
 
-// void	influence_vertical(t_map *choix, t_coord coord, int player)
-// {
-// }
+void	influence_vertical(t_map *choix, t_coord coord, int player)
+{
+	int i;
+
+	i = coord.x - 1;
+	while (i >= 0 && choix->influence_player[i][coord.y] == '.')
+	{
+		choix->influence_player[i][coord.y] = '1';
+		i--;
+	}
+	i = coord.x + 1;
+	while (i < choix->line && choix->influence_player[i][coord.y] == '.')
+	{
+		choix->influence_player[i][coord.y] = '1';
+		i++;
+	}
+}
 
 void	marquage_influence(t_map *choix, int player)
 {
@@ -55,7 +69,7 @@ void	marquage_influence(t_map *choix, int player)
 			{
 				// ft_putendl_fd("jojo", 2);
 				influence_horizontal(choix, coord, player);
-				// influence_vertical();
+				influence_vertical(choix, coord, player);
 			}
 			// if (player == 2 && IS_PLAYER2(tmp[coord.x][coord.y]))
 			// {
