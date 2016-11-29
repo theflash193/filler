@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/29 11:23:19 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/29 11:45:18 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	influence_vertical(t_map *choix, t_coord coord, int player)
 	}
 	if (player == 2)
 	{
+		i = coord.x - 1;
 		while (i >= 0 && choix->influence_p2[i][coord.y] == '.')
 		{
 			choix->influence_p2[i][coord.y] = '2';
@@ -106,7 +107,7 @@ void	marquage_influence(t_map *choix, int player)
 			if (player == 2 && IS_PLAYER2(tmp[coord.x][coord.y]))
 			{
 				influence_horizontal(choix, coord, player);
-				influence_horizontal(choix, coord, player);
+				influence_vertical(choix, coord, player);
 			}
 			coord.y++;
 		}
