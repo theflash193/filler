@@ -6,27 +6,82 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/28 23:25:35 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/11/29 00:59:18 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	influence_horizontal(t_map *choix, int coord_x, int coord_y)
-{}
+void	influence_horizontal(t_map *choix, t_coord coord, int player)
+{
+	int j;
 
-void	influence_vertical(t_map *choix, int coord_x, int coord_y)
-{}
-
-int		pts_influence(t_map *choix, int player)
-{	
+	j = coord.y;
+	if (player == 1)
+	{
+		j--;
+		while (j >= 0 && choix->influence_player[coord.x][j] == '.')
+		{
+			choix->influence_player[coord.x][j] = '1';
+			j--;
+		}
+		j = coord.y + 1;
+		while (j < choix->colonne && choix->influence_player[coord.x][j] == '.')
+		{
+			choix->influence_player[coord.x][j] = '1';
+			j++;
+		}
+	}
 }
 
-void	influence_player(t_list *elem)
+// void	influence_vertical(t_map *choix, t_coord coord, int player)
+// {
+// }
+
+void	marquage_influence(t_map *choix, int player)
+{
+	char **tmp;
+	t_coord	coord;
+
+	tmp = (player == 1) ? choix->influence_player : choix->influence_player;
+	coord.x = 0;
+	// test_p1(choix);
+	while (tmp[coord.x])
+	{
+		coord.y = 0;
+		while (tmp[coord.x][coord.y])
+		{
+			if (player == 1 && IS_PLAYER1(tmp[coord.x][coord.y]))
+			{
+				// ft_putendl_fd("jojo", 2);
+				influence_horizontal(choix, coord, player);
+				// influence_vertical();
+			}
+			// if (player == 2 && IS_PLAYER2(tmp[coord.x][coord.y]))
+			// {
+			// 	influence_horizontal(choix, coord, player);
+			// 	// influence_horizontal();
+			// }
+			coord.y++;
+		}
+		coord.x++;
+	}
+}
+
+void	influence(t_list *elem)
 {
 	t_map *choix;
 
 	choix = (t_map *)elem->content;
+	choix->influence_player = array_cpy(choix->map);
+	// choix->influence_player[0][0] = '1';
+	
+	// choix->points_player = 
+	marquage_influence(choix, 1);
+	test_p1(choix);
+	// marquage_influence(choix, 2);
+	// choix->points_influence_p1 = calcul_influence(choix, 1);
+	// e->points_influence_p2 = calcul_influence(choix, 2);
 }
 
 int 	calcul_player_points2(t_env *e, int player)
@@ -204,7 +259,7 @@ void	final_decision(t_env *e)
 
 void	selectionne_la_meilleur_possibilite(t_env *e)
 {
-	ft_lstiter(e->liste_possibilite, influence_player);
+	ft_lstiter(e->liste_possibilite, influence);
 	print_possibilite(e->liste_possibilite);
 	exit(0);
 }
