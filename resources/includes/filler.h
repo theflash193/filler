@@ -6,7 +6,7 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/11/29 17:47:24 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/12/01 11:58:55 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,7 @@ void	marquage_influence(t_map *choix, int player);
 void	influence_horizontal(t_map *choix, t_coord coord, int player);
 void	influence_vertical(t_map *choix, t_coord coord, int player);
 
+void	lst_buble_sort(t_list *lst, int (*cmp)());
+int		sort_best_move_p1(t_map *a, t_map *b);
+int		sort_best_move_p2(t_map *a, t_map *b);
 #endif

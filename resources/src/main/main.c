@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/10/28 23:26:07 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/12/01 21:59:22 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
 void 	message(char *s)
 {
 	ft_putendl_fd(s, 2);
+}
+
+void	preparation_du_prochain_tour(t_env *e)
+{
+	char *line;
+	t_map *choix;
+
+	line = NULL;
+	e->piece_line = 0;
+	e->piece_colonne = 0;
+	if (e->piece != NULL)
+	{
+		ft_free_tab(e->piece);
+		e->piece = NULL;
+	}
+	if (e->liste_possibilite != 0)
+	{
+		ft_lstdel(&(e->liste_possibilite), delete_map);
+		e->liste_possibilite = NULL;
+	}
+	e->choice_x = 0;
+	e->choice_y = 0;
 }
 
 int			main(int ac, char **av)

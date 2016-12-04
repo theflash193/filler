@@ -6,13 +6,11 @@
 /*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/30 23:57:10 by ozdek             #+#    #+#             */
-/*   Updated: 2016/11/29 17:41:03 by ozdek            ###   ########.fr       */
+/*   Updated: 2016/12/01 22:00:53 by ozdek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-
 
 int 	calcul_player_points2(t_env *e, int player)
 {
@@ -131,6 +129,9 @@ static char	**insertion_de_piece(t_env *e, int x, int y)
 		i++;
 		k++;
 	}
+	ft_put_array_fd(new_map, 2);
+	// ft_putnbr_fd(choix->line, 2);
+	// ft_putnbr_fd(choix->colonne, 2);
 	return (new_map);
 }
 
@@ -142,13 +143,15 @@ static char	**tentative_insertion_de_piece(t_env *e, int x, int y)
 	return (insertion_de_piece(e, x, y));
 }
 
-static void find_all_possibility(t_env *e)
+static t_list *find_all_possibility(t_env *e)
 {
 	int		i;
 	int		j;
 	t_map	*choix;
 	char	**tentative;
+	t_list	*all_possibility;
 
+	all_possibility = NULL;
 	choix = NULL;
 	i = 0;
 	while (i < e->line)
@@ -165,18 +168,15 @@ static void find_all_possibility(t_env *e)
 				choix->y = j;
 				choix->line = e->line;
 				choix->colonne = e->colonne;
-				ft_lst_push_back(&(e->liste_possibilite), ft_lstnew(choix, sizeof(t_map)));
+				ft_lst_push_back(&(all_possibility), ft_lstnew(choix, sizeof(t_map)));
 				e->choice_x = i;
 				e->choice_y = j;
-				return ;
 			}
 			j++;
 		}
 		i++;
 	}
-	e->choice_x = 0;
-	e->choice_y = 0;
-	e->game_continue = 0;
+	return (all_possibility);
 }
 
 void	final_decision(t_env *e)
@@ -187,37 +187,31 @@ void	final_decision(t_env *e)
 	ft_putendl_fd("", 1);
 }
 
-void	selectionne_la_meilleur_possibilite(t_env *e)
-{
-	ft_lstiter(e->liste_possibilite, influence);
-	print_possibilite(e->liste_possibilite);
-	exit(0);
-}
-
-void	preparation_du_prochain_tour(t_env *e)
-{
-	char *line;
-	t_map *choix;
-
-	line = NULL;
-	e->piece_line = 0;
-	e->piece_colonne = 0;
-	if (e->piece != NULL)
-	{
-		ft_free_tab(e->piece);
-		e->piece = NULL;
-	}
-	if (e->liste_possibilite != 0)
-	{
-		ft_lstdel(&(e->liste_possibilite), delete_map);
-		e->liste_possibilite = NULL;
-	}
-	e->choice_x = 0;
-	e->choice_y = 0;
-}
-
 void	thinking_strategy(t_env *e)
 {
-	find_all_possibility(e);
-	selectionne_la_meilleur_possibilite(e);
+	t_map	*choix;
+
+	static int i = 0;
+	e->liste_possibilite = find_all_possibility(e);
+	if (e->liste_possibilite == NULL)
+	{
+		e->choice_x = 0;
+		e->choice_y = 0;
+		e->game_continue = 0;
+	}
+	else
+	{
+		print_possibilite(e->liste_possibilite);
+		ft_lstiter(e->liste_possibilite, influence);
+		if (e->player == 1)
+			lst_buble_sort(e->liste_possibilite, sort_best_move_p1);
+		else
+			lst_buble_sort(e->liste_possibilite, sort_best_move_p2);
+		choix = (t_map *)e->liste_possibilite->content;
+		e->choice_x = choix->x;
+		e->choice_y = choix->y;
+		i++;
+		if (i == 2)
+			exit(0);	
+	}
 }
