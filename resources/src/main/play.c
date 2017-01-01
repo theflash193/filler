@@ -168,9 +168,8 @@ static t_list *find_all_possibility(t_env *e)
 				choix->y = j;
 				choix->line = e->line;
 				choix->colonne = e->colonne;
+				choix->player = e->nb_player;
 				ft_lst_push_back(&(all_possibility), ft_lstnew(choix, sizeof(t_map)));
-				e->choice_x = i;
-				e->choice_y = j;
 			}
 			j++;
 		}
@@ -191,7 +190,7 @@ void	thinking_strategy(t_env *e)
 {
 	t_map	*choix;
 
-	//	static int i = 0;
+		static int i = 0;
 	e->liste_possibilite = find_all_possibility(e);
 	if (e->liste_possibilite == NULL)
 	{
@@ -207,11 +206,12 @@ void	thinking_strategy(t_env *e)
 			lst_buble_sort(e->liste_possibilite, sort_best_move_p1);
 		else
 			lst_buble_sort(e->liste_possibilite, sort_best_move_p2);
+		ft_lstiter(e->liste_possibilite, print_possibilite);
 		choix = (t_map *)e->liste_possibilite->content;
 		e->choice_x = choix->x;
 		e->choice_y = choix->y;
-		//		i++;
-		//		if (i == 2)
-		//exit(0);	
+		i++;
+		if (i == 2)
+		  exit(0);	
 	}
 }

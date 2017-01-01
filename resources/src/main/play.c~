@@ -129,7 +129,7 @@ static char	**insertion_de_piece(t_env *e, int x, int y)
 		i++;
 		k++;
 	}
-	ft_put_array_fd(new_map, 2);
+	//	ft_put_array_fd(new_map, 2);
 	// ft_putnbr_fd(choix->line, 2);
 	// ft_putnbr_fd(choix->colonne, 2);
 	return (new_map);
@@ -191,7 +191,7 @@ void	thinking_strategy(t_env *e)
 {
 	t_map	*choix;
 
-	static int i = 0;
+	//	static int i = 0;
 	e->liste_possibilite = find_all_possibility(e);
 	if (e->liste_possibilite == NULL)
 	{
@@ -201,7 +201,7 @@ void	thinking_strategy(t_env *e)
 	}
 	else
 	{
-		print_possibilite(e->liste_possibilite);
+	  //		print_possibilite(e->liste_possibilite);
 		ft_lstiter(e->liste_possibilite, influence);
 		if (e->player == 1)
 			lst_buble_sort(e->liste_possibilite, sort_best_move_p1);
@@ -210,8 +210,8 @@ void	thinking_strategy(t_env *e)
 		choix = (t_map *)e->liste_possibilite->content;
 		e->choice_x = choix->x;
 		e->choice_y = choix->y;
-		i++;
-		if (i == 2)
-			exit(0);	
+		//		i++;
+		//		if (i == 2)
+		//exit(0);	
 	}
 }
