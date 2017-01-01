@@ -30,11 +30,6 @@ void	preparation_du_prochain_tour(t_env *e)
 		ft_free_tab(e->piece);
 		e->piece = NULL;
 	}
-	if (e->map != NULL)
-	{
-		ft_free_tab(e->map);
-		e->map = NULL;
-	}
 	if (e->liste_possibilite != 0)
 	{
 		ft_lstdel(&(e->liste_possibilite), delete_map);
