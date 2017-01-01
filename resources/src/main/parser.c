@@ -58,7 +58,6 @@ void map(t_env *e)
 	line = NULL;
 	map_dimension(e);
 	e->map = (char **)malloc(sizeof(char *) * e->line + 1);
-	ft_putnbr_fd(e->line, 2);
 	get_next_line(0, &line);
 	ft_strclean(line);
 	while (i < e->line)
