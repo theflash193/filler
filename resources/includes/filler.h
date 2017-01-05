@@ -99,7 +99,7 @@ void	marquage_influence(t_map *choix, int player);
 void	influence_horizontal(t_map *choix, t_coord coord, int player);
 void	influence_vertical(t_map *choix, t_coord coord, int player);
 
-void	lst_buble_sort(t_list *lst, int (*cmp)());
+void	lst_buble_sort(t_list **lst, int (*cmp)());
 int		sort_best_move_p1(t_map *a, t_map *b);
 int		sort_best_move_p2(t_map *a, t_map *b);
 void 	message(char *s);

@@ -1,12 +1,12 @@
 #include "filler.h"
 
-static void	lstswap(void **a, void **b)
+static void	lstswap(void *a, void *b)
 {
 	void *tmp;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
 }
 
 int	sort_best_move_p1(t_map *a, t_map *b)
@@ -23,7 +23,7 @@ int	sort_best_move_p2(t_map *a, t_map *b)
 	return (a->points_influence_p2 > a->points_influence_p2);
 }
 
-void		lst_buble_sort(t_list **lst, int (*cmp)())
+void		lst_buble_sort(t_list *lst, int (*cmp)())
 {
 	t_list	*cursor;
 	int		unsorted;
@@ -31,12 +31,12 @@ void		lst_buble_sort(t_list **lst, int (*cmp)())
 	unsorted = 1;
 	while (unsorted)
 	{
-		cursor = *lst;
+		cursor = lst;
 		while (cursor->next != NULL)
 		{
 			if (!cmp(cursor->content, cursor->next->content))
 			{
-			  lstswap(&(cursor->content), &(cursor->next->content));
+				lstswap(cursor->content, cursor->next->content);
 				unsorted = 1;
 			}
 			cursor = cursor->next;

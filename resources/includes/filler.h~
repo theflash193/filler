@@ -62,6 +62,7 @@ typedef struct	s_map
 	int			points_influence_p2;
 	int			line;
 	int			colonne;
+  int				player;
 }				t_map;
 
 void	clear_env(t_env *e);
