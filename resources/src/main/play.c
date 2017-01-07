@@ -169,6 +169,7 @@ static t_list *find_all_possibility(t_env *e)
 				choix->line = e->line;
 				choix->colonne = e->colonne;
 				choix->player = e->nb_player;
+				choix->millieux = e->millieux;
 				ft_lst_push_back(&(all_possibility), ft_lstnew(choix, sizeof(t_map)));
 			}
 			j++;
@@ -201,6 +202,7 @@ void	thinking_strategy(t_env *e)
 	{
 	  //		print_possibilite(e->liste_possibilite);
 		ft_lstiter(e->liste_possibilite, influence);
+		ft_lstiter(e->liste_possibilite, pts_millieux);
 		if (e->nb_player == 1)
 		  lst_buble_sort(&(e->liste_possibilite), sort_best_move_p1);
 		else

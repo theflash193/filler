@@ -45,6 +45,8 @@ void	map_dimension(t_env *e)
 	tab = ft_strsplit(line, ' ');
 	e->line = atoi(tab[1]);
 	e->colonne = atoi(tab[2]);
+	e->millieux.x = e->line / 2;
+	e->millieux.y = e->colonne / 2;
 	ft_strclean(line);
 	ft_free_tab(tab);
 }

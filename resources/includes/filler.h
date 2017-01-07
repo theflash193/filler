@@ -47,6 +47,7 @@ typedef struct	s_env
 	char		player_lm;
 	int			game_continue;
 	t_list		*liste_possibilite;
+	t_coord		 millieux;
 }				t_env;
 
 typedef struct	s_map
@@ -63,6 +64,8 @@ typedef struct	s_map
 	int			line;
 	int			colonne;
   int				player;
+  int 				valeur;
+  t_coord		millieux;			
 }				t_map;
 
 void	clear_env(t_env *e);
@@ -103,4 +106,5 @@ void	lst_buble_sort(t_list **lst, int (*cmp)());
 int		sort_best_move_p1(t_map *a, t_map *b);
 int		sort_best_move_p2(t_map *a, t_map *b);
 void 	message(char *s);
+void	pts_millieux(t_list *lst);
 #endif

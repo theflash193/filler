@@ -151,5 +151,16 @@ void	influence_vertical(t_map *choix, t_coord coord, int player)
 	}
 }
 
+void	pts_millieux(t_list *lst)
+{
+  t_map *a;
+  t_coord b;
 
+
+  a = (t_map *)lst->content;
+  b.x = a->millieux.x - a->x;
+  b.y = a->millieux.y - a->y;
+  a->valeur = (b.y > 0) ? b.y : -b.y;
+  //  a->valeur = (b.y > 0) ? b.y : -b.y;
+}
 
