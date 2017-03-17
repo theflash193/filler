@@ -63,6 +63,7 @@ typedef struct	s_map
 	int			line;
 	int			colonne;
   int				player;
+  t_list *nouvelle_pieces;
 }				t_map;
 
 void	clear_env(t_env *e);
@@ -92,7 +93,7 @@ char	**array_cpy(char **src);
 void	test(t_map *choix);
 void	test_p1(t_map *choix);
 void	test_p2(t_map *choix);
-
+void	affiche_coord(t_list *a);
 void	influence(t_list *elem);
 int		calcul_influence(char **map, int player);
 void	marquage_influence(t_map *choix, int player);
