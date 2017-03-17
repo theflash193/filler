@@ -1,6 +1,6 @@
-MAIN	:= main.c utils.c parser.c play.c influence.c decision.c \
+MAIN	:= 
 
 OBJ		:= $(OBJ) $(MAIN:.c=.o)
 
-$(DIROBJ)/%.o: $(DIRMAIN)/%.c $(HEAD)
+$(DIROBJ)/%.o: $(DIRAI)/%.c $(HEAD)
 	$(COMPIL)
