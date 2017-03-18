@@ -1,1 +1,0 @@
-Guest@MacBook-Pro-de-michael.local.6992

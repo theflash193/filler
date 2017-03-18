@@ -1,4 +1,4 @@
-MAIN	:= message.c\
+MAIN	:= \
 
 OBJ		:= $(OBJ) $(MAIN:.c=.o)
 

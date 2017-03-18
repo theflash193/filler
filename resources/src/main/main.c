@@ -12,11 +12,6 @@
 
 #include "filler.h"
 
-void 	message(char *s)
-{
-	ft_putendl_fd(s, 2);
-}
-
 void	preparation_du_prochain_tour(t_env *e)
 {
 	char *line;
