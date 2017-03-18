@@ -22,13 +22,17 @@ DIRINC			:= resources/includes
 DIRFT			:= resources/libft
 
 DIRMAIN 		:= $(DIRSRC)/main
-DIRCOREUTILS 	:= $(DIRSRC)/coreutils
+DIRCOREUTILS 		:= $(DIRSRC)/coreutils
+DIRAI 			:= $(DIRSRC)/ai
+DIRPARSER 		:= $(DIRSRC)/coreutils
 
 ### FILES ###
 HEAD	:= $(DIRINC)/$(HEADER).h
 
 include $(DIRMAIN)/sources.mk
 include $(DIRCOREUTILS)/sources.mk
+include $(DIRAI)/sources.mk
+include $(DIRPARSER)/sources.mk
 
 POBJ	:= $(addprefix $(DIROBJ)/, $(OBJ))
 

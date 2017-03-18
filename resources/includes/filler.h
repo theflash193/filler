@@ -70,9 +70,7 @@ void				clear_env(t_env *e);
 void				ft_put_array_fd(char **tab, int fd);
 
 void				player_number(t_env *e);
-void				map_dimension(t_env *e);
 void				map(t_env *e);
-void				piece_dimension(t_env *e);
 void				piece(t_env *e);
 void			       	delete_map(void *content, size_t content_size);
 

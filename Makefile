@@ -24,7 +24,7 @@ DIRFT			:= resources/libft
 DIRMAIN 		:= $(DIRSRC)/main
 DIRCOREUTILS 		:= $(DIRSRC)/coreutils
 DIRAI 			:= $(DIRSRC)/ai
-DIRPARSER 		:= $(DIRSRC)/coreutils
+DIRPARSER 		:= $(DIRSRC)/parser
 
 ### FILES ###
 HEAD	:= $(DIRINC)/$(HEADER).h
