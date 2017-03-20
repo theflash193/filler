@@ -1,4 +1,3 @@
-
 #include "filler.h"
 
 void	influence(t_list *elem)
@@ -26,7 +25,7 @@ void	influence(t_list *elem)
 	choix->points_influence_p2 = calcul_influence(choix->influence_p2, 2);
 }
 
-int		calcul_influence(char **map, int player)
+int	calcul_influence(char **map, int player)
 {
 	int count;
 	int i;
@@ -150,6 +149,3 @@ void	influence_vertical(t_map *choix, t_coord coord, int player)
 		}	
 	}
 }
-
-
-

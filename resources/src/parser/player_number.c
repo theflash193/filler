@@ -22,3 +22,4 @@ void player_number(t_env *e)
 	}
 	ft_strclean(line);
 }
+
