@@ -1,4 +1,4 @@
-MAIN	:= main.c utils.c decision.c \
+MAIN	:= main.c utils.c \
 
 OBJ		:= $(OBJ) $(MAIN:.c=.o)
 
