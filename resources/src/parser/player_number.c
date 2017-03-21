@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-void player_number(t_env *e)
+void	player_number(t_env *e)
 {
 	char *line;
 
@@ -34,4 +34,3 @@ void player_number(t_env *e)
 	}
 	ft_strclean(line);
 }
-
