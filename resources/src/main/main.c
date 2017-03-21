@@ -12,10 +12,10 @@
 
 #include "filler.h"
 
-void	preparation_du_prochain_tour(t_env *e)
+void		preparation_du_prochain_tour(t_env *e)
 {
-	char *line;
-	t_map *choix;
+	char	*line;
+	t_map	*choix;
 
 	line = NULL;
 	e->piece_line = 0;
