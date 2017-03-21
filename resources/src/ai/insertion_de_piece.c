@@ -20,7 +20,7 @@ static void	init(int x, int y, t_env *e, t_ip *a)
 	a->k = 0;
 }
 
-char	**insertion_de_piece(t_env *e, int x, int y)
+char		**insertion_de_piece(t_env *e, int x, int y)
 {
 	t_ip	a;
 
@@ -33,9 +33,9 @@ char	**insertion_de_piece(t_env *e, int x, int y)
 		{
 			if (e->piece[a.k][a.l] == '*' && a.new_map[a.i][a.j] != e->player)
 			{
-      			  if (e->nb_player == 1)
-				a.new_map[a.i][a.j] = 'o';
-			  else
+				if (e->nb_player == 1)
+					a.new_map[a.i][a.j] = 'o';
+				else
 			      a.new_map[a.i][a.j] = 'x'; 
 			}
 			a.l++;
