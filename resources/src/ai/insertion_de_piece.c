@@ -36,7 +36,7 @@ char		**insertion_de_piece(t_env *e, int x, int y)
 				if (e->nb_player == 1)
 					a.new_map[a.i][a.j] = 'o';
 				else
-			      a.new_map[a.i][a.j] = 'x'; 
+					a.new_map[a.i][a.j] = 'x';
 			}
 			a.l++;
 			a.j++;
@@ -45,5 +45,4 @@ char		**insertion_de_piece(t_env *e, int x, int y)
 		a.k++;
 	}
 	return (a.new_map);
-
 }

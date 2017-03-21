@@ -12,14 +12,14 @@
 
 #include "filler.h"
 
-static void init(int x, int y, t_pni *a)
+static void	init(int x, int y, t_pni *a)
 {
 	a->nombre_de_piece_joueur = 0;
 	a->i = x;
 	a->j = y;
 }
 
-int	piece_non_inserable(t_env *e, int x, int y, char **new_map)
+int			piece_non_inserable(t_env *e, int x, int y, char **new_map)
 {
 	t_pni	a;
 
