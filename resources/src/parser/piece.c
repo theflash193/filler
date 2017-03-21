@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-static void piece_dimension(t_env *e)
+static void	piece_dimension(t_env *e)
 {
 	char	*line;
 	char	**tab;
@@ -26,7 +26,7 @@ static void piece_dimension(t_env *e)
 	ft_free_tab(tab);
 }
 
-void piece(t_env *e)
+void		piece(t_env *e)
 {
 	char	*line;
 	int		i;
@@ -43,4 +43,3 @@ void piece(t_env *e)
 	}
 	e->piece[i] = 0;
 }
-
