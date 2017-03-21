@@ -25,13 +25,13 @@ void		thinking_strategy(t_env *e)
 	}
 	else
 	{
-	  	print_possibilite(e->liste_possibilite);
-	       	placement_piece_droite(e);
+		print_possibilite(e->liste_possibilite);
+		placement_piece_droite(e);
 		ft_lstiter(e->liste_possibilite, influence);
 		if (e->nb_player == 1)
-		  lst_buble_sort(&(e->liste_possibilite), sort_best_move_p1);
+			lst_buble_sort(&(e->liste_possibilite), sort_best_move_p1);
 		else
-		  lst_buble_sort(&(e->liste_possibilite), sort_best_move_p2);
+			lst_buble_sort(&(e->liste_possibilite), sort_best_move_p2);
 		choix = (t_map *)e->liste_possibilite->content;
 		e->choice_x = choix->x;
 		e->choice_y = choix->y;
