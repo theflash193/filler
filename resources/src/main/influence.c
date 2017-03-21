@@ -12,30 +12,6 @@
 
 #include "filler.h"
 
-int		calcul_influence(char **map, int player)
-{
-	int count;
-	int i;
-	int j;
-
-	count = 0;
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (player == 1 && map[i][j] == '1')
-				count++;
-			if (player == 2 && map[i][j] == '2')
-				count++;
-			j++;
-		}
-		i++;
-	}
-	return (count);
-}
-
 void	marquage_influence(t_map *choix, int player)
 {
 	char	**tmp;
