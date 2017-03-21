@@ -21,14 +21,14 @@ static char	**tentative_insertion_de_piece(t_env *e, int x, int y)
 
 static void	init_choix(t_map **choix, t_env *e, char **tentative)
 {
-	choix = (t_map *)malloc(sizeof(t_map));
-	choix->map = tentative;
+	*choix = (t_map *)malloc(sizeof(t_map));
+	*choix->map = tentative;
 	choix->line = e->line;
 	choix->colonne = e->colonne;
 	choix->player = e->nb_player;
 	choix->points_influence_p1 = 0;
 	choix->points_influence_p2 = 0;
-	choix->nouvelle_pieces = stockage_nouvelle_piece(choix);
+	choix->nouvelle_pieces = stockage_nouvelle_piece(*choix);
 }
 
 static void	init(t_list **all_possibility, t_map **choix, int *i)
