@@ -20,11 +20,17 @@ static void	init_piece(t_list **ret, int i, int j, t_coord **pieces)
 	ft_lst_push_back(ret, ft_lstnew(*pieces, sizeof(t_coord)));
 }
 
+static void	init_piece(t_coord **piece, int i, int j)
+{
+	*piece->x = i;
+	*piece->y = j;
+}
+
 t_list		*stockage_nouvelle_piece(t_map *choix)
 {
 	t_list	*ret;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	t_coord	*pieces;
 
 	i = 0;
@@ -39,8 +45,7 @@ t_list		*stockage_nouvelle_piece(t_map *choix)
 			if (choix->player == 2 && choix->map[i][j] == 'x')
 			{
 				pieces = (t_coord *)malloc(sizeof(t_coord));
-				pieces->x = i;
-				pieces->y = j;
+				init_piece(&pieces, i, j);
 				ft_lst_push_back(&(ret), ft_lstnew(pieces, sizeof(t_coord)));
 			}
 			j++;
