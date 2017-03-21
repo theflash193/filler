@@ -31,7 +31,7 @@ static void	init_choix(t_map **choix, t_env *e, char **tentative)
 	choix->nouvelle_pieces = stockage_nouvelle_piece(choix);
 }
 
-static void init(t_list	**all_possibility, t_map **choix, int *i)
+static void	init(t_list **all_possibility, t_map **choix, int *i)
 {
 	*all_possibility = NULL;
 	*choix = NULL;
@@ -57,7 +57,8 @@ t_list		*find_all_possibility(t_env *e)
 				choix->x = i;
 				choix->y = j;
 				init_choix(&choix, e, tentative);
-				ft_lst_push_back(&(all_possibility), ft_lstnew(choix, sizeof(t_map)));
+				ft_lst_push_back(&(all_possibility),
+					ft_lstnew(choix, sizeof(t_map)));
 			}
 			j++;
 		}
