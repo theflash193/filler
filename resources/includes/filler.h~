@@ -31,6 +31,24 @@ typedef struct	s_coord
 	int			y;
 }				t_coord;
 
+typedef struct			s_ip
+{
+	int			i;
+	int			j;
+	int			k;
+	int			l;
+	char			**new_map;
+}				t_ip;
+
+typedef struct			s_pni
+{
+	int			i;
+	int			j;
+	int			k;
+	int			l;
+	int			nombre_de_piece_joueur;
+}				t_pni;
+
 typedef struct	s_env
 {
 	int			nb_player;
@@ -75,7 +93,6 @@ void				piece(t_env *e);
 void			       	delete_map(void *content, size_t content_size);
 
 void				thinking_strategy(t_env *e);
-void				final_decision(t_env *e);
 void				preparation_du_prochain_tour(t_env *e);
 void				points_player1(t_list *elem);
 void				points_player2(t_list *elem);
@@ -102,4 +119,11 @@ void				lst_buble_sort(t_list **lst, int (*cmp)());
 int				sort_best_move_p1(t_map *a, t_map *b);
 int				sort_best_move_p2(t_map *a, t_map *b);
 void 				message(char *s);
+
+t_list				*find_all_possibility(t_env *e);
+char				**insertion_de_piece(t_env *e, int x, int y);
+int				piece_non_inserable(t_env *e, int x, int y, char **new_map);
+t_list				*stockage_nouvelle_piece(t_map *choix);
+void				final_decision(t_env *e);
+
 #endif
