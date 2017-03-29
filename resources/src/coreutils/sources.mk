@@ -1,4 +1,4 @@
-MAIN	:= core_message.c core_put_array.c \
+MAIN	:= core_message.c core_put_array.c core_suppresion_entite.c \
 
 OBJ		:= $(OBJ) $(MAIN:.c=.o)
 

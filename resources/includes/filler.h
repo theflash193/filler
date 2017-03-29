@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/29 18:57:51 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/03/29 19:27:47 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_env
 {
 	int			numero_joueur;
 	t_entite	plateau;
+	t_piece		piece;
 }				t_env;
 
 enum			e_pieces
@@ -58,5 +59,6 @@ void			parser_passer_ligne_suivant(void);
 */
 void			core_message(char *s);
 void			core_put_array(char **tab);
+void			core_suppresion_entite(t_entite *entite);
 
 #endif

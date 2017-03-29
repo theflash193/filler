@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   core_suppresion_entite.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/29 19:22:11 by grass-kw         ###   ########.fr       */
+/*   Created: 2017/03/29 19:23:51 by grass-kw          #+#    #+#             */
+/*   Updated: 2017/03/29 19:28:39 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int			main(int ac, char **av)
+void	core_suppresion_entite(t_entite *entite)
 {
-	t_env	e;
-
-	ft_bzero(&e, sizeof(t_env));
-	parser_numero_joueur(&e);
-	parser_plateau(&e);
-	// parser_piece(&e);
-	ft_putstr("0 0");
-	return (0);
+	ft_free_tab(entite->entite);
+	ft_bzero(entite, sizeof(t_entite));
 }
