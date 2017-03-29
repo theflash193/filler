@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/18 10:53:04 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/12/01 11:58:55 by ozdek            ###   ########.fr       */
+/*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
+/*   Updated: 2017/03/29 13:52:50 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FILLER_H
 # define FILLER_H
@@ -18,20 +17,33 @@
 
 typedef struct	s_piece
 {
-	char	**piece;
-	int	x;
-	int	y;
-}		t_piece;
+	char		**piece;
+	int			x;
+	int			y;
+}				t_piece;
 
 typedef struct	s_plateau
 {
-  char		**plateau;
-  int		x;
-  int	       	y;
-}		t_plateau;
+	char		**plateau;
+	int			x;
+	int			y;
+}				t_plateau;
 
 typedef struct	s_env
 {
-}		t_env;
+	int			numero_joueur;
+}				t_env;
+
+enum			e_pieces
+{
+	JOUEUR1 = 'o',
+	JOUEUR1_A = 'O',
+	JOUEUR2 = 'x',
+	JOUEUR2_A = 'X',
+	VIDE = ' '
+};
+
+void			parser_numero_joueur(t_env *e);
+char			*parser_iteration_ligne(void);
 
 #endif

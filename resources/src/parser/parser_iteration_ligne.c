@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser_iteration_ligne.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/12/01 21:59:22 by ozdek            ###   ########.fr       */
+/*   Created: 2017/03/29 13:58:06 by grass-kw          #+#    #+#             */
+/*   Updated: 2017/03/29 13:58:21 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include <filler.h>
 
-int			main(int ac, char **av)
+char	*parser_iteration_ligne(void)
 {
-	t_env	e;
+	char	*ligne;
 
-	ft_bzero(&e, sizeof(t_env));
-	parser_numero_joueur(&e);
-	ft_putstr("0 0");
-	dprintf(2, "numero joueur %d", e.numero_joueur);
-	return (0);
+	get_next_line(0, &ligne);
+	return (ligne);
 }
