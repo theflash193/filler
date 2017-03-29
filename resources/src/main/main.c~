@@ -14,5 +14,6 @@
 
 int			main(int ac, char **av)
 {
+  parser_plateau();
 	return (0);
 }

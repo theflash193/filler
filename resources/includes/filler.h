@@ -25,13 +25,25 @@ typedef struct	s_piece
 
 typedef struct	s_plateau
 {
-  char		**plateau;
-  int		x;
-  int	       	y;
+	char	**plateau;
+	int	x;
+	int	y;
 }		t_plateau;
 
 typedef struct	s_env
 {
+       		int numero_joueur;
 }		t_env;
+
+typedef enum	e_piece
+{
+		JOUEUR1 = 'o',
+		JOUEUR1_A = 'O',
+		JOUEUR2 = 'x',
+		JOUEUR2_A = 'X',
+		VIDE = ' ',
+}		e_piece;
+
+void	parser_numero_joueur(t_env *e);
 
 #endif

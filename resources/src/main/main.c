@@ -14,6 +14,11 @@
 
 int			main(int ac, char **av)
 {
-  parser_plateau();
+	t_env	e;
+
+	ft_bzero(&e, sizeof(t_env));
+	parser_numero_joueur(&e);
+	ft_putstr("0 0");
+	dprintf(2, "numero joueur %d", e.numero_joueur);
 	return (0);
 }
