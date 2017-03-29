@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/29 13:52:50 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/03/29 18:57:51 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,41 @@ typedef struct	s_piece
 	int			y;
 }				t_piece;
 
-typedef struct	s_plateau
+typedef struct	s_entite
 {
-	char		**plateau;
+	char		**entite;
 	int			x;
 	int			y;
-}				t_plateau;
+}				t_entite;
 
 typedef struct	s_env
 {
 	int			numero_joueur;
+	t_entite	plateau;
 }				t_env;
 
 enum			e_pieces
 {
 	JOUEUR1 = 'o',
-	JOUEUR1_A = 'O',
+	JwOUEUR1_A = 'O',
 	JOUEUR2 = 'x',
 	JOUEUR2_A = 'X',
 	VIDE = ' '
 };
 
+/*
+	parser
+*/
+
 void			parser_numero_joueur(t_env *e);
 char			*parser_iteration_ligne(void);
+void			parser_plateau(t_env *e);
+void			parser_passer_ligne_suivant(void);
+
+/*
+	coreutils
+*/
+void			core_message(char *s);
+void			core_put_array(char **tab);
 
 #endif

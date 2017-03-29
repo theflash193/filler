@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   core_put_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/12/01 21:59:22 by ozdek            ###   ########.fr       */
+/*   Created: 2017/03/29 18:55:38 by grass-kw          #+#    #+#             */
+/*   Updated: 2017/03/29 19:14:20 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int			main(int ac, char **av)
+void	core_put_array(char **tab)
 {
-	t_env	e;
+	int	i;
 
-	ft_bzero(&e, sizeof(t_env));
-	parser_numero_joueur(&e);
-	parser_plateau(&e);
-	ft_putstr("0 0");
-	return (0);
+	i = 0;
+	ft_putendl_fd("array(", 2);
+	while (tab[i])
+	{
+		ft_putstr_fd("\t", 2);
+		ft_putnbr_fd(i, 2);
+		ft_putstr_fd(" => ", 2);
+		ft_putendl_fd(tab[i], 2);
+		i++;
+	}
+	ft_putendl_fd("    )", 2);
 }

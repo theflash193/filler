@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   core_message.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdek <ozdek@student.42.fr>                +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/12/01 21:59:22 by ozdek            ###   ########.fr       */
+/*   Created: 2017/03/29 18:47:50 by grass-kw          #+#    #+#             */
+/*   Updated: 2017/03/29 18:58:26 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int			main(int ac, char **av)
+void	core_message(char *s)
 {
-	t_env	e;
-
-	ft_bzero(&e, sizeof(t_env));
-	parser_numero_joueur(&e);
-	parser_plateau(&e);
-	ft_putstr("0 0");
-	return (0);
+	ft_putendl_fd(s, 2);
 }
