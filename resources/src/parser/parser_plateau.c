@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 17:18:40 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/30 14:04:03 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/03/30 14:15:56 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char		**creation_plateau(int x, int y)
 	return (plateau);
 }
 
-void	parser_plateau(t_env *e)
+void			parser_plateau(t_env *e)
 {
 	char		*ligne;
 	char		**split;

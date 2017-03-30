@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/30 14:12:58 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/03/30 14:16:27 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ enum			e_pieces
 };
 
 /*
-	parser
+**	parser
 */
 
 void			parser_numero_joueur(t_env *e);
@@ -55,7 +55,7 @@ void			parser_plateau(t_env *e);
 void			parser_passer_ligne_suivant(void);
 void			parser_piece(t_env *e);
 /*
-	coreutils
+**	coreutils
 */
 void			core_message(char *s);
 void			core_put_array(char **tab);
