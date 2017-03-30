@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/30 14:16:27 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/03/30 16:01:20 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,10 @@ void			core_message(char *s);
 void			core_put_array(char **tab);
 void			core_suppresion_entite(t_entite *entite);
 void			core_entite(t_entite entite);
+
+/*
+** reponse
+*/
+void			ai_reponse(int i, int j);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 19:19:11 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/30 14:09:36 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/03/30 16:02:33 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,4 @@ void			parser_piece(t_env *e)
 	e->piece.y = ft_atoi(split[2]);
 	ft_strclean(ligne);
 	e->piece.entite = creation_piece(e->piece.x, e->piece.y);
-	core_put_array(e->piece.entite);
 }
