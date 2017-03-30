@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 19:19:11 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/29 19:22:26 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/03/30 14:09:36 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,32 @@
 static char		**creation_piece(int x, int y)
 {
 	char	*ligne;
-	char	**plateau;
+	char	**piece;
 	int		count;
 
 	count = 0;
-	plateau = (char **)malloc(sizeof(char *) * (x + 1));
+	piece = (char **)malloc(sizeof(char *) * (x + 1));
 	while (count < x)
 	{
 		ligne = parser_iteration_ligne();
-		plateau[count] = ft_strdup(ligne + 4);
+		piece[count] = ft_strdup(ligne);
 		count++;
 		ft_strclean(ligne);
 	}
-	plateau[x] = 0;
-	return (plateau);
+	piece[x] = 0;
+	return (piece);
 }
 
-void	parser_piece(t_env *e)
+void			parser_piece(t_env *e)
 {
 	char		*ligne;
 	char		**split;
 
 	ligne = parser_iteration_ligne();
 	split = ft_strsplit(ligne, ' ');
-	e->plateau.x = ft_atoi(split[1]);
-	e->plateau.y = ft_atoi(split[2]);
+	e->piece.x = ft_atoi(split[1]);
+	e->piece.y = ft_atoi(split[2]);
 	ft_strclean(ligne);
-	e->plateau.entite = creation_plateau(e->plateau.x, e->plateau.y);
+	e->piece.entite = creation_piece(e->piece.x, e->piece.y);
+	core_put_array(e->piece.entite);
 }
