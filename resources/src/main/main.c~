@@ -22,7 +22,6 @@ int			main(int ac, char **av)
 	{
 		parser_plateau(&e);
 		parser_piece(&e);
-		ai(&e);
 		ai_reponse(0, 0);
 		break ; 
 	}

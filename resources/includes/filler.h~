@@ -15,12 +15,6 @@
 # include "libft.h"
 # include <stdio.h>
 
-typedef struct	s_coord
-{
-	int			x;
-	int			y;
-}				t_coord;
-
 typedef struct	s_piece
 {
 	char		**piece;
@@ -45,7 +39,7 @@ typedef struct	s_env
 enum			e_pieces
 {
 	JOUEUR1 = 'o',
-	JOUEUR1_A = 'O',
+	JwOUEUR1_A = 'O',
 	JOUEUR2 = 'x',
 	JOUEUR2_A = 'X',
 	VIDE = ' '
