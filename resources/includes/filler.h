@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/30 16:01:20 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/06/03 19:59:32 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FILLER_H
 # include "libft.h"
 # include <stdio.h>
+# define IS_PLAYER1(x) (x == 'o' || x == 'O')
+# define IS_PLAYER2(x) (x == 'x' || x == 'X')
 
 typedef struct	s_coord
 {
@@ -40,6 +42,8 @@ typedef struct	s_env
 	int			numero_joueur;
 	t_entite	plateau;
 	t_entite	piece;
+	t_coord		reponse;
+	int			jeu_terminer;
 }				t_env;
 
 enum			e_pieces
@@ -69,8 +73,8 @@ void			core_suppresion_entite(t_entite *entite);
 void			core_entite(t_entite entite);
 
 /*
-** reponse
+** ai
 */
 void			ai_reponse(int i, int j);
-
+void			ai(t_env *e);
 #endif
