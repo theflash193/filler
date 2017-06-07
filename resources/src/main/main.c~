@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/03/30 16:01:50 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/06/03 20:05:27 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ int			main(int ac, char **av)
 	{
 		parser_plateau(&e);
 		parser_piece(&e);
-		ai_reponse(0, 0);
-		break ; 
+		ai(&e);
+		if (e.jeu_terminer != 1)
+			ai_reponse(e.reponse.x, e.reponse.y);
+		else
+		{
+			ai_reponse(0, 0);
+			break ;
+		}
 	}
 	return (0);
 }

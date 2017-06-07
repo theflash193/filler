@@ -17,19 +17,17 @@ int			main(int ac, char **av)
 	t_env	e;
 
 	ft_bzero(&e, sizeof(t_env));
+	e.loop = 1;
 	parser_numero_joueur(&e);
-	while (42)
+	while (e.loop)
 	{
 		parser_plateau(&e);
 		parser_piece(&e);
 		ai(&e);
-		if (e.jeu_terminer != 1)
+		if (e.loop == 1)
 			ai_reponse(e.reponse.x, e.reponse.y);
 		else
-		{
 			ai_reponse(0, 0);
-			break ;
-		}
 	}
 	return (0);
 }

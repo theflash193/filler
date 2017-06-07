@@ -43,7 +43,7 @@ typedef struct	s_env
 	t_entite	plateau;
 	t_entite	piece;
 	t_coord		reponse;
-	int			jeu_terminer;
+	int			loop;
 }				t_env;
 
 enum			e_pieces
