@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/06/03 20:24:41 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/19 12:23:05 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int placement_possible(int x, int y, t_env *e)
 	return (1);
 }
 
-void	impression_plateau(t_env *e, int i, int j, t_entite	a)
+t_entite	impression_piece(t_env *e, int i, int j, t_entite a)
 {
 	t_coord piece;
 	t_coord	plateau;
@@ -71,14 +71,15 @@ void	impression_plateau(t_env *e, int i, int j, t_entite	a)
 		plateau.x++;
 		piece.x++;
 	}
-	core_entite(a);
+	return (a);
 }
 
-void	initialisation_entite(t_env *e, int i, int j)
+t_entite	sauvegarde_plateau(t_env *e, int i, int j)
 {
 	char	**plateau;
 	int		count;
-
+	t_entite a;
+	
 	count = 0;
 	plateau = (char **)malloc(sizeof(char *) * e->plateau.x + 1);
 	while (count < e->plateau.x)
@@ -87,19 +88,30 @@ void	initialisation_entite(t_env *e, int i, int j)
 		count++;
 	}
 	plateau[count] = 0;
-	t_entite a;
 	a.entite = plateau;
 	a.x = e->plateau.x;
 	a.y = e->plateau.y;
-	impression_plateau(e, i, j, a);
+	impression_piece(e, i, j, a);
+	return (a);
+}
+
+void	core_coup(t_list *elem)
+{
+	t_entite	*coup;
+
+	coup = (t_entite *)elem->content;
+	core_entite(*coup);
 }
 
 void	ai(t_env *e)
 {
+	t_list *liste_coup;
+	t_entite	coup;
 	int i;
 	int j;
 
 	i = 0;
+	liste_coup = NULL;
 	while (i < e->plateau.x)
 	{
 		j = 0;
@@ -107,11 +119,13 @@ void	ai(t_env *e)
 		{
 			if (placement_possible(i, j, e) == 1)
 			{
-				initialisation_entite(e, i, j);
+				coup = sauvegarde_plateau(e, i, j);;
+				ft_lst_push_back(&liste_coup, ft_lstnew(&coup, sizeof(t_entite)));
+				ft_lstiter(liste_coup, core_coup);
 				e->reponse.x = i;
 				e->reponse.y = j;
-				e->loop = 0;
-				return ;
+				//e->loop = 0;
+				//return ;
 			}
 			j++;
 		}
