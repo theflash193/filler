@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/19 12:23:05 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/19 17:29:31 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,43 @@ void	core_coup(t_list *elem)
 	core_entite(*coup);
 }
 
-void	ai(t_env *e)
+// void	ai(t_env *e)
+// {
+// 	t_list *liste_coup;
+// 	t_entite	coup;
+// 	int i;
+// 	int j;
+
+// 	i = 0;
+// 	liste_coup = NULL;
+// 	while (i < e->plateau.x)
+// 	{
+// 		j = 0;
+// 		while (j < e->plateau.y)
+// 		{
+// 			if (placement_possible(i, j, e) == 1)
+// 			{
+// 				coup = sauvegarde_plateau(e, i, j);
+// 				ft_lst_push_back(&liste_coup, ft_lstnew(&coup, sizeof(t_entite)));
+// 				ft_lstiter(liste_coup, core_coup);
+// 				e->reponse.x = i;
+// 				e->reponse.y = j;
+// 				//e->loop = 0;
+// 				//return ;
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	e->loop = 0;
+// }
+
+t_list	*recuperation_liste_coups(t_env *e)
 {
-	t_list *liste_coup;
+	t_list		*liste_coup;
 	t_entite	coup;
-	int i;
-	int j;
+	int			i;
+	int			j;
 
 	i = 0;
 	liste_coup = NULL;
@@ -119,17 +150,25 @@ void	ai(t_env *e)
 		{
 			if (placement_possible(i, j, e) == 1)
 			{
-				coup = sauvegarde_plateau(e, i, j);;
+				coup = sauvegarde_plateau(e, i, j);
 				ft_lst_push_back(&liste_coup, ft_lstnew(&coup, sizeof(t_entite)));
-				ft_lstiter(liste_coup, core_coup);
 				e->reponse.x = i;
 				e->reponse.y = j;
-				//e->loop = 0;
-				//return ;
 			}
 			j++;
 		}
 		i++;
 	}
-	e->loop = 0;
+	return (liste_coup);
+}
+
+void	ai(t_env *e)
+{
+	t_list	*liste_coup;
+
+	liste_coup = recuperation_liste_coups(e);
+	if (liste_coup != NULL)
+		ft_lstiter(liste_coup, core_coup);
+	else
+		e->loop = 0;
 }
