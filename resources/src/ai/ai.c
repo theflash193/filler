@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/19 17:29:31 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/19 19:08:43 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_entite	impression_piece(t_env *e, int i, int j, t_entite a)
 		plateau.y = j;
 		while (piece.y < e->piece.y)
 		{
-			if (e->piece.entite[piece.x][piece.y] == '*' && a.entite[plateau.x][plateau.y] != 'o')
+			if (e->piece.entite[piece.x][piece.y] == '*' && a.entite[plateau.x][plateau.y] != 'O')
 			{
 				if (e->numero_joueur == 1)
 					a.entite[plateau.x][plateau.y] = 'o';
@@ -103,37 +103,6 @@ void	core_coup(t_list *elem)
 	core_entite(*coup);
 }
 
-// void	ai(t_env *e)
-// {
-// 	t_list *liste_coup;
-// 	t_entite	coup;
-// 	int i;
-// 	int j;
-
-// 	i = 0;
-// 	liste_coup = NULL;
-// 	while (i < e->plateau.x)
-// 	{
-// 		j = 0;
-// 		while (j < e->plateau.y)
-// 		{
-// 			if (placement_possible(i, j, e) == 1)
-// 			{
-// 				coup = sauvegarde_plateau(e, i, j);
-// 				ft_lst_push_back(&liste_coup, ft_lstnew(&coup, sizeof(t_entite)));
-// 				ft_lstiter(liste_coup, core_coup);
-// 				e->reponse.x = i;
-// 				e->reponse.y = j;
-// 				//e->loop = 0;
-// 				//return ;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	e->loop = 0;
-// }
-
 t_list	*recuperation_liste_coups(t_env *e)
 {
 	t_list		*liste_coup;
@@ -162,13 +131,83 @@ t_list	*recuperation_liste_coups(t_env *e)
 	return (liste_coup);
 }
 
+void	core_int(int i)
+{
+	ft_putnbr_fd(i, 2);
+}
+
+void blocage_bas(t_entite plateau)
+{
+//	core_entite(plateau);
+	int		i;
+	int		j;
+	int		score;
+	t_coord bas;
+	t_coord droite;
+
+	ft_bzero(&bas, sizeof(bas));
+	ft_bzero(&droite, sizeof(droite));
+	i = 0;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (IS_PLAYER1(plateau.entite[i][j]) && bas.x > i)
+			{
+				core_message("hello world");
+				bas.x = i;
+				bas.y = j;
+			}
+			if (IS_PLAYER1(plateau.entite[i][j]) && droite.y > j)
+			{
+				core_message("gordon");
+				droite.x = i;
+				droite.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (bas.x == plateau.x)
+		score = +1000;
+	else
+	{
+		score = bas.x;
+		score += droite.y;
+	}
+	ft_putstr_fd("Le score du plateau est de ", 2);
+	core_int(score);
+	ft_putchar_fd('\n', 2);
+	core_entite(plateau);
+
+}
+
+void iter_bas(t_list *elem)
+{
+	blocage_bas(*(t_entite *)elem->content);
+}
+
 void	ai(t_env *e)
 {
 	t_list	*liste_coup;
 
+	//core_entite(e->plateau);
 	liste_coup = recuperation_liste_coups(e);
-	if (liste_coup != NULL)
-		ft_lstiter(liste_coup, core_coup);
-	else
-		e->loop = 0;
+	ft_lstiter(liste_coup, core_coup);
+	//ft_lstiter(liste_coup, iter_bas);
+	e->loop = 0;
 }
+
+// void	ai(t_env *e)
+// {
+// 	t_list	*liste_coup;
+
+// 	liste_coup = recuperation_liste_coups(e);
+// 	if (liste_coup != NULL)
+// 	{
+// 		ft_lstiter(liste_coup, core_coup);
+// 	}
+// 	else
+// 		e->loop = 0;
+// }
