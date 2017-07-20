@@ -36,6 +36,7 @@ typedef struct	s_entite
 	char		**entite;
 	int			x;
 	int			y;
+	int			score;
 }				t_entite;
 
 typedef struct	s_env

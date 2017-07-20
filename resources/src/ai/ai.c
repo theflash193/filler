@@ -249,7 +249,7 @@ t_coord	piece_plus_haute(t_entite plateau, char c)
 	return (ret);
 }
 
-void blocage_bas(t_entite plateau)
+int blocage_bas(t_entite plateau)
 {
 	int		i;
 	int		j;
@@ -273,22 +273,37 @@ void blocage_bas(t_entite plateau)
 	ft_putstr_fd("Le score du plateau est de ", 2);
 	core_int(score);
 	ft_putchar_fd('\n', 2);
-	core_entite(plateau);
-
+	// core_entite(plateau);
+	return (score);
 }
 
-void iter_bas(t_list *elem)
+// void iter_bas(t_list *elem)
+// {
+// 	blocage_bas(*(t_entite *)elem->content);
+// }
+
+t_list *iter_bas(t_list *elem)
 {
-	blocage_bas(*(t_entite *)elem->content);
+	t_list	*lst;
+	t_entite entite;
+
+	lst = NULL;
+	entite = *(t_entite *)elem->content;
+	entite.score = blocage_bas(*(t_entite *)elem->content);
+	lst = ft_lstnew(&entite, sizeof(t_entite));
+	return (lst);
 }
 
 void	ai(t_env *e)
 {
 	t_list	*liste_coup;
+	t_list	*score;
 
 	//core_entite(e->plateau);
 	liste_coup = recuperation_liste_coups(e);
-	ft_lstiter(liste_coup, iter_bas);
+	// ft_lstiter(liste_coup, iter_bas);
+	score = ft_lstmap(liste_coup, iter_bas);
+	ft_lstiter(score, core_coup);
 	e->loop = 0;
 }
 

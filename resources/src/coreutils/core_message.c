@@ -23,6 +23,8 @@ void	core_entite(t_entite entite)
 	ft_putnbr_fd(entite.x, 2);
 	ft_putchar_fd(',', 2);
 	ft_putnbr_fd(entite.y, 2);
+	ft_putchar_fd(',', 2);
+	ft_putnbr_fd(entite.score, 2);
 	ft_putchar_fd(']', 2);
 	ft_putchar_fd('\n', 2);
 	core_put_array(entite.entite);
