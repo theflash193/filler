@@ -257,40 +257,19 @@ void blocage_bas(t_entite plateau)
 	t_coord bas;
 	t_coord droite;
 
+	score = 0;
 	ft_bzero(&bas, sizeof(bas));
 	ft_bzero(&droite, sizeof(droite));
 	i = 0;
-	// while (i < plateau.x)
-	// {
-	// 	j = 0;
-	// 	while (j < plateau.y)
-	// 	{
-	// 		if (IS_PLAYER1(plateau.entite[i][j]) && bas.x > i)
-	// 		{
-	// 			core_message("hello world");
-	// 			bas.x = i;
-	// 			bas.y = j;
-	// 		}
-	// 		if (IS_PLAYER1(plateau.entite[i][j]) && droite.y > j)
-	// 		{
-	// 			core_message("gordon");
-	// 			droite.x = i;
-	// 			droite.y = j;
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-//	piece_plus_bas(plateau, 'o');
-	core_coord(piece_plus_haute(plateau, 'o'));
-	// core_coord();
-		// if (bas.x == plateau.x)
-	// 	score = +1000;
-	// else
-	// {
-	// 	score = bas.x;
-	// 	score += droite.y;
-	// }
+	bas = piece_plus_bas(plateau, 'o');
+	droite = piece_plus_droite(plateau, 'o');
+	if (bas.x == plateau.x)
+		score = +1000;
+	else
+	{
+		score = bas.x;
+		score += droite.y;
+	}
 	ft_putstr_fd("Le score du plateau est de ", 2);
 	core_int(score);
 	ft_putchar_fd('\n', 2);
