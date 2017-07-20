@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/19 19:08:43 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/19 19:11:56 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,121 @@ void	core_int(int i)
 	ft_putnbr_fd(i, 2);
 }
 
+void	core_coord(t_coord a)
+{
+	ft_putstr_fd("coord : ", 2);
+	ft_putnbr_fd(a.x, 2);
+	ft_putchar_fd(' ', 2);
+	ft_putnbr_fd(a.y, 2);
+	ft_putchar_fd('\n', 2);	
+}
+
+t_coord	piece_plus_bas(t_entite plateau, char c)
+{
+	int		i;
+	int		j;
+	t_coord ret;
+
+	i = 0;
+	ret.x = 0;
+	ret.y = 0;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (PLATEAU[i][j] == c && ret.x < i)
+			{
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
+
+t_coord	piece_plus_gauche(t_entite plateau, char c)
+{
+	int		i;
+	int		j;
+	t_coord ret;
+
+	i = 0;
+	ret.x = plateau.x;
+	ret.y = plateau.y;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (PLATEAU[i][j] == c && ret.y > i)
+			{
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
+
+t_coord	piece_plus_droite(t_entite plateau, char c)
+{
+	int		i;
+	int		j;
+	t_coord ret;
+
+	i = 0;
+	ret.x = 0;
+	ret.y = 0;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (PLATEAU[i][j] == c && ret.y < i)
+			{
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
+
+t_coord	piece_plus_haute(t_entite plateau, char c)
+{
+	int		i;
+	int		j;
+	t_coord ret;
+
+	i = 0;
+	ret.x = plateau.x;
+	ret.y = plateau.y;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (PLATEAU[i][j] == c && ret.x > i)
+			{
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
+
 void blocage_bas(t_entite plateau)
 {
-//	core_entite(plateau);
 	int		i;
 	int		j;
 	int		score;
@@ -148,34 +260,37 @@ void blocage_bas(t_entite plateau)
 	ft_bzero(&bas, sizeof(bas));
 	ft_bzero(&droite, sizeof(droite));
 	i = 0;
-	while (i < plateau.x)
-	{
-		j = 0;
-		while (j < plateau.y)
-		{
-			if (IS_PLAYER1(plateau.entite[i][j]) && bas.x > i)
-			{
-				core_message("hello world");
-				bas.x = i;
-				bas.y = j;
-			}
-			if (IS_PLAYER1(plateau.entite[i][j]) && droite.y > j)
-			{
-				core_message("gordon");
-				droite.x = i;
-				droite.y = j;
-			}
-			j++;
-		}
-		i++;
-	}
-	if (bas.x == plateau.x)
-		score = +1000;
-	else
-	{
-		score = bas.x;
-		score += droite.y;
-	}
+	// while (i < plateau.x)
+	// {
+	// 	j = 0;
+	// 	while (j < plateau.y)
+	// 	{
+	// 		if (IS_PLAYER1(plateau.entite[i][j]) && bas.x > i)
+	// 		{
+	// 			core_message("hello world");
+	// 			bas.x = i;
+	// 			bas.y = j;
+	// 		}
+	// 		if (IS_PLAYER1(plateau.entite[i][j]) && droite.y > j)
+	// 		{
+	// 			core_message("gordon");
+	// 			droite.x = i;
+	// 			droite.y = j;
+	// 		}
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+//	piece_plus_bas(plateau, 'o');
+	core_coord(piece_plus_haute(plateau, 'o'));
+	// core_coord();
+		// if (bas.x == plateau.x)
+	// 	score = +1000;
+	// else
+	// {
+	// 	score = bas.x;
+	// 	score += droite.y;
+	// }
 	ft_putstr_fd("Le score du plateau est de ", 2);
 	core_int(score);
 	ft_putchar_fd('\n', 2);
@@ -194,8 +309,7 @@ void	ai(t_env *e)
 
 	//core_entite(e->plateau);
 	liste_coup = recuperation_liste_coups(e);
-	ft_lstiter(liste_coup, core_coup);
-	//ft_lstiter(liste_coup, iter_bas);
+	ft_lstiter(liste_coup, iter_bas);
 	e->loop = 0;
 }
 

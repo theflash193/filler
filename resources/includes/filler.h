@@ -16,6 +16,7 @@
 # include <stdio.h>
 # define IS_PLAYER1(x) (x == 'o' || x == 'O')
 # define IS_PLAYER2(x) (x == 'x' || x == 'X')
+# define PLATEAU plateau.entite
 
 typedef struct	s_coord
 {
