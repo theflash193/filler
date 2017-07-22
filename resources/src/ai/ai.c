@@ -282,7 +282,7 @@ int blocage_bas(t_entite plateau)
 // 	blocage_bas(*(t_entite *)elem->content);
 // }
 
-t_list *iter_bas(t_list *elem)
+t_list 	*iter_bas(t_list *elem)
 {
 	t_list	*lst;
 	t_entite entite;
@@ -294,17 +294,28 @@ t_list *iter_bas(t_list *elem)
 	return (lst);
 }
 
+static void	delete_entite(void *content, size_t size)
+{
+	t_entite *a;
+
+	a = (t_entite *)content;
+	core_entite(*a);
+	ft_bzero(a, sizeof(t_entite *));
+	ft_free_tab(a->entite);
+	free(content);
+	// content_size = 0;
+}
+
 void	ai(t_env *e)
 {
-	t_list	*liste_coup;
 	t_list	*score;
 
-	//core_entite(e->plateau);
-	liste_coup = recuperation_liste_coups(e);
-	// ft_lstiter(liste_coup, iter_bas);
-	score = ft_lstmap(liste_coup, iter_bas);
-	ft_lstiter(score, core_coup);
-	e->loop = 0;
+	e->liste_coup = recuperation_liste_coups(e);
+	score = ft_lstmap(e->liste_coup, iter_bas);
+	ft_lstdel(&(e->liste_coup), delete_entite);
+	e->liste_coup = score;
+	ft_lstiter(e->liste_coup, core_coup);
+//	e->loop = 0;
 }
 
 // void	ai(t_env *e)

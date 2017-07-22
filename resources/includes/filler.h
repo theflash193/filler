@@ -45,6 +45,7 @@ typedef struct	s_env
 	t_entite	plateau;
 	t_entite	piece;
 	t_coord		reponse;
+	t_list		*liste_coup;
 	int			loop;
 }				t_env;
 
