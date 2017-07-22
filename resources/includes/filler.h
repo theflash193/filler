@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/06/03 19:59:32 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/22 14:42:54 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void			core_coord(t_coord a);
 */
 void			ai_reponse(int i, int j);
 void			ai(t_env *e);
+t_list			*ai_recuperation_liste_coups(t_env *e);
 #endif
