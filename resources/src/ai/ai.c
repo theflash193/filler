@@ -95,13 +95,6 @@ t_entite	sauvegarde_plateau(t_env *e, int i, int j)
 	return (a);
 }
 
-void	core_coup(t_list *elem)
-{
-	t_entite	*coup;
-
-	coup = (t_entite *)elem->content;
-	core_entite(*coup);
-}
 
 t_list	*recuperation_liste_coups(t_env *e)
 {
@@ -131,19 +124,6 @@ t_list	*recuperation_liste_coups(t_env *e)
 	return (liste_coup);
 }
 
-void	core_int(int i)
-{
-	ft_putnbr_fd(i, 2);
-}
-
-void	core_coord(t_coord a)
-{
-	ft_putstr_fd("coord : ", 2);
-	ft_putnbr_fd(a.x, 2);
-	ft_putchar_fd(' ', 2);
-	ft_putnbr_fd(a.y, 2);
-	ft_putchar_fd('\n', 2);	
-}
 
 t_coord	piece_plus_bas(t_entite plateau, char c)
 {
@@ -270,9 +250,9 @@ int blocage_bas(t_entite plateau)
 		score = bas.x;
 		score += droite.y;
 	}
-	ft_putstr_fd("Le score du plateau est de ", 2);
-	core_int(score);
-	ft_putchar_fd('\n', 2);
+	// ft_putstr_fd("Le score du plateau est de ", 2);
+	// core_int(score);
+	// ft_putchar_fd('\n', 2);
 	// core_entite(plateau);
 	return (score);
 }
@@ -299,7 +279,7 @@ static void	delete_entite(void *content, size_t size)
 	t_entite *a;
 
 	a = (t_entite *)content;
-	core_entite(*a);
+	// core_entite(*a);
 	ft_bzero(a, sizeof(t_entite *));
 	ft_free_tab(a->entite);
 	free(content);
@@ -313,9 +293,8 @@ void	ai(t_env *e)
 	e->liste_coup = recuperation_liste_coups(e);
 	score = ft_lstmap(e->liste_coup, iter_bas);
 	ft_lstdel(&(e->liste_coup), delete_entite);
-	e->liste_coup = score;
-	ft_lstiter(e->liste_coup, core_coup);
-//	e->loop = 0;
+	// ft_lstiter(e->liste_coup, core_coup);
+	// e->loop = 0;
 }
 
 // void	ai(t_env *e)

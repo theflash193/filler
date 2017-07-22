@@ -74,6 +74,10 @@ void			core_message(char *s);
 void			core_put_array(char **tab);
 void			core_suppresion_entite(t_entite *entite);
 void			core_entite(t_entite entite);
+void			core_coup(t_list *elem);
+void			core_entite(t_entite entite);
+void			core_int(int i);
+void			core_coord(t_coord a);
 
 /*
 ** ai
