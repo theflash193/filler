@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/23 14:36:10 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/23 18:04:44 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void		preparation_env(t_env *e)
 	ft_bzero(&(e->plateau), sizeof(t_entite));
 	ft_free_tab(e->piece.entite);
 	ft_bzero(&(e->piece), sizeof(t_piece));
-	ft_bzero(e, sizeof(t_env));
 	ft_lstiter(e->liste_coup, core_coup);
 }
 
@@ -55,7 +54,9 @@ int			main(int ac, char **av)
 		parser_piece(&e);
 		ai(&e);
 		if (e.loop == 1)
+		{
 			ai_reponse(e.reponse.x, e.reponse.y);
+		}
 		else
 			ai_reponse(0, 0);
 		preparation_env(&e);
