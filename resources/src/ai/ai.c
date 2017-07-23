@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/22 14:52:11 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/23 17:13:23 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ int blocage_bas(t_entite plateau)
 		score = bas.x;
 		score += droite.y;
 	}
-	// ft_putstr_fd("Le score du plateau est de ", 2);
-	// core_int(score);
-	// ft_putchar_fd('\n', 2);
-	// core_entite(plateau);
 	return (score);
 }
 
@@ -56,13 +52,22 @@ t_list 	*iter_bas(t_list *elem)
 	lst = ft_lstnew(&entite, sizeof(t_entite));
 	return (lst);
 }
+// tri lst
+
+
+
+// int			sort_best_move_p2(t_map *a, t_map *b)
+// {
+// 	if (a->points_influence_p1 == b->points_influence_p1)
+// 		return (a->points_influence_p2 >= a->points_influence_p2);
+// 	return (a->points_influence_p1 < a->points_influence_p1);
+// }
 
 static void	delete_entite(void *content, size_t size)
 {
 	t_entite *a;
 
 	a = (t_entite *)content;
-	// core_entite(*a);
 	ft_bzero(a, sizeof(t_entite *));
 	ft_free_tab(a->entite);
 	free(content);
@@ -76,7 +81,9 @@ void	ai(t_env *e)
 	e->liste_coup = ai_recuperation_liste_coups(e);
 	score = ft_lstmap(e->liste_coup, iter_bas);
 	ft_lstdel(&(e->liste_coup), delete_entite);
-	// ft_lstiter(e->liste_coup, core_coup);
+	e->liste_coup = score;
+	lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
+	ft_lstiter(e->liste_coup, core_coup);
 	// e->loop = 0;
 }
 
