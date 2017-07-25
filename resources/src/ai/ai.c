@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 14:13:31 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 15:51:28 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_coord		piece_joueur_plus_bas(t_entite plateau, t_env *e)
 		{
 			if (piece_joueur(PLATEAU[i][j], e) && ret.x < i)
 			{
+				if (PLATEAU[i][j] == 'o')
 				ret.x = i;
 				ret.y = j;
 			}
@@ -110,137 +111,138 @@ t_coord		piece_joueur_plus_gauche(t_entite plateau, t_env *e)
 	}
 	return (ret);
 }
-// // recherche la piece du joueur la plus en droite
-// t_coord		piece_joueur_plus_droite(t_entite plateau, t_env *e)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_coord ret;
+// recherche la piece du joueur la plus en droite
+t_coord		piece_joueur_plus_droite(t_entite plateau, t_env *e)
+{
+	int		i;
+	int		j;
+	t_coord ret;
 
-// 	i = 0;
-// 	ret.x = 0;
-// 	ret.y = 0;
-// 	while (i < plateau.x)
-// 	{
-// 		j = 0;
-// 		while (j < plateau.y)
-// 		{
-// 			if (PLATEAU[i][j] == c && ret.x < i)
-// 			{
-// 				ret.x = i;
-// 				ret.y = j;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (ret);
-// }
+	i = 0;
+	ret.x = 0;
+	ret.y = 0;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (piece_joueur(PLATEAU[i][j], e) && ret.y < j)
+			{
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
 
-// // recherche la piece ennemie la plus en haut
-// t_coord		piece_ennemie_plus_haute(t_entite plateau, t_env *e)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_coord ret;
+// recherche la piece ennemie la plus en haut
+t_coord		piece_ennemie_plus_haute(t_entite plateau, t_env *e)
+{
+	int		i;
+	int		j;
+	t_coord ret;
 
-// 	i = 0;
-// 	ret.x = 0;
-// 	ret.y = 0;
-// 	while (i < plateau.x)
-// 	{
-// 		j = 0;
-// 		while (j < plateau.y)
-// 		{
-// 			if (PLATEAU[i][j] == c && ret.x < i)
-// 			{
-// 				ret.x = i;
-// 				ret.y = j;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (ret);
-// }
-// // recherche la piece ennemie la plus en bas
-// t_coord		piece_joueur_plus_haute(t_entite plateau, t_env *e)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_coord ret;
+	i = 0;
+	ret.x = plateau.x;
+	ret.y = plateau.y;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (piece_ennemie(PLATEAU[i][j], e) && ret.x > i)
+			{
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
+// recherche la piece ennemie la plus en bas
+t_coord		piece_ennemie_plus_bas(t_entite plateau, t_env *e)
+{
+	int		i;
+	int		j;
+	t_coord ret;
 
-// 	i = 0;
-// 	ret.x = 0;
-// 	ret.y = 0;
-// 	while (i < plateau.x)
-// 	{
-// 		j = 0;
-// 		while (j < plateau.y)
-// 		{
-// 			if (PLATEAU[i][j] == c && ret.x < i)
-// 			{
-// 				ret.x = i;
-// 				ret.y = j;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (ret);
-// }
+	i = 0;
+	ret.x = 0;
+	ret.y = 0;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (piece_ennemie(PLATEAU[i][j], e) && ret.x < i)
+			{
+				if (PLATEAU[i][j] == 'o')
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
 // // recherche la piece ennemie la plus en gauche
-// t_coord		piece_joueur_plus_haute(t_entite plateau, t_env *e)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_coord ret;
+t_coord		piece_ennemie_plus_gauche(t_entite plateau, t_env *e)
+{
+	int		i;
+	int		j;
+	t_coord ret;
 
-// 	i = 0;
-// 	ret.x = 0;
-// 	ret.y = 0;
-// 	while (i < plateau.x)
-// 	{
-// 		j = 0;
-// 		while (j < plateau.y)
-// 		{
-// 			if (PLATEAU[i][j] == c && ret.x < i)
-// 			{
-// 				ret.x = i;
-// 				ret.y = j;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (ret);
-// }
+	i = 0;
+	ret.x = plateau.x;
+	ret.y = plateau.y;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (piece_joueur(PLATEAU[i][j], e) && ret.y > i)
+			{
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
 // // recherche la piece ennemie la plus en droite
-// t_coord		piece_joueur_plus_haute(t_entite plateau, t_env *e)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_coord ret;
+t_coord		piece_ennemie_plus_droite(t_entite plateau, t_env *e)
+{
+	int		i;
+	int		j;
+	t_coord ret;
 
-// 	i = 0;
-// 	ret.x = 0;
-// 	ret.y = 0;
-// 	while (i < plateau.x)
-// 	{
-// 		j = 0;
-// 		while (j < plateau.y)
-// 		{
-// 			if (PLATEAU[i][j] == c && ret.x < i)
-// 			{
-// 				ret.x = i;
-// 				ret.y = j;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (ret);
-// }
+	i = 0;
+	ret.x = 0;
+	ret.y = 0;
+	while (i < plateau.x)
+	{
+		j = 0;
+		while (j < plateau.y)
+		{
+			if (piece_ennemie(PLATEAU[i][j], e) && ret.y < j)
+			{
+				ret.x = i;
+				ret.y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (ret);
+}
 
 // fontion de calcul des dimensions du groupe du joueur
 // t_coord		dimensions_groupe_joueur(t_entite plateau, t_env *e)
@@ -303,7 +305,7 @@ void	ai(t_env *e)
 		a = *(t_entite *)e->liste_coup->content;
 		t_coord test;
 
-		test = piece_joueur_plus_gauche(e->plateau, e);
+		test = piece_joueur_plus_droite(e->plateau, e);
 		core_coord(test);
 		e->reponse = a.reponse;
 		if (a.score >= 1000)
