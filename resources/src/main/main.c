@@ -6,16 +6,11 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 10:15:58 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 14:07:32 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-// void		suppression_env(t_env *e)
-// {
-// 	ft_bzero(e, sizeof(t_env));
-// }
 
 void	delete_entite(void *content, size_t size)
 {
@@ -56,8 +51,8 @@ int			main(int ac, char **av)
 		if (e.loop == 1)
 		{
 			ai_reponse(e.reponse.x, e.reponse.y);
-			// if (i++ == 10)
-			// 	e.loop = 0;
+			if (i++ == 10)
+				e.loop = 0;
 		}
 		else
 			ai_reponse(0, 0);
