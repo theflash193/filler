@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 17:36:11 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/23 17:36:20 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:48:02 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int blocage_bas(t_entite plateau)
 	t_coord droite;
 
 	score = 0;
-	ft_bzero(&bas, sizeof(bas));
-	ft_bzero(&droite, sizeof(droite));
 	i = 0;
 	bas = piece_plus_bas(plateau, 'o');
 	droite = piece_plus_droite(plateau, 'o');

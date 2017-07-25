@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 09:30:23 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:58:26 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		preparation_env(t_env *e)
 int			main(int ac, char **av)
 {
 	t_env	e;
+	int i = 0;
 
 	ft_bzero(&e, sizeof(t_env));
 	e.loop = 1;
@@ -53,7 +54,11 @@ int			main(int ac, char **av)
 		parser_piece(&e);
 		ai(&e);
 		if (e.loop == 1)
+		{
 			ai_reponse(e.reponse.x, e.reponse.y);
+			if (i++ == 10)
+				e.loop = 0;
+		}
 		else
 			ai_reponse(0, 0);
 		preparation_env(&e);

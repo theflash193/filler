@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 09:27:57 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:49:56 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_env
 	t_coord		reponse;
 	t_list		*liste_coup;
 	int			loop;
+	int			blocage;
 }				t_env;
 
 enum			e_pieces

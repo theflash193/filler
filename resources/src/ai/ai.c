@@ -6,11 +6,61 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 09:30:27 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 10:00:47 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+// fonction utils
+// recherche la piece du joueur la plus en haut
+// recherche la piece du joueur la plus en bas
+// recherche la piece du joueur la plus en gauche
+// recherche la piece du joueur la plus en droite
+
+// recherche la piece du ennemie la plus en haut
+// recherche la piece du ennemie la plus en bas
+// recherche la piece du ennemie la plus en gauche
+// recherche la piece du ennemie la plus en droite
+
+// fontion de calcul des dimensions du groupe du joueur
+// fonction de calcul des dimensions du groupe ennemie
+
+// blocage vers le haut droite
+int blocage_haut_droit(t_entite plateau)
+{
+	int		i;
+	int		j;
+	int		score;
+	t_coord haute;
+	t_coord droite;
+
+	score = 0;
+	i = 0;
+	haute = piece_plus_haute(plateau, 'o');
+	droite = piece_plus_droite(plateau, 'o');
+	if (haute.x == 0)
+		score = +1000;
+	else
+	{
+		score = plateau.x - haute.x;
+		score += droite.y;
+	}
+	return (score);
+}
+//iter haut_droite
+t_list 	*iter_haut_droit(t_list *elem)
+{
+	t_list	*lst;
+	t_entite entite;
+
+	lst = NULL;
+	entite = *(t_entite *)elem->content;
+	entite.score = blocage_haut_droit(*(t_entite *)elem->content);
+	lst = ft_lstnew(&entite, sizeof(t_entite));
+	return (lst);
+}
+// end utils
 
 void	ai(t_env *e)
 {
@@ -20,11 +70,13 @@ void	ai(t_env *e)
 	e->liste_coup = ai_recuperation_liste_coups(e);
 	if (e->liste_coup != NULL)
 	{
-		score = ft_lstmap(e->liste_coup, iter_bas);
+		// score = ft_lstmap(e->liste_coup, iter_bas);
+		score = ft_lstmap(e->liste_coup, iter_haut_droit);
 		ft_lstdel(&(e->liste_coup), delete_entite);
 		e->liste_coup = score;
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
 		e->reponse = ((t_entite *)e->liste_coup->content)->reponse;
+		// e->loop = 0;
 	}
 	else
 		e->loop = 0;
