@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/23 18:21:06 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:18:16 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,16 @@ static void	delete_entite(void *content, size_t size)
 	// content_size = 0;
 }
 
+void assign_reponse(t_env *e, void *content)
+{
+	e->reponse.x = 7;
+	e->reponse.y = 7;
+}
+
 void	ai(t_env *e)
 {
 	t_list	*score;
+	t_entite a;
 
 	e->liste_coup = ai_recuperation_liste_coups(e);
 	if (e->liste_coup != NULL)
@@ -34,11 +41,7 @@ void	ai(t_env *e)
 		ft_lstdel(&(e->liste_coup), delete_entite);
 		e->liste_coup = score;
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
-		t_entite *a;
-
-		e->reponse.x = (*(t_entite *)e->liste_coup->content).score.x;
-		// e->reponse.x = a->x;
-		e->reponse.y = a->y;
+		e->reponse = ((t_entite *)e->liste_coup->content)->reponse;
 	}
 	else
 		e->loop = 0;

@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 14:40:47 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/22 14:45:08 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:15:42 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static t_entite	sauvegarde_plateau(t_env *e, int i, int j)
 	char	**plateau;
 	int		count;
 	t_entite a;
-	
+
 	count = 0;
 	plateau = (char **)malloc(sizeof(char *) * e->plateau.x + 1);
 	while (count < e->plateau.x)
@@ -91,6 +91,8 @@ static t_entite	sauvegarde_plateau(t_env *e, int i, int j)
 	a.entite = plateau;
 	a.x = e->plateau.x;
 	a.y = e->plateau.y;
+	a.reponse.x = i;
+	a.reponse.y = j;
 	impression_piece(e, i, j, a);
 	return (a);
 }

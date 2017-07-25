@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/23 17:48:24 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:14:34 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_entite
 	int			x;
 	int			y;
 	int			score;
+	t_coord		reponse;
 }				t_entite;
 
 typedef struct	s_env
