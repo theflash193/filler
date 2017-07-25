@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 14:56:24 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 15:55:50 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int			main(int ac, char **av)
 		if (e.loop == 1)
 		{
 			ai_reponse(e.reponse.x, e.reponse.y);
-			if (i++ == 2)
-				e.loop = 0;
+			// if (i++ == 2)
+			// 	e.loop = 0;
 		}
 		else
 			ai_reponse(0, 0);

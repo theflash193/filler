@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 15:51:28 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 16:28:14 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,6 @@ t_coord		piece_ennemie_plus_bas(t_entite plateau, t_env *e)
 		{
 			if (piece_ennemie(PLATEAU[i][j], e) && ret.x < i)
 			{
-				if (PLATEAU[i][j] == 'o')
 				ret.x = i;
 				ret.y = j;
 			}
@@ -206,7 +205,7 @@ t_coord		piece_ennemie_plus_gauche(t_entite plateau, t_env *e)
 		j = 0;
 		while (j < plateau.y)
 		{
-			if (piece_joueur(PLATEAU[i][j], e) && ret.y > i)
+			if (piece_ennemie(PLATEAU[i][j], e) && ret.y > j)
 			{
 				ret.x = i;
 				ret.y = j;
@@ -244,7 +243,7 @@ t_coord		piece_ennemie_plus_droite(t_entite plateau, t_env *e)
 	return (ret);
 }
 
-// fontion de calcul des dimensions du groupe du joueur
+// fontion de calcul des dimensions du groupe du ennpiece_ennemie
 // t_coord		dimensions_groupe_joueur(t_entite plateau, t_env *e)
 // {
 // }
@@ -303,10 +302,6 @@ void	ai(t_env *e)
 		e->liste_coup = score;
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
 		a = *(t_entite *)e->liste_coup->content;
-		t_coord test;
-
-		test = piece_joueur_plus_droite(e->plateau, e);
-		core_coord(test);
 		e->reponse = a.reponse;
 		if (a.score >= 1000)
 			e->blocage = 1;
