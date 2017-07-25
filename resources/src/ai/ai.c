@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 10:00:47 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 10:27:16 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,17 @@ void	ai(t_env *e)
 	e->liste_coup = ai_recuperation_liste_coups(e);
 	if (e->liste_coup != NULL)
 	{
-		// score = ft_lstmap(e->liste_coup, iter_bas);
-		score = ft_lstmap(e->liste_coup, iter_haut_droit);
+		if (e->blocage == 0)
+			score = ft_lstmap(e->liste_coup, iter_haut_droit);
+		else 
+			score = ft_lstmap(e->liste_coup, iter_bas);
 		ft_lstdel(&(e->liste_coup), delete_entite);
 		e->liste_coup = score;
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
-		e->reponse = ((t_entite *)e->liste_coup->content)->reponse;
+		a = *(t_entite *)e->liste_coup->content;
+		e->reponse = a.reponse;
+		if (a.score >= 1000)
+			e->blocage = 1;
 		// e->loop = 0;
 	}
 	else
@@ -94,3 +99,10 @@ void	ai(t_env *e)
 // 	else
 // 		e->loop = 0;
 // }
+
+// l'idee est de cherche a avoir une coordonné precis de l'endroit ou on veut bloquer
+// l'autre joueur
+// pour cela on va chercher a choisir les coup qui nous raproche de ce point
+
+// il faut d'abord choisir l'endroit
+// ensuite on cherche le coup qui s'en rapproche
