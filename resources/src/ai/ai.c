@@ -6,28 +6,11 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 09:18:16 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:30:27 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-static void	delete_entite(void *content, size_t size)
-{
-	t_entite *a;
-
-	a = (t_entite *)content;
-	ft_bzero(a, sizeof(t_entite *));
-	ft_free_tab(a->entite);
-	free(content);
-	// content_size = 0;
-}
-
-void assign_reponse(t_env *e, void *content)
-{
-	e->reponse.x = 7;
-	e->reponse.y = 7;
-}
 
 void	ai(t_env *e)
 {

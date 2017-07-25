@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 09:11:35 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:30:23 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // 	ft_bzero(e, sizeof(t_env));
 // }
 
-static void	delete_entite(void *content, size_t size)
+void	delete_entite(void *content, size_t size)
 {
 	t_entite *a;
 

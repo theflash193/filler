@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 09:14:34 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/25 09:27:57 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ int				sort_best_move_p1(t_entite *a, t_entite *b);
 void			lstswap(void **a, void **b);
 t_list			*iter_bas(t_list *elem);
 int				blocage_bas(t_entite plateau);
+void			delete_entite(void *content, size_t size);
 
 #endif
