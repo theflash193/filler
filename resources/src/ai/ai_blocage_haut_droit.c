@@ -1,47 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ai_blocage_bas_droite.c                            :+:      :+:    :+:   */
+/*   ai_blocage_haut_droit.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/23 17:36:11 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 18:16:25 by grass-kw         ###   ########.fr       */
+/*   Created: 2017/07/30 18:15:02 by grass-kw          #+#    #+#             */
+/*   Updated: 2017/07/30 18:26:21 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int blocage_bas_droite(t_entite plateau)
+int blocage_haut_droit(t_entite plateau)
 {
-	int		i;
-	int		j;
 	int		score;
-	t_coord bas;
+	t_coord haute;
 	t_coord droite;
 
 	score = 0;
-	i = 0;
-	bas = piece_plus_bas(plateau, 'o');
+	haute = piece_plus_haute(plateau, 'o');
 	droite = piece_plus_droite(plateau, 'o');
-	if (bas.x == plateau.x)
+	if (haute.x == 0)
 		score = +1000;
 	else
 	{
-		score = bas.x;
+		score = plateau.x - haute.x;
 		score += droite.y;
 	}
 	return (score);
 }
 
-t_list 	*iter_bas_droite(t_list *elem)
+//iter haut_droite
+t_list 	*iter_haut_droit(t_list *elem)
 {
 	t_list	*lst;
 	t_entite entite;
 
 	lst = NULL;
 	entite = *(t_entite *)elem->content;
-	entite.score = blocage_bas_droite(*(t_entite *)elem->content);
+	entite.score = blocage_haut_droit(*(t_entite *)elem->content);
 	lst = ft_lstnew(&entite, sizeof(t_entite));
 	return (lst);
 }
