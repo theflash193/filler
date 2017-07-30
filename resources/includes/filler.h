@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 19:24:11 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/30 19:38:55 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct	s_env
 	int			loop;
 	int			blocage;
 	t_etat_machine		etat_machine;
+	int			tour;
 }				t_env;
 
 enum			e_pieces
@@ -123,4 +124,9 @@ int 			blocage_haut_droit(t_entite plateau);
 t_list 			*iter_haut_gauche(t_list *elem);
 int				blocage_haut_gauche(t_entite plateau);
 void			ai_position_groupes(t_env *e);
+t_coord			piece_ennemie_plus_haute(t_entite plateau, t_env *e);
+t_coord			piece_ennemie_plus_bas(t_entite plateau, t_env *e);
+t_coord			piece_ennemie_plus_gauche(t_entite plateau, t_env *e);
+t_coord			piece_ennemie_plus_droite(t_entite plateau, t_env *e);
+
 #endif
