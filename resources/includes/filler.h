@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 15:05:09 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/30 17:40:07 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct	s_entite
 	t_coord		reponse;
 }				t_entite;
 
+typedef enum	e_enum
+{
+	B_HAUT_DROIT,
+	B_BAS_DROIT
+}				t_enum;
+
 typedef struct	s_env
 {
 	int			numero_joueur;
@@ -49,6 +55,7 @@ typedef struct	s_env
 	t_list		*liste_coup;
 	int			loop;
 	int			blocage;
+	t_enum		etat_machine;
 }				t_env;
 
 enum			e_pieces
@@ -97,5 +104,11 @@ void			lstswap(void **a, void **b);
 t_list			*iter_bas(t_list *elem);
 int				blocage_bas(t_entite plateau);
 void			delete_entite(void *content, size_t size);
+t_coord			piece_joueur_plus_haute(t_entite plateau, t_env *e);
+t_coord			piece_joueur_plus_bas(t_entite plateau, t_env *e);
+t_coord			piece_joueur_plus_gauche(t_entite plateau, t_env *e);
+t_coord			piece_joueur_plus_droite(t_entite plateau, t_env *e);
+int				piece_joueur(char c, t_env *e);
+int				piece_ennemie(char c, t_env *e);
 
 #endif
