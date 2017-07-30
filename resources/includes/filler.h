@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 18:32:51 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/30 19:24:11 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ t_list 			*iter_bas_droite(t_list *elem);
 int 			blocage_bas_droite(t_entite plateau);
 t_list 			*iter_haut_droit(t_list *elem);
 int 			blocage_haut_droit(t_entite plateau);
-t_list 	*iter_haut_gauche(t_list *elem);
-int blocage_haut_gauche(t_entite plateau);
+t_list 			*iter_haut_gauche(t_list *elem);
+int				blocage_haut_gauche(t_entite plateau);
+void			ai_position_groupes(t_env *e);
 #endif

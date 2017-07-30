@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 18:30:45 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/30 19:32:06 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,111 +27,6 @@ int		piece_ennemie(char c, t_env *e)
 	if (e->numero_joueur == 1)
 		return (IS_PLAYER2(c));
 	return (IS_PLAYER1(c));
-}
-
-// recherche la piece ennemie la plus en haut
-t_coord		piece_ennemie_plus_haute(t_entite plateau, t_env *e)
-{
-	int		i;
-	int		j;
-	t_coord ret;
-
-	i = 0;
-	ret.x = plateau.x;
-	ret.y = plateau.y;
-	while (i < plateau.x)
-	{
-		j = 0;
-		while (j < plateau.y)
-		{
-			if (piece_ennemie(PLATEAU[i][j], e) && ret.x > i)
-			{
-				ret.x = i;
-				ret.y = j;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (ret);
-}
-// recherche la piece ennemie la plus en bas
-t_coord		piece_ennemie_plus_bas(t_entite plateau, t_env *e)
-{
-	int		i;
-	int		j;
-	t_coord ret;
-
-	i = 0;
-	ret.x = 0;
-	ret.y = 0;
-	while (i < plateau.x)
-	{
-		j = 0;
-		while (j < plateau.y)
-		{
-			if (piece_ennemie(PLATEAU[i][j], e) && ret.x < i)
-			{
-				ret.x = i;
-				ret.y = j;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (ret);
-}
-// // recherche la piece ennemie la plus en gauche
-t_coord		piece_ennemie_plus_gauche(t_entite plateau, t_env *e)
-{
-	int		i;
-	int		j;
-	t_coord ret;
-
-	i = 0;
-	ret.x = plateau.x;
-	ret.y = plateau.y;
-	while (i < plateau.x)
-	{
-		j = 0;
-		while (j < plateau.y)
-		{
-			if (piece_ennemie(PLATEAU[i][j], e) && ret.y > j)
-			{
-				ret.x = i;
-				ret.y = j;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (ret);
-}
-// // recherche la piece ennemie la plus en droite
-t_coord		piece_ennemie_plus_droite(t_entite plateau, t_env *e)
-{
-	int		i;
-	int		j;
-	t_coord ret;
-
-	i = 0;
-	ret.x = 0;
-	ret.y = 0;
-	while (i < plateau.x)
-	{
-		j = 0;
-		while (j < plateau.y)
-		{
-			if (piece_ennemie(PLATEAU[i][j], e) && ret.y < j)
-			{
-				ret.x = i;
-				ret.y = j;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (ret);
 }
 
 // fontion de calcul des dimensions du groupe du groupe de joueur
@@ -172,6 +67,7 @@ void	ai(t_env *e)
 	e->liste_coup = ai_recuperation_liste_coups(e);
 	if (e->liste_coup != NULL)
 	{
+		score = ft_lstmap(e->liste_coup, iter_haut_droit);
 		// if (e->etat_machine == B_HAUT_DROIT)
 		// 	score = ft_lstmap(e->liste_coup, iter_haut_droit);
 		// else 
