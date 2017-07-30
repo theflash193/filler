@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 18:23:54 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/30 18:32:51 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,17 @@ typedef struct	s_entite
 	t_coord		reponse;
 }				t_entite;
 
-typedef enum	e_enum
+typedef enum	e_etat_machine
 {
 	B_HAUT_DROIT,
 	B_BAS_DROIT
-}				t_enum;
+}				t_etat_machine;
+
+// typedef enum	e_enum
+// {
+// 	B_HAUT_DROIT,
+// 	B_BAS_DROIT
+// }				t_etat_machine;
 
 typedef struct	s_env
 {
@@ -55,7 +61,7 @@ typedef struct	s_env
 	t_list		*liste_coup;
 	int			loop;
 	int			blocage;
-	t_enum		etat_machine;
+	t_etat_machine		etat_machine;
 }				t_env;
 
 enum			e_pieces

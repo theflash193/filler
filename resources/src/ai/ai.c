@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 18:29:09 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/07/30 18:30:45 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,6 @@ void	ai(t_env *e)
 	e->liste_coup = ai_recuperation_liste_coups(e);
 	if (e->liste_coup != NULL)
 	{
-		score = ft_lstmap(e->liste_coup, iter_bas_droite);
 		// if (e->etat_machine == B_HAUT_DROIT)
 		// 	score = ft_lstmap(e->liste_coup, iter_haut_droit);
 		// else 
