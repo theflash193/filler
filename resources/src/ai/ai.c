@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 19:32:06 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/02 18:45:39 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,20 @@ void	ai(t_env *e)
 	e->liste_coup = ai_recuperation_liste_coups(e);
 	if (e->liste_coup != NULL)
 	{
-		score = ft_lstmap(e->liste_coup, iter_haut_droit);
-		// if (e->etat_machine == B_HAUT_DROIT)
-		// 	score = ft_lstmap(e->liste_coup, iter_haut_droit);
-		// else 
-		// 	score = ft_lstmap(e->liste_coup, iter_bas_gauche);
+		// score = ft_lstmap(e->liste_coup, iter_haut_droit);
+		if (e->etat_machine == B_HAUT_DROIT)
+			score = ft_lstmap(e->liste_coup, iter_haut_droit);
+		else 
+			score = ft_lstmap(e->liste_coup, iter_bas_droite);
 		ft_lstdel(&(e->liste_coup), delete_entite);
 		e->liste_coup = score;
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
 		a = *(t_entite *)e->liste_coup->content;
-		// t_coord test;
-
-		// test = dimensions_groupe_joueur(a, e);
-		// core_coord(test);
 		e->reponse = a.reponse;
 		if (a.score >= 1000 && e->etat_machine == B_HAUT_DROIT)
 			e->etat_machine = B_BAS_DROIT;
-		if (a.score >= 1000 && e->etat_machine == B_BAS_DROIT)
-			e->etat_machine = B_HAUT_DROIT;
+		// if (a.score >= 1000 && e->etat_machine == B_BAS_DROIT)
+		// 	e->etat_machine = B_HAUT_DROIT;
 		// e->loop = 0;
 	}
 	else

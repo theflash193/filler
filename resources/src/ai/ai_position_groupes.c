@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 19:05:21 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 19:41:50 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/02 18:43:21 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,18 @@ void    ai_position_groupes(t_env *e)
         return ;
     piece_joueur = piece_joueur_plus_haute(e->plateau, e);
     piece_ennemie = piece_ennemie_plus_haute(e->plateau, e);
-    if (piece_joueur )
-    // core_message("position joueur :");
-    // core_coord(piece_joueur);
-    // core_message("position ennemie :");
-    // core_coord(piece_ennemie);
+    if (HAUT_GAUCHE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
+        e->etat_machine = B_HAUT_DROIT;
+    else
+        e->etat_machine = B_HAUT_DROIT;
     e->tour = 1;
 }
+
+
+//  x 4
+//  y 4
+
+//  haut gauche = ((x >= 0 && x <= lenght.x) && (y >= 0 && y <= lenght.y / 2));
+//  haut droit = ((x >= 0 && x <= lenght.x) && (y >= lenght.y / 2 && y < lenght.y));
+//  bas gauche = ((x >= lenght.x / 2 && x <= lenght.x) && (y >= 0 && y <= lenght.y / 2));
+//  bas droite = ((x >= lenght.x / 2 && x <= lenght.x) && (x >= lenght.x / 2 && x <= lenght.x));

@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 19:38:55 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/02 17:50:42 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@
 # define IS_PLAYER1(x) (x == 'o' || x == 'O')
 # define IS_PLAYER2(x) (x == 'x' || x == 'X')
 # define PLATEAU plateau.entite
-
+# define HAUT_GAUCHE(x, y, i, j)\
+	((x >= 0 && x <= i) && (y >= 0 && y <= j / 2))
+// # define HAUT_DROITE(x, y, i, j)\
+// 	((x >= 0 && x <= i) && (y >= 0 && y <= j / 2))
+// # define BAS_GAUCHE(x, y, i, j)\
+// 	((x >= 0 && x <= i) && (y >= 0 && y <= j / 2))
+// # define BAS_DROITE(x, y, i, j)\
+// 	((x >= 0 && x <= i) && (y >= 0 && y <= j / 2))
 typedef struct	s_coord
 {
 	int			x;
