@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/08 14:39:15 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/08 15:21:21 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef enum	e_etat_machine
 	B_HAUT_DROIT,
 	B_BAS_DROIT,
 	B_HAUT_GAUCHE,
-	B_BAS_GAUCHE,	
+	B_BAS_GAUCHE,
+	REMPLISSAGE,
 }				t_etat_machine;
 
 // typedef enum	e_enum
