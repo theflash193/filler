@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/02 18:45:39 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/08 14:52:05 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,45 @@ t_coord		dimensions_groupe_joueur(t_entite plateau, t_env *e)
 
 // end utils
 
+void	analyse_plateau(t_env *e)
+{
+	t_coord piece_ennemie;
+	t_coord piece_joueur;
+
+	if (e->etat_machine == B_HAUT_DROIT)
+	{
+		piece_ennemie = piece_plus_gauche(e->plateau, 'x');
+		if (piece_ennemie.y >= e->plateau.y / 2)
+			e->etat_machine = B_BAS_DROIT;
+	}
+
+}
+
 void	ai(t_env *e)
 {
 	t_list	*score;
 	t_entite a;
 
+	// analyse_plateau(e);
 	e->liste_coup = ai_recuperation_liste_coups(e);
 	if (e->liste_coup != NULL)
 	{
 		// score = ft_lstmap(e->liste_coup, iter_haut_droit);
 		if (e->etat_machine == B_HAUT_DROIT)
 			score = ft_lstmap(e->liste_coup, iter_haut_droit);
-		else 
+		if (e->etat_machine == B_BAS_DROIT)
 			score = ft_lstmap(e->liste_coup, iter_bas_droite);
+		if (e->etat_machine == B_HAUT_GAUCHE)
+		{
+			// exit(0);
+			score = ft_lstmap(e->liste_coup, iter_haut_gauche);
+		}
+		if (e->etat_machine == B_BAS_GAUCHE)
+		{
+			// exit(0);
+			core_message("hello world 2");
+			score = ft_lstmap(e->liste_coup, iter_bas_gauche);	
+		}
 		ft_lstdel(&(e->liste_coup), delete_entite);
 		e->liste_coup = score;
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
@@ -79,8 +105,12 @@ void	ai(t_env *e)
 		e->reponse = a.reponse;
 		if (a.score >= 1000 && e->etat_machine == B_HAUT_DROIT)
 			e->etat_machine = B_BAS_DROIT;
-		// if (a.score >= 1000 && e->etat_machine == B_BAS_DROIT)
-		// 	e->etat_machine = B_HAUT_DROIT;
+		if (a.score >= 1000 && e->etat_machine == B_BAS_DROIT)
+			e->etat_machine = B_HAUT_DROIT;
+		if (a.score >= 500 && e->etat_machine == B_HAUT_DROIT)
+			e->etat_machine = B_BAS_GAUCHE;
+		if (a.score >= 500 && e->etat_machine == B_BAS_DROIT)
+			e->etat_machine = B_HAUT_GAUCHE;
 		// e->loop = 0;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 18:15:02 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/02 18:51:21 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/08 14:50:45 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,10 @@ int blocage_haut_droit(t_entite plateau)
 	score = 0;
 	haute = piece_plus_haute(plateau, 'o');
 	droite = piece_plus_droite(plateau, 'o');
-	if (haute.x == 0)
+	if (haute.x == 0 || droite.y == plateau.y)
 		score = 1000;
-	else if (droite.y == plateau.y)
-		score = 1000;
-	// else if (contact_ennemie(plateau, droite) == 1)
-	// {
-	// 	core_message("hello world");
-	// 	score = 1000;
-	// }
+	if (droite.y == plateau.y - 1)
+		score = 500;	
 	else
 	{
 		score = plateau.x - haute.x;
