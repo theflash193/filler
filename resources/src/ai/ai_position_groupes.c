@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 19:05:21 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/02 18:43:21 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:51:39 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,16 @@ void    ai_position_groupes(t_env *e)
     piece_joueur = piece_joueur_plus_haute(e->plateau, e);
     piece_ennemie = piece_ennemie_plus_haute(e->plateau, e);
     if (HAUT_GAUCHE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
-        e->etat_machine = B_HAUT_DROIT;
-    else
-        e->etat_machine = B_HAUT_DROIT;
+        core_message("joueur haut gauche !");
+    if (HAUT_DROITE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
+        core_message("joueur haut DROITE !");
+    if (BAS_GAUCHE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
+        core_message("joueur BAS gauche !");
+    if (BAS_DROITE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
+        core_message("joueur BAS DROITE !");
+    exit(0);
+    // else
+    //     e->etat_machine = B_HAUT_DROIT;
     e->tour = 1;
 }
 

@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 10:06:21 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:45:10 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 # define IS_PLAYER2(x) (x == 'x' || x == 'X')
 # define PLATEAU plateau.entite
 # define HAUT_GAUCHE(x, y, i, j)\
-	((x >= 0 && x <= i) && (y >= 0 && y <= j / 2))
-// # define HAUT_DROITE(x, y, i, j)\
-// 	((x >= 0 && x <= i) && (y >= 0 && y <= j / 2))
-// # define BAS_GAUCHE(x, y, i, j)\
-// 	((x >= 0 && x <= i) && (y >= 0 && y <= j / 2))
-// # define BAS_DROITE(x, y, i, j)\
-// 	((x >= 0 && x <= i) && (y >= 0 && y <= j / 2))
+	((x >= 0 && x < i / 2) && (y >= 0 && y < j / 2))
+# define HAUT_DROITE(x, y, i, j)\
+	((x >= 0 && x < i / 2) && (y >= (j / 2) && y <= j))
+# define BAS_GAUCHE(x, y, i, j)\
+	((x >= i / 2 && x <= i) && (y >= 0 && y < j / 2))
+# define BAS_DROITE(x, y, i, j)\
+	((x >= i / 2 && x <= i) && (y >= (j / 2) && y <= j))
+	
 typedef struct	s_coord
 {
 	int			x;
@@ -80,8 +81,6 @@ typedef struct	s_env
 	int			blocage;
 	t_etat_machine		etat_machine;
 	int			tour;
-	t_direction	blocage1;
-	t_direction	blocage2;
 	t_direction remplissage;
 }				t_env;
 

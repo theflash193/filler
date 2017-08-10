@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/08 14:29:55 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:23:17 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			main(int ac, char **av)
 	{
 		parser_plateau(&e);
 		parser_piece(&e);
-		// ai_position_groupes(&e);
+		ai_position_groupes(&e);
 		ai(&e);
 		if (e.loop == 1)
 		{

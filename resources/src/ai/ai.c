@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 09:51:49 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:08:00 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,25 +196,13 @@ void	ai(t_env *e)
 		if (a.score >= 1000 && e->etat_machine == B_HAUT_DROIT)
 			e->etat_machine = B_BAS_DROIT;
 		if (a.score >= 1000 && e->etat_machine == B_BAS_DROIT)
-			{
 				e->etat_machine = B_HAUT_DROIT;
-				e->blocage1 = BAS;
-			}
 		if (a.score >= 1000 && e->etat_machine == B_HAUT_GAUCHE)
-		{
 			e->etat_machine = REMPLISSAGE;
-			e->blocage2 = HAUT;
-		}
 		if (a.score >= 500 && e->etat_machine == B_HAUT_GAUCHE)
-		{
 			e->etat_machine = REMPLISSAGE;
-			e->blocage2 = GAUCHE;
-		}
 		if (a.score >= 500 && e->etat_machine == B_HAUT_DROIT)
-			{
 				e->etat_machine = B_BAS_GAUCHE;
-				e->blocage1 = DROITE;
-			}
 		if (a.score >= 500 && e->etat_machine == B_BAS_DROIT)
 			e->etat_machine = B_HAUT_GAUCHE;
 		// e->loop = 0;
