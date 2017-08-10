@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 10:08:00 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 17:44:57 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,10 @@ t_coord coord_ennemie_col(t_env *e, int y)
 	return (count);
 }
 
-	t_coord joueur;
-	t_coord ennemie;
-
 t_direction direction_ennemie(t_env *e)
 {
-	// t_coord joueur;
-	// t_coord ennemie;
+	t_coord joueur;
+	t_coord ennemie;
 	int y;
 
 	y = e->plateau.y;
@@ -66,11 +63,6 @@ t_direction direction_ennemie(t_env *e)
 			break ;
 		y--;
 	}
-	// core_message("joueur :");
-	// core_coord(joueur);
-	// core_message("ennemie :");
-	// core_coord(ennemie);
-	// exit(0);
 	if (joueur.x < ennemie.x)
 		return (BAS);
 	return (HAUT);
@@ -139,73 +131,82 @@ void	ai_action(t_env *e)
 {
 	t_list *score;
 
-		core_message("joueur :");
-	core_coord(joueur);
-	core_message("ennemie :");
-	core_coord(ennemie);
-			if (e->remplissage == HAUT)
-				core_message("ennemie haut");
-			if (e->remplissage == BAS)
-				core_message("ennemie bas");
-	if (e->etat_machine == B_HAUT_DROIT || (e->etat_machine == REMPLISSAGE && e->remplissage == HAUT))
+	if (e->etat_machine == B_HAUT_DROIT)
+	{
+		core_message("B_HAUT_DROIT");
+		exit(0);
 		score = ft_lstmap(e->liste_coup, iter_haut_droit);
+	}
 	if (e->etat_machine == B_BAS_DROIT)
+	{
+		core_message("B_BAS_DROITE");
 		score = ft_lstmap(e->liste_coup, iter_bas_droite);
+	}
 	if (e->etat_machine == B_HAUT_GAUCHE)
+	{
+		core_message("B_HAUT_GAUCHE");
 		score = ft_lstmap(e->liste_coup, iter_haut_gauche);
-	if (e->etat_machine == B_BAS_GAUCHE || (e->etat_machine == REMPLISSAGE && e->remplissage == BAS))
+	}
+	if (e->etat_machine == B_BAS_GAUCHE/* || (e->etat_machine == REMPLISSAGE && e->remplissage == BAS)*/)
+	{
+		core_message("B_BAS_DROIT");
 		score = ft_lstmap(e->liste_coup, iter_bas_gauche);
+	}
 	ft_lstdel(&(e->liste_coup), delete_entite);
 	e->liste_coup = score;
 }
 
-void	ai_camp_ennemie(t_env *e)
+t_etat_machine direction_remplissage(t_direction a, t_direction b)
 {
-	t_coord gauche;
-	t_coord droite;
+	if (a == HAUT && b == DROITE)
+		return (B_HAUT_DROIT);
+	if (a == HAUT && b == GAUCHE)
+		return (B_HAUT_GAUCHE);
+	if (a == BAS && b == DROITE)
+		return (B_HAUT_DROIT);
+	return (B_BAS_GAUCHE);
+}
 
-	gauche = piece_joueur_plus_gauche(e->plateau, e);
-	droite = piece_joueur_plus_droite(e->plateau, e);
-	core_message("gauche :");
-	core_coord(gauche);
-	core_message("droite :");
-	core_coord(droite);
+void	transition_etat(t_env *e)
+{
+		t_entite a;
+
+		a = *(t_entite *)e->liste_coup->content;
+		// exit(0);
+		core_int(a.score);
+		if ((a.score >= 1000 || a.score >= 500) && e->transition == 0)
+		{
+			// core_message("hello world");
+			// exit(0);
+			e->etat_machine = e->etat2;
+			e->transition++;
+		}
+		if ((a.score >= 1000 || a.score >= 500) && e->transition == 1)
+		{
+			core_message("hello world");
+			// exit(0);
+			e->etat_machine = REMPLISSAGE;
+			e->transition++;
+		}
 }
 
 void	ai(t_env *e)
 {
-	t_entite a;
-	static int i = 0;
-
-	// analyse_plateau(e);
 	e->liste_coup = ai_recuperation_liste_coups(e);
+
 	if (e->liste_coup != NULL)
 	{
-		// score = ft_lstmap(e->liste_coup, iter_haut_droit);
-		if (e->etat_machine == REMPLISSAGE && i == 0)
+		if (e->etat_machine == REMPLISSAGE)
 		{
-			// core_message("hello world");
-			// exit(0);
 			e->remplissage = direction_ennemie(e);
-			i++;
+			e->etat_machine = direction_remplissage(e->remplissage, e->cote_ennemie);
 		}
 		ai_action(e);
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
-		a = *(t_entite *)e->liste_coup->content;
-		e->reponse = a.reponse;	
-		if (a.score >= 1000 && e->etat_machine == B_HAUT_DROIT)
-			e->etat_machine = B_BAS_DROIT;
-		if (a.score >= 1000 && e->etat_machine == B_BAS_DROIT)
-				e->etat_machine = B_HAUT_DROIT;
-		if (a.score >= 1000 && e->etat_machine == B_HAUT_GAUCHE)
-			e->etat_machine = REMPLISSAGE;
-		if (a.score >= 500 && e->etat_machine == B_HAUT_GAUCHE)
-			e->etat_machine = REMPLISSAGE;
-		if (a.score >= 500 && e->etat_machine == B_HAUT_DROIT)
-				e->etat_machine = B_BAS_GAUCHE;
-		if (a.score >= 500 && e->etat_machine == B_BAS_DROIT)
-			e->etat_machine = B_HAUT_GAUCHE;
-		// e->loop = 0;
+		// core_message("\n\n\n\n\n\n\n\n\n\n\n");
+		// ft_lstiter(e->liste_coup, core_coup);
+		// core_message("\n\n\n\n\n\n\n\n\n\n\n");
+		transition_etat(e);
 	}
 	else
 		e->loop = 0;

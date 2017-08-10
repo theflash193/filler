@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 19:05:21 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 11:44:44 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 17:43:43 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,61 @@ void    ai_position_groupes(t_env *e)
 {
     t_coord piece_ennemie;
     t_coord piece_joueur;
+    t_direction joueur;
+    t_direction ennemie;
 
     if (e->tour != 0)
         return ;
     piece_joueur = piece_joueur_plus_haute(e->plateau, e);
     piece_ennemie = piece_ennemie_plus_haute(e->plateau, e);
     if (HAUT_GAUCHE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
-        core_message("joueur haut gauche !");
+        joueur = HAUT_GAUCHE;
     if (HAUT_DROITE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
-        core_message("joueur haut DROITE !");
+        joueur = HAUT_DROITE;
     if (BAS_GAUCHE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
-        core_message("joueur BAS gauche !");
+        joueur = BAS_GAUCHE;
     if (BAS_DROITE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
-        core_message("joueur BAS DROITE !");
+        joueur = BAS_DROITE;
+        
     if (HAUT_GAUCHE(piece_ennemie.x, piece_ennemie.y, e->plateau.x, e->plateau.y))
-        core_message("ennemie haut gauche !");
+        ennemie = HAUT_GAUCHE;
     if (HAUT_DROITE(piece_ennemie.x, piece_ennemie.y, e->plateau.x, e->plateau.y))
-        core_message("ennemie haut DROITE !");
+        ennemie = HAUT_DROITE;
     if (BAS_GAUCHE(piece_ennemie.x, piece_ennemie.y, e->plateau.x, e->plateau.y))
-        core_message("ennemie BAS gauche !");
+        ennemie = BAS_GAUCHE;
     if (BAS_DROITE(piece_ennemie.x, piece_ennemie.y, e->plateau.x, e->plateau.y))
-        core_message("ennemie BAS DROITE !");
+         ennemie = BAS_DROITE;
     // exit(0);
     // else
     //     e->etat_machine = B_HAUT_DROIT;
+    if (joueur == BAS_GAUCHE && ennemie == BAS_DROITE)
+    {
+        core_message("hello world");
+        e->etat1 =  B_HAUT_DROIT;
+        e->etat2 = B_HAUT_DROIT;
+        e->etat_machine = B_HAUT_DROIT;
+        e->cote_ennemie = DROITE;
+    }
+    if (joueur == HAUT_GAUCHE && ennemie == BAS_DROITE)
+    {
+        core_message("hello worl d 2");
+        e->etat1 =  B_BAS_DROIT;
+        e->etat2 = B_HAUT_GAUCHE;
+        e->etat_machine = B_HAUT_DROIT;
+        e->cote_ennemie = DROITE;
+    }
+    if (joueur == BAS_DROITE && ennemie == HAUT_GAUCHE)
+    {
+        e->etat1 =  B_BAS_DROIT;
+        e->etat2 = B_HAUT_DROIT;
+        e->etat_machine = B_BAS_DROIT;
+    }
+    if (joueur == BAS_DROITE && ennemie == BAS_GAUCHE)
+    {
+        e->etat1 =  B_BAS_DROIT;
+        e->etat2 = B_HAUT_DROIT;
+        e->etat_machine = B_BAS_DROIT;
+    }
     e->tour = 1;
 }
 

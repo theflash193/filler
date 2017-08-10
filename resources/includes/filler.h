@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 10:45:10 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 14:51:12 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,10 @@ typedef struct	s_env
 	t_etat_machine		etat_machine;
 	int			tour;
 	t_direction remplissage;
+	t_etat_machine etat1;
+	t_etat_machine etat2;
+	t_direction cote_ennemie;
+	int			transition;
 }				t_env;
 
 enum			e_pieces
@@ -92,6 +96,7 @@ enum			e_pieces
 	JOUEUR2_A = 'X',
 	VIDE = ' '
 };
+
 
 /*
 **	parser
