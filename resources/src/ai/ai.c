@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 09:09:06 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 09:51:49 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,10 +187,6 @@ void	ai(t_env *e)
 			// core_message("hello world");
 			// exit(0);
 			e->remplissage = direction_ennemie(e);
-			if (e->remplissage == HAUT)
-				core_message("pjojojojojojojojojojojojojojojojojojojojo");
-			if (e->remplissage == BAS)
-				core_message("jojojojojojojojojojojojojojojojojojojojojo");
 			i++;
 		}
 		ai_action(e);

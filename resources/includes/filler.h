@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 08:37:10 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 10:06:21 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ typedef enum	e_direction
 	GAUCHE,
 	BAS,
 	HAUT,
+	HAUT_DROITE,
+	HAUT_GAUCHE,
+	BAS_GAUCHE,
+	BAS_DROITE,
 	AUCUNE
 }				t_direction;
 
