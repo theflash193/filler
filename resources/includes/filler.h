@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/08 15:21:21 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 08:37:10 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,17 @@ typedef enum	e_etat_machine
 	B_BAS_DROIT,
 	B_HAUT_GAUCHE,
 	B_BAS_GAUCHE,
-	REMPLISSAGE,
+	REMPLISSAGE
 }				t_etat_machine;
 
-// typedef enum	e_enum
-// {
-// 	DROIT,
-// 	B_BAS_DROIT
-// }				t_etat_machine;
+typedef enum	e_direction
+{
+	DROITE,
+	GAUCHE,
+	BAS,
+	HAUT,
+	AUCUNE
+}				t_direction;
 
 typedef struct	s_env
 {
@@ -73,6 +76,9 @@ typedef struct	s_env
 	int			blocage;
 	t_etat_machine		etat_machine;
 	int			tour;
+	t_direction	blocage1;
+	t_direction	blocage2;
+	t_direction remplissage;
 }				t_env;
 
 enum			e_pieces
