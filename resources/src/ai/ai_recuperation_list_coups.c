@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 14:40:47 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/25 09:15:42 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:28:54 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int placement_possible(int x, int y, t_env *e)
 		p.y = y;
 		while (i.y < e->piece.y)
 		{
-			if (e->piece.entite[i.x][i.y] == '*' && IS_PLAYER2(e->plateau.entite[p.x][p.y]))
+			if (e->piece.entite[i.x][i.y] == '*' && piece_ennemie(e->plateau.entite[p.x][p.y], e))
 				return (0);
-			if (e->piece.entite[i.x][i.y] == '*' && IS_PLAYER1(e->plateau.entite[p.x][p.y]))
+			if (e->piece.entite[i.x][i.y] == '*' && piece_joueur(e->plateau.entite[p.x][p.y], e))
 				recouvre_forme++;
 			i.y++;
 			p.y++;
@@ -58,13 +58,10 @@ static t_entite	impression_piece(t_env *e, int i, int j, t_entite a)
 		plateau.y = j;
 		while (piece.y < e->piece.y)
 		{
-			if (e->piece.entite[piece.x][piece.y] == '*' && a.entite[plateau.x][plateau.y] != 'O')
-			{
-				if (e->numero_joueur == 1)
-					a.entite[plateau.x][plateau.y] = 'o';
-				else
-					a.entite[plateau.x][plateau.y] = 'x';
-			}
+			if (e->piece.entite[piece.x][piece.y] == '*' && a.entite[plateau.x][plateau.y] != 'O' && e->numero_joueur == 1)
+				a.entite[plateau.x][plateau.y] = 'o';
+			if (e->piece.entite[piece.x][piece.y] == '*' && a.entite[plateau.x][plateau.y] != 'X' && e->numero_joueur == 2)
+				a.entite[plateau.x][plateau.y] = 'x';
 			piece.y++;
 			plateau.y++;
 		}

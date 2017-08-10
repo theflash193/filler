@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 10:23:17 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 13:33:54 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			main(int ac, char **av)
 
 	ft_bzero(&e, sizeof(t_env));
 	e.loop = 1;
-	e.etat_machine = B_BAS_DROIT;
+	e.etat_machine = B_HAUT_GAUCHE;
 	parser_numero_joueur(&e);
 	while (e.loop)
 	{
@@ -51,11 +51,7 @@ int			main(int ac, char **av)
 		ai_position_groupes(&e);
 		ai(&e);
 		if (e.loop == 1)
-		{
 			ai_reponse(e.reponse.x, e.reponse.y);
-			// if (i++ == 2)
-			// 	e.loop = 0;
-		}
 		else
 			ai_reponse(0, 0);
 		preparation_env(&e);
