@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 17:44:57 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 07:36:49 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void	ai_action(t_env *e)
 	if (e->etat_machine == B_HAUT_DROIT)
 	{
 		core_message("B_HAUT_DROIT");
-		exit(0);
 		score = ft_lstmap(e->liste_coup, iter_haut_droit);
 	}
 	if (e->etat_machine == B_BAS_DROIT)
@@ -192,6 +191,8 @@ void	transition_etat(t_env *e)
 
 void	ai(t_env *e)
 {
+	t_list *score;
+	t_entite a;
 	e->liste_coup = ai_recuperation_liste_coups(e);
 
 	if (e->liste_coup != NULL)
@@ -203,9 +204,10 @@ void	ai(t_env *e)
 		}
 		ai_action(e);
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
-		// core_message("\n\n\n\n\n\n\n\n\n\n\n");
-		// ft_lstiter(e->liste_coup, core_coup);
-		// core_message("\n\n\n\n\n\n\n\n\n\n\n");
+		a = (*(t_entite *)e->liste_coup->content);
+		// core_entite(a);
+		e->reponse.x = a.reponse.x;
+		e->reponse.y = a.reponse.y;
 		transition_etat(e);
 	}
 	else

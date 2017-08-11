@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 17:49:46 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/10 19:03:01 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			main(int ac, char **av)
 
 	ft_bzero(&e, sizeof(t_env));
 	e.loop = 1;
-	// e.etat_machine = B_HAUT_GAUCHE;
+	e.etat_machine = B_HAUT_GAUCHE;
 	e.transition = 0;
 	parser_numero_joueur(&e);
 	while (e.loop)
@@ -50,6 +50,8 @@ int			main(int ac, char **av)
 		parser_plateau(&e);
 		parser_piece(&e);
 		ai_position_groupes(&e);
+		// core_message("jojo");
+		// exit(0);
 		ai(&e);
 		if (e.loop == 1)
 		{
