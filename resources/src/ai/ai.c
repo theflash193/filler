@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 07:43:16 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 08:08:18 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,8 @@ void	ai_action(t_env *e)
 	}
 	if (e->etat_machine == B_BAS_DROIT)
 	{
-		core_message("B_BAS_DROITE");
+		core_message("B_BAS_DROITE ////////");
+		// exit(0);
 		score = ft_lstmap(e->liste_coup, iter_bas_droite);
 	}
 	if (e->etat_machine == B_HAUT_GAUCHE)
@@ -162,7 +163,7 @@ t_etat_machine direction_remplissage(t_direction a, t_direction b)
 	if (a == HAUT && b == GAUCHE)
 		return (B_HAUT_GAUCHE);
 	if (a == BAS && b == DROITE)
-		return (B_HAUT_DROIT);
+		return (B_BAS_DROIT);
 	return (B_BAS_GAUCHE);
 }
 
@@ -189,6 +190,40 @@ void	transition_etat(t_env *e)
 		}
 }
 
+void core_direction(t_direction a)
+{
+	if (a == DROITE)
+		core_message("DROITE");
+	else if (a == GAUCHE)
+		core_message("GAUCHE");
+	else if (a == BAS)
+		core_message("BAS");
+	else if (a == HAUT)
+		core_message("HAUT");
+	else if (a == HAUT_DROITE)
+		core_message("HAUT_DROIT");
+	else if (a == BAS_DROITE)
+		core_message("BAS_DROIT");
+	else if (a == HAUT_GAUCHE)
+		core_message("HAUT_GAUCHE");
+	else
+		core_message("BAS_GAUCHE");
+}
+
+void core_etat(t_etat_machine a)
+{
+	if (a == B_HAUT_DROIT)
+		core_message("B_HAUT_DROIT");
+	else if (a == B_BAS_DROIT)
+		core_message("B_BAS_DROIT");
+	else if (a == B_HAUT_GAUCHE)
+		core_message("B_HAUT_GAUCHE");
+	else if (a == B_BAS_GAUCHE)
+		core_message("B_BAS_GAUCHE");
+	else
+		core_message("REMPLISSAGE");
+}
+
 void	ai(t_env *e)
 {
 	t_list *score;
@@ -201,6 +236,11 @@ void	ai(t_env *e)
 		{
 			e->remplissage = direction_ennemie(e);
 			e->etat_machine = direction_remplissage(e->remplissage, e->cote_ennemie);
+			core_message("remplissage : cote : etat machine");
+			core_direction(e->remplissage);
+			core_direction(e->cote_ennemie);
+			core_etat(e->etat_machine);
+			core_message("");
 		}
 		ai_action(e);
 		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
