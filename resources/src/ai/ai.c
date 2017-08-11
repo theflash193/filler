@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 07:36:49 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 07:43:16 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,14 +175,14 @@ void	transition_etat(t_env *e)
 		core_int(a.score);
 		if ((a.score >= 1000 || a.score >= 500) && e->transition == 0)
 		{
-			// core_message("hello world");
+			core_message("transition 1");
 			// exit(0);
 			e->etat_machine = e->etat2;
 			e->transition++;
 		}
-		if ((a.score >= 1000 || a.score >= 500) && e->transition == 1)
+		else if ((a.score >= 1000 || a.score >= 500) && e->transition == 1)
 		{
-			core_message("hello world");
+			core_message("transition 2");
 			// exit(0);
 			e->etat_machine = REMPLISSAGE;
 			e->transition++;

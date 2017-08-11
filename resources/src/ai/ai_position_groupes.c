@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 19:05:21 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 07:40:22 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 07:45:30 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void    ai_position_groupes(t_env *e)
     if (joueur == BAS_GAUCHE && ennemie == BAS_DROITE)
     {
         core_message("jonathan");
-        e->etat2 = B_BAS_DROIT;
-        e->etat_machine = B_HAUT_DROIT;
+        e->etat2 = B_HAUT_DROIT;
+        e->etat_machine = B_BAS_DROIT;
         e->cote_ennemie = DROITE;
     }
     if (joueur == HAUT_GAUCHE && ennemie == BAS_DROITE)
