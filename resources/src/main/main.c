@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 19:03:01 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 08:47:53 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ void		preparation_env(t_env *e)
 	ft_bzero(&(e->piece), sizeof(t_piece));
 }
 
+t_env	*singleton(t_env *e)
+{
+	static t_env *ret = NULL;
+
+	if (e != NULL)
+		ret = e;
+	return (ret);
+}
+
 int			main(int ac, char **av)
 {
 	t_env	e;
@@ -45,6 +54,7 @@ int			main(int ac, char **av)
 	e.etat_machine = B_HAUT_GAUCHE;
 	e.transition = 0;
 	parser_numero_joueur(&e);
+	singleton(&e);
 	while (e.loop)
 	{
 		parser_plateau(&e);

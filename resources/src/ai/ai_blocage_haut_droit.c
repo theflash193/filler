@@ -6,34 +6,32 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 18:15:02 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 08:35:28 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 09:21:30 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-static int	contact_ennemie(t_entite plateau, t_coord droite)
-{
-	if ((droite.y + 1 >= plateau.y) && IS_PLAYER2(PLATEAU[droite.x][droite.y + 1]))
-		return (1);
-	if ((droite.y - 1 >= 0) && IS_PLAYER2(PLATEAU[droite.x][droite.y - 1]))
-		return (1);
-	if ((droite.x + 1 >= plateau.y) && IS_PLAYER2(PLATEAU[droite.x + 1][droite.y]))
-		return (1);
-	if ((droite.x + 1 >= 0) && IS_PLAYER2(PLATEAU[droite.x - 1][droite.y + 1]))
-		return (1);
-	return (0);
-}
 
 int blocage_haut_droit(t_entite plateau)
 {
 	int		score;
 	t_coord haute;
 	t_coord droite;
+	t_env *e;
 
 	score = 0;
-	haute = piece_plus_haute(plateau, 'o');
-	droite = piece_plus_droite(plateau, 'o');
+	e = singleton(NULL);
+	score = 0;
+	if (e->numero_joueur == 1)
+	{
+		haute = piece_plus_haute(plateau, 'o');
+		droite = piece_plus_droite(plateau, 'o');
+	}
+	else
+	{
+		haute = piece_plus_haute(plateau, 'x');
+		droite = piece_plus_droite(plateau, 'x');
+	}
 	if (haute.x == 0)
 		score = 1000;
 	else if (droite.y == plateau.y - 1)

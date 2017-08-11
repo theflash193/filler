@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 18:03:24 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 08:34:33 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 08:51:20 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,28 @@ int blocage_haut_gauche(t_entite plateau)
 	int		score;
 	t_coord haute;
 	t_coord gauche;
+	t_env	*e;
 
+	e = singleton(NULL);
 	score = 0;
-	haute = piece_plus_haute(plateau, 'x');
-	gauche = piece_plus_gauche(plateau, 'x');
+	if (e->numero_joueur == 1)
+	{
+		haute = piece_plus_haute(plateau, 'o');
+		gauche = piece_plus_gauche(plateau, 'o');
+	}
+	else
+	{
+		haute = piece_plus_haute(plateau, 'x');
+		gauche = piece_plus_gauche(plateau, 'x');
+	}
 	if (haute.x == 0)
-	{
 		score = +1000;
-		exit(0);
-	}
 	else if (gauche.y == 0)
-	{
 		score = 500;
-		exit(0);
-	}
 	else
 	{
 		score = plateau.x - haute.x;
 		score += plateau.y - gauche.y;
-		// exit(0);
 	}
 	core_int(score);
 	return (score);
