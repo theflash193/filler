@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 19:05:21 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 08:26:35 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 10:02:25 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,24 @@ void    ai_position_groupes(t_env *e)
     }
     if (joueur == BAS_DROITE && ennemie == HAUT_GAUCHE)
     {
+        // exit(0);
         e->etat_machine = B_HAUT_GAUCHE;
-        e->etat2 = B_BAS_GAUCHE;
-        e->cote_ennemie = DROITE;
+        e->etat2 = B_HAUT_DROIT;
+        e->cote_ennemie = GAUCHE;
     }
     if (joueur == BAS_DROITE && ennemie == BAS_GAUCHE)
     {
-        e->etat1 =  B_BAS_DROIT;
-        e->etat2 = B_HAUT_DROIT;
-        e->etat_machine = B_BAS_DROIT;
+        // exit(0);
+        e->etat_machine = B_HAUT_GAUCHE;
+        e->etat2 = B_BAS_DROIT;
+        e->cote_ennemie = GAUCHE;
     }
+    // if (joueur == BAS_DROITE && ennemie == BAS_GAUCHE)
+    // {
+    //     // exit(0);
+    //     e->etat_machine = B_HAUT_GAUCHE;
+    //     e->etat2 = B_BAS_GAUCHE;
+    //     e->cote_ennemie = GAUCHE;
+    // }
     e->tour = 1;
 }

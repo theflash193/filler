@@ -6,11 +6,42 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 08:08:18 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/22 15:54:34 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+double	ft_sqrt(double nb)
+{
+	double calc;
+	double diff;
+
+	if (nb == 0.0 || nb == 1.0)
+		return (nb);
+	calc = nb;
+	diff = 0.0;
+	while (calc != diff)
+	{
+		diff = calc;
+		calc = 0.5 * (calc + nb / calc);
+	}
+	return (calc);
+}
+
+int		ft_pow(int nb, int pow)
+{
+	int ret;
+
+	ret = nb;
+	if (pow < 0)
+		return (0);
+	else if (pow == 0)
+		return (1);
+	while (pow-- > 1)
+		ret *= nb;
+	return (ret);
+}
 
 // fonction qui cherche une piece joueur dans la colonne et retournant sa coordonné
 t_coord coord_joueur_col(t_env *e, int y)
@@ -149,7 +180,7 @@ void	ai_action(t_env *e)
 	}
 	if (e->etat_machine == B_BAS_GAUCHE/* || (e->etat_machine == REMPLISSAGE && e->remplissage == BAS)*/)
 	{
-		core_message("B_BAS_DROIT");
+		core_message("B_BAS_GAUCHE");
 		score = ft_lstmap(e->liste_coup, iter_bas_gauche);
 	}
 	ft_lstdel(&(e->liste_coup), delete_entite);
@@ -224,14 +255,29 @@ void core_etat(t_etat_machine a)
 		core_message("REMPLISSAGE");
 }
 
+t_coord position_blocage(void)
+{
+	t_env *e;
+	t_coord ennemie_bas;
+	t_coord position;
+
+	e = singleton(NULL);
+	ennemie_bas = piece_joueur_plus_bas(e->plateau, e);
+	position.x = ennemie_bas.x;
+	position.y = ennemie_bas.y;
+	return (position);
+}
+
 void	ai(t_env *e)
 {
 	t_list *score;
 	t_entite a;
+	
 	e->liste_coup = ai_recuperation_liste_coups(e);
-
 	if (e->liste_coup != NULL)
 	{
+		// analyse de l'attaque ennemie
+		
 		if (e->etat_machine == REMPLISSAGE)
 		{
 			e->remplissage = direction_ennemie(e);

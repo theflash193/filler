@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 18:02:57 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 09:21:09 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 09:39:33 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int blocage_bas_gauche(t_entite plateau)
 	}
 	if (bas.x == plateau.x)
 		score = +1000;
+	else if (gauche.y == 0)
+		score = 500;
 	else
 	{
 		score = bas.x;

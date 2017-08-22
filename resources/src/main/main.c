@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 08:47:53 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/22 15:29:43 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,53 @@ t_env	*singleton(t_env *e)
 	return (ret);
 }
 
-int			main(int ac, char **av)
-{
-	t_env	e;
-	int i = 0;
+// int			main(int ac, char **av)
+// {
+// 	t_env	e;
+// 	int i = 0;
 
-	ft_bzero(&e, sizeof(t_env));
-	e.loop = 1;
-	e.etat_machine = B_HAUT_GAUCHE;
-	e.transition = 0;
-	parser_numero_joueur(&e);
-	singleton(&e);
-	while (e.loop)
-	{
-		parser_plateau(&e);
-		parser_piece(&e);
-		ai_position_groupes(&e);
-		// core_message("jojo");
-		// exit(0);
-		ai(&e);
-		if (e.loop == 1)
-		{
-			ai_reponse(e.reponse.x, e.reponse.y);
-			i++;
-		}
-		else
-			ai_reponse(0, 0);
-		preparation_env(&e);
-	}
-	ft_bzero(&e, sizeof(t_env));
+// 	ft_bzero(&e, sizeof(t_env));
+// 	e.loop = 1;
+// 	e.etat_machine = B_HAUT_GAUCHE;
+// 	e.transition = 0;
+// 	parser_numero_joueur(&e);
+// 	singleton(&e);
+// 	while (e.loop)
+// 	{
+// 		parser_plateau(&e);
+// 		parser_piece(&e);
+// 		ai_position_groupes(&e);
+// 		ai(&e);
+// 		if (e.loop == 1)
+// 		{
+// 			ai_reponse(e.reponse.x, e.reponse.y);
+// 			i++;
+// 		}
+// 		else
+// 			ai_reponse(0, 0);
+// 		preparation_env(&e);
+// 	}
+// 	ft_bzero(&e, sizeof(t_env));
+// 	return (0);
+// }
+
+int		distance(t_coord a, t_coord b)
+{
+	int ret;
+
+	ret = ft_sqrt(ft_pow((int)(b.x - a.x), 2) + ft_pow((b.y - a.y), 2));
+	return (ret);
+}
+
+int main() {
+	t_coord a;
+	t_coord b;
+	int c;
+
+	a.x = 3;
+	a.y = 5;
+	b.x = 3;
+	b.y = 4;
+	printf("%d", distance(a, b));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 08:50:16 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/22 14:37:46 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,7 @@ t_coord			piece_ennemie_plus_bas(t_entite plateau, t_env *e);
 t_coord			piece_ennemie_plus_gauche(t_entite plateau, t_env *e);
 t_coord			piece_ennemie_plus_droite(t_entite plateau, t_env *e);
 t_env			*singleton(t_env *e);
+double			ft_sqrt(double nb);
+int				ft_pow(int nb, int pow);
 
 #endif

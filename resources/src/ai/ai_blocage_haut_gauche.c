@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 18:03:24 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/11 08:51:20 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 09:34:44 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int blocage_haut_gauche(t_entite plateau)
 		score = plateau.x - haute.x;
 		score += plateau.y - gauche.y;
 	}
-	core_int(score);
 	return (score);
 }
 

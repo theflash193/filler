@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 18:54:28 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/30 18:57:49 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/11 09:33:46 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ t_coord		piece_ennemie_plus_gauche(t_entite plateau, t_env *e)
 	}
 	return (ret);
 }
+
 // // recherche la piece ennemie la plus en droite
 t_coord		piece_ennemie_plus_droite(t_entite plateau, t_env *e)
 {
