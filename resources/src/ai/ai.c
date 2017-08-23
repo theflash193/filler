@@ -6,78 +6,11 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 17:17:58 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:26:01 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-double	ft_sqrt(double nb)
-{
-	double calc;
-	double diff;
-
-	if (nb == 0.0 || nb == 1.0)
-		return (nb);
-	calc = nb;
-	diff = 0.0;
-	while (calc != diff)
-	{
-		diff = calc;
-		calc = 0.5 * (calc + nb / calc);
-	}
-	return (calc);
-}
-
-int		ft_pow(int nb, int pow)
-{
-	int ret;
-
-	ret = nb;
-	if (pow < 0)
-		return (0);
-	else if (pow == 0)
-		return (1);
-	while (pow-- > 1)
-		ret *= nb;
-	return (ret);
-}
-
-// fonction qui cherche une piece joueur dans la colonne et retournant sa coordonné
-t_coord coord_joueur_col(t_env *e, int y)
-{
-	t_coord count;
-
-	count.x = 0;
-	count.y = y;
-	while (count.x < e->plateau.x)
-	{
-		if (piece_joueur(e->plateau.entite[count.x][count.y], e) == 1)
-			return (count);
-		count.x++;
-	}
-	count.x = 0;
-	count.y = 0;
-	return (count);
-}
-
-// fonction qui cherche une piece ennemie dans la colonne et retournant sa coordonné
-t_coord coord_ennemie_col(t_env *e, int y)
-{
-	t_coord count;
-
-	count.x = 0;
-	count.y = y;
-	while (count.x < e->plateau.x)
-	{
-		if (piece_ennemie(e->plateau.entite[count.x][count.y], e) == 1)
-			return (count);
-		count.x++;
-	}
-	count.x = 0;
-	count.y = 0;
-	return (count);
-}
 
 t_direction direction_ennemie(t_env *e)
 {

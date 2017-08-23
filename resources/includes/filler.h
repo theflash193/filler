@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 16:32:46 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:25:49 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,7 @@ int				ft_pow(int nb, int pow);
 int				distance(t_coord a, t_coord b);
 int 			blocage(t_entite plateau);
 t_list 			*iter_blocage(t_list *elem);
+t_coord			coord_joueur_col(t_env *e, int y);
+t_coord			coord_ennemie_col(t_env *e, int y);
 
 #endif
