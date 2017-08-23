@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 18:47:50 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/07/23 14:03:50 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 15:57:54 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,38 @@ void	core_coup(t_list *elem)
 
 	coup = (t_entite *)elem->content;
 	core_entite(*coup);
+}
+
+void core_direction(t_direction a)
+{
+	if (a == DROITE)
+		core_message("DROITE");
+	else if (a == GAUCHE)
+		core_message("GAUCHE");
+	else if (a == BAS)
+		core_message("BAS");
+	else if (a == HAUT)
+		core_message("HAUT");
+	else if (a == HAUT_DROITE)
+		core_message("HAUT_DROIT");
+	else if (a == BAS_DROITE)
+		core_message("BAS_DROIT");
+	else if (a == HAUT_GAUCHE)
+		core_message("HAUT_GAUCHE");
+	else
+		core_message("BAS_GAUCHE");
+}
+
+void core_etat(t_etat_machine a)
+{
+	if (a == B_HAUT_DROIT)
+		core_message("B_HAUT_DROIT");
+	else if (a == B_BAS_DROIT)
+		core_message("B_BAS_DROIT");
+	else if (a == B_HAUT_GAUCHE)
+		core_message("B_HAUT_GAUCHE");
+	else if (a == B_BAS_GAUCHE)
+		core_message("B_BAS_GAUCHE");
+	else
+		core_message("REMPLISSAGE");
 }

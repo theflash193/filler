@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 13:50:12 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:32:46 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ typedef struct	s_env
 	t_direction cote_ennemie;
 	int			transition;
 	int			yolo;
+	int			special_case;
+	t_coord		cible;
+	t_coord		debut;
+	int			blocage1;
+	int			blocage2;
+
 }				t_env;
 
 enum			e_pieces
@@ -119,7 +125,8 @@ void			core_coup(t_list *elem);
 void			core_entite(t_entite entite);
 void			core_int(int i);
 void			core_coord(t_coord a);
-
+void			core_direction(t_direction a);
+void			core_etat(t_etat_machine a);
 /*
 ** ai
 */

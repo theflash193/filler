@@ -6,21 +6,11 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 13:51:56 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:17:58 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-// int ft_sqrt(int val) // sqrt for int
-// {
-// 	int i;
-// 	if (val <= 1) return val;	// 0, 1: special
-// 	for (i = 0; i <= val / 2; i++) {
-// 		if (i * i > val) break;
-// 	}
-// 	return (val <= i * (i - 1)) ? i - 1 : i;
-// }
 
 double	ft_sqrt(double nb)
 {
@@ -173,27 +163,37 @@ void	ai_action(t_env *e)
 	t_list *score;
 
 	score = ft_lstmap(e->liste_coup, iter_blocage);
-	// if (e->etat_machine == B_HAUT_DROIT)
-	// {
-	// 	core_message("B_HAUT_DROIT");
-	// 	score = ft_lstmap(e->liste_coup, iter_haut_droit);
-	// }
-	// if (e->etat_machine == B_BAS_DROIT)
-	// {
-	// 	core_message("B_BAS_DROITE ////////");
-	// 	// exit(0);
-	// 	score = ft_lstmap(e->liste_coup, iter_bas_droite);
-	// }
-	// if (e->etat_machine == B_HAUT_GAUCHE)
-	// {
-	// 	core_message("B_HAUT_GAUCHE");
-	// 	score = ft_lstmap(e->liste_coup, iter_haut_gauche);
-	// }
-	// if (e->etat_machine == B_BAS_GAUCHE/* || (e->etat_machine == REMPLISSAGE && e->remplissage == BAS)*/)
-	// {
-	// 	core_message("B_BAS_GAUCHE");
-	// 	score = ft_lstmap(e->liste_coup, iter_bas_gauche);
-	// }
+	if (e->blocage1 || e->blocage2)
+	{
+		core_message("BLOCAGE");
+		score = ft_lstmap(e->liste_coup, iter_blocage);
+	}
+	else if (e->etat_machine == B_HAUT_DROIT)
+	{
+		core_message("B_HAUT_DROIT");
+		score = ft_lstmap(e->liste_coup, iter_haut_droit);
+	}
+	else if (e->etat_machine == B_BAS_DROIT)
+	{
+		core_message("B_BAS_DROITE ////////");
+		// exit(0);
+		score = ft_lstmap(e->liste_coup, iter_bas_droite);
+	}
+	else if (e->etat_machine == B_HAUT_GAUCHE)
+	{
+		core_message("B_HAUT_GAUCHE");
+		score = ft_lstmap(e->liste_coup, iter_haut_gauche);
+	}
+	else if (e->etat_machine == B_BAS_GAUCHE/* || (e->etat_machine == REMPLISSAGE && e->remplissage == BAS)*/)
+	{
+		core_message("B_BAS_GAUCHE");
+		score = ft_lstmap(e->liste_coup, iter_bas_gauche);
+	}
+	else
+	{
+		core_message("B_BAS_GAUCHE");
+		score = ft_lstmap(e->liste_coup, iter_bas_gauche);
+	}
 	ft_lstdel(&(e->liste_coup), delete_entite);
 	e->liste_coup = score;
 }
@@ -215,13 +215,27 @@ void	transition_etat(t_env *e)
 
 		a = *(t_entite *)e->liste_coup->content;
 		// exit(0);
-		core_int(a.score);
+		// core_int(a.score);
+			core_message("score : ");
+			core_int(a.score);
 		// if ((a.score >= 1000 || a.score >= 500) && e->transition == 0)
-		if ((a.score >= 1000) && e->transition == 0)
+		// blocage cas particulier map02
+		if ((a.score >= 1000) && e->blocage1 == 1)
 		{
-			// core_message("cible atteint");
-			
 			// exit(0);
+			// core_message("hello");
+			e->blocage1 = 0;
+			e->blocage2 = 1;
+			core_message("blocage1");
+		}
+		else if ((a.score >= 1000) && e->blocage2 == 1)
+		{
+			core_message("blocage2");
+			e->blocage2 = 0;
+		}
+		// end blocage cas particulier map02
+		else if ((a.score >= 1000) && e->transition == 0)
+		{
 			e->yolo = 1;
 			e->etat_machine = e->etat2;
 			e->transition++;
@@ -235,51 +249,34 @@ void	transition_etat(t_env *e)
 		}
 }
 
-void core_direction(t_direction a)
+void	analyse_blocage(t_env *e)
 {
-	if (a == DROITE)
-		core_message("DROITE");
-	else if (a == GAUCHE)
-		core_message("GAUCHE");
-	else if (a == BAS)
-		core_message("BAS");
-	else if (a == HAUT)
-		core_message("HAUT");
-	else if (a == HAUT_DROITE)
-		core_message("HAUT_DROIT");
-	else if (a == BAS_DROITE)
-		core_message("BAS_DROIT");
-	else if (a == HAUT_GAUCHE)
-		core_message("HAUT_GAUCHE");
-	else
-		core_message("BAS_GAUCHE");
-}
-
-void core_etat(t_etat_machine a)
-{
-	if (a == B_HAUT_DROIT)
-		core_message("B_HAUT_DROIT");
-	else if (a == B_BAS_DROIT)
-		core_message("B_BAS_DROIT");
-	else if (a == B_HAUT_GAUCHE)
-		core_message("B_HAUT_GAUCHE");
-	else if (a == B_BAS_GAUCHE)
-		core_message("B_BAS_GAUCHE");
-	else
-		core_message("REMPLISSAGE");
-}
-
-t_coord position_blocage(void)
-{
-	t_env *e;
 	t_coord ennemie_bas;
+	t_coord ennemie_droite;
 	t_coord position;
+	t_coord joueur_haute;
 
 	e = singleton(NULL);
-	ennemie_bas = piece_joueur_plus_bas(e->plateau, e);
-	position.x = ennemie_bas.x;
-	position.y = ennemie_bas.y;
-	return (position);
+	if (e->blocage1)
+	{
+		ennemie_bas = piece_ennemie_plus_bas(e->plateau, e);
+		joueur_haute = piece_joueur_plus_haute(e->plateau, e);
+		e->cible.x = e->debut.x;
+		e->cible.y = 0;
+	}
+	if (e->blocage2)
+	{
+		ennemie_droite = piece_ennemie_plus_droite(e->plateau, e);
+		joueur_haute = piece_joueur_plus_haute(e->plateau, e);
+		e->cible.x = e->debut.y;
+		e->cible.y = e->plateau.y - 1;
+	}
+	core_coord(e->cible);
+}
+
+void	construction_barrage()
+{
+	
 }
 
 void	ai(t_env *e)
@@ -291,7 +288,7 @@ void	ai(t_env *e)
 	if (e->liste_coup != NULL)
 	{
 		// analyse de l'attaque ennemie
-		
+		analyse_blocage(e);
 		if (e->etat_machine == REMPLISSAGE)
 		{
 			e->remplissage = direction_ennemie(e);

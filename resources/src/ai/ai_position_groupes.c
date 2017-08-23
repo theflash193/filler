@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 19:05:21 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 10:33:55 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:33:34 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void    ai_position_groupes(t_env *e)
         joueur = BAS_GAUCHE;
     if (BAS_DROITE(piece_joueur.x, piece_joueur.y, e->plateau.x, e->plateau.y))
         joueur = BAS_DROITE;
-        
     if (HAUT_GAUCHE(piece_ennemie.x, piece_ennemie.y, e->plateau.x, e->plateau.y))
         ennemie = HAUT_GAUCHE;
     if (HAUT_DROITE(piece_ennemie.x, piece_ennemie.y, e->plateau.x, e->plateau.y))
@@ -54,7 +53,10 @@ void    ai_position_groupes(t_env *e)
     }
     if (joueur == BAS_DROITE && ennemie == HAUT_GAUCHE)
     {
+        // core_message("jojo");
         // exit(0);
+        e->blocage1 = 1;
+        e->debut = piece_joueur;
         e->etat_machine = B_HAUT_GAUCHE;
         e->etat2 = B_HAUT_DROIT;
         e->cote_ennemie = GAUCHE;

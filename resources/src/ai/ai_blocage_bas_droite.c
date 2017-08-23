@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 17:36:11 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 13:52:44 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:12:43 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ int blocage(t_entite plateau)
 	score = 0;
 	dist = 0;
 	e = singleton(NULL);
-	cible.x = 0;
-	cible.y = 0;
+	cible = e->cible;
 	if (e->numero_joueur == 1)
 		dist = piece_plus_proche(plateau, 'o', cible);
 	else
@@ -101,7 +100,9 @@ int blocage(t_entite plateau)
 		core_entite(e->plateau);
 	}
 	else
-		score = (e->plateau.x * e->plateau.y) - dist;
+		score = 100 - dist;
+			// core_message("dimen : ");
+			// core_int((e->plateau.x * e->plateau.y));
 	return (score);
 }
 
