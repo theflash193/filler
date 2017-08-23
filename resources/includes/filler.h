@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/22 14:37:46 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 13:50:12 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct	s_env
 	t_etat_machine etat2;
 	t_direction cote_ennemie;
 	int			transition;
+	int			yolo;
 }				t_env;
 
 enum			e_pieces
@@ -154,6 +155,10 @@ t_coord			piece_ennemie_plus_gauche(t_entite plateau, t_env *e);
 t_coord			piece_ennemie_plus_droite(t_entite plateau, t_env *e);
 t_env			*singleton(t_env *e);
 double			ft_sqrt(double nb);
+// int			ft_sqrt(int nb);
 int				ft_pow(int nb, int pow);
+int				distance(t_coord a, t_coord b);
+int 			blocage(t_entite plateau);
+t_list 			*iter_blocage(t_list *elem);
 
 #endif

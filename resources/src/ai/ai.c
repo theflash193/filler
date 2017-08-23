@@ -6,11 +6,21 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/22 15:54:34 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 13:51:56 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+// int ft_sqrt(int val) // sqrt for int
+// {
+// 	int i;
+// 	if (val <= 1) return val;	// 0, 1: special
+// 	for (i = 0; i <= val / 2; i++) {
+// 		if (i * i > val) break;
+// 	}
+// 	return (val <= i * (i - 1)) ? i - 1 : i;
+// }
 
 double	ft_sqrt(double nb)
 {
@@ -162,27 +172,28 @@ void	ai_action(t_env *e)
 {
 	t_list *score;
 
-	if (e->etat_machine == B_HAUT_DROIT)
-	{
-		core_message("B_HAUT_DROIT");
-		score = ft_lstmap(e->liste_coup, iter_haut_droit);
-	}
-	if (e->etat_machine == B_BAS_DROIT)
-	{
-		core_message("B_BAS_DROITE ////////");
-		// exit(0);
-		score = ft_lstmap(e->liste_coup, iter_bas_droite);
-	}
-	if (e->etat_machine == B_HAUT_GAUCHE)
-	{
-		core_message("B_HAUT_GAUCHE");
-		score = ft_lstmap(e->liste_coup, iter_haut_gauche);
-	}
-	if (e->etat_machine == B_BAS_GAUCHE/* || (e->etat_machine == REMPLISSAGE && e->remplissage == BAS)*/)
-	{
-		core_message("B_BAS_GAUCHE");
-		score = ft_lstmap(e->liste_coup, iter_bas_gauche);
-	}
+	score = ft_lstmap(e->liste_coup, iter_blocage);
+	// if (e->etat_machine == B_HAUT_DROIT)
+	// {
+	// 	core_message("B_HAUT_DROIT");
+	// 	score = ft_lstmap(e->liste_coup, iter_haut_droit);
+	// }
+	// if (e->etat_machine == B_BAS_DROIT)
+	// {
+	// 	core_message("B_BAS_DROITE ////////");
+	// 	// exit(0);
+	// 	score = ft_lstmap(e->liste_coup, iter_bas_droite);
+	// }
+	// if (e->etat_machine == B_HAUT_GAUCHE)
+	// {
+	// 	core_message("B_HAUT_GAUCHE");
+	// 	score = ft_lstmap(e->liste_coup, iter_haut_gauche);
+	// }
+	// if (e->etat_machine == B_BAS_GAUCHE/* || (e->etat_machine == REMPLISSAGE && e->remplissage == BAS)*/)
+	// {
+	// 	core_message("B_BAS_GAUCHE");
+	// 	score = ft_lstmap(e->liste_coup, iter_bas_gauche);
+	// }
 	ft_lstdel(&(e->liste_coup), delete_entite);
 	e->liste_coup = score;
 }
@@ -205,10 +216,13 @@ void	transition_etat(t_env *e)
 		a = *(t_entite *)e->liste_coup->content;
 		// exit(0);
 		core_int(a.score);
-		if ((a.score >= 1000 || a.score >= 500) && e->transition == 0)
+		// if ((a.score >= 1000 || a.score >= 500) && e->transition == 0)
+		if ((a.score >= 1000) && e->transition == 0)
 		{
-			core_message("transition 1");
+			// core_message("cible atteint");
+			
 			// exit(0);
+			e->yolo = 1;
 			e->etat_machine = e->etat2;
 			e->transition++;
 		}
