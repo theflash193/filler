@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 17:26:01 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:28:24 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,6 @@ t_direction direction_ennemie(t_env *e)
 }
 // fonction utils
 
-// calcul piece jointe
-int		piece_joueur(char c, t_env *e)
-{
-	if (e->numero_joueur == 1)
-		return (IS_PLAYER1(c));
-	return (IS_PLAYER2(c));
-}
-
-int		piece_ennemie(char c, t_env *e)
-{
-	if (e->numero_joueur == 1)
-		return (IS_PLAYER2(c));
-	return (IS_PLAYER1(c));
-}
 
 // fontion de calcul des dimensions du groupe du groupe de joueur
 
