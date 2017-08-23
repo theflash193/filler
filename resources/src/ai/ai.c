@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 17:28:24 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:29:22 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,6 @@ t_direction direction_ennemie(t_env *e)
 	return (HAUT);
 }
 // fonction utils
-
-
-// fontion de calcul des dimensions du groupe du groupe de joueur
-
-t_coord		dimensions_groupe_joueur(t_entite plateau, t_env *e)
-{
-	t_coord ret;
-	t_coord gauche;
-	t_coord droite;
-	t_coord haute;
-	t_coord bas;
-
-	gauche = piece_joueur_plus_gauche(plateau, e);
-	droite = piece_joueur_plus_droite(plateau, e);
-	haute = piece_joueur_plus_haute(plateau, e);
-	bas = piece_joueur_plus_bas(plateau, e);
-	core_coord(haute);
-	core_coord(bas);
-	ret.x = haute.x - bas.x;
-	ret.y = droite.y - gauche.y;
-	return (ret);
-}
-
-// fonction de calcul des dimensions du groupe ennemie
-// t_coord		dimensions_groupe_ennemie(t_entite plateau, t_env *e)
-// {
-// }
 
 // blocage vers le haut droite
 
