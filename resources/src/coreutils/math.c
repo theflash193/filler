@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 17:21:16 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 17:21:33 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:38:53 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,15 @@ int		ft_pow(int nb, int pow)
 		return (1);
 	while (pow-- > 1)
 		ret *= nb;
+	return (ret);
+}
+
+int		distance(t_coord a, t_coord b)
+{
+	int ret;
+
+	// core_coord(a);
+	// core_coord(b);
+	ret = ft_sqrt(ft_pow((int)(b.x - a.x), 2) + ft_pow((b.y - a.y), 2));
 	return (ret);
 }

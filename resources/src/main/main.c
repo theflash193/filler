@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/11 15:27:27 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 14:44:05 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:38:30 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,6 @@ int			main(int ac, char **av)
 	return (0);
 }
 
-int		distance(t_coord a, t_coord b)
-{
-	int ret;
-
-	// core_coord(a);
-	// core_coord(b);
-	ret = ft_sqrt(ft_pow((int)(b.x - a.x), 2) + ft_pow((b.y - a.y), 2));
-	return (ret);
-}
 
 // int main() {
 // 	t_coord a;

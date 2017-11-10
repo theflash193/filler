@@ -6,13 +6,13 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/22 14:40:47 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/10 13:28:54 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/11/10 20:05:10 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int placement_possible(int x, int y, t_env *e)
+int placement_possible(int x, int y, t_env *e)
 {
 	t_coord		p;
 	t_coord		i;
@@ -93,7 +93,7 @@ static t_entite	sauvegarde_plateau(t_env *e, int i, int j)
 	impression_piece(e, i, j, a);
 	return (a);
 }
-
+// 
 t_list	*ai_recuperation_liste_coups(t_env *e)
 {
 	t_list		*liste_coup;

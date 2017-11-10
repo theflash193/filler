@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 13:52:43 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 17:25:49 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/11/10 20:05:04 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ typedef struct	s_env
 	t_coord		debut;
 	int			blocage1;
 	int			blocage2;
-
+	int			start;
+	int			end;
+	int			barrage;
 }				t_env;
 
 enum			e_pieces
@@ -169,5 +171,6 @@ int 			blocage(t_entite plateau);
 t_list 			*iter_blocage(t_list *elem);
 t_coord			coord_joueur_col(t_env *e, int y);
 t_coord			coord_ennemie_col(t_env *e, int y);
-
+int				distance(t_coord a, t_coord b);
+int 			placement_possible(int x, int y, t_env *e);
 #endif

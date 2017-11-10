@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/23 17:36:11 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 16:12:43 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/08/23 18:27:42 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,7 @@ int blocage(t_entite plateau)
 	else
 		dist = piece_plus_proche(plateau, 'x', cible);
 	if (dist == 0)
-	{
 		score = 1000;
-		core_entite(e->plateau);
-	}
 	else
 		score = 100 - dist;
 			// core_message("dimen : ");

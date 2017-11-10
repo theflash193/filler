@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 19:16:45 by grass-kw          #+#    #+#             */
-/*   Updated: 2017/08/23 17:29:22 by grass-kw         ###   ########.fr       */
+/*   Updated: 2017/11/10 20:42:50 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ void	ai_action(t_env *e)
 	t_list *score;
 
 	score = ft_lstmap(e->liste_coup, iter_blocage);
-	if (e->blocage1 || e->blocage2)
+	if (e->blocage1 || e->blocage2 || e->barrage)
 	{
-		core_message("BLOCAGE");
+		if (e->blocage1 == 1 || e->blocage1)
+			core_message("BLOCAGE");
+		if (e->barrage)
+			core_message("BARRAGE");
 		score = ft_lstmap(e->liste_coup, iter_blocage);
 	}
 	else if (e->etat_machine == B_HAUT_DROIT)
@@ -124,15 +127,16 @@ void	transition_etat(t_env *e)
 		{
 			core_message("blocage2");
 			e->blocage2 = 0;
+			e->barrage = 1;
 		}
 		// end blocage cas particulier map02
-		else if ((a.score >= 1000) && e->transition == 0)
+		else if ((a.score >= 1000) && e->transition == 0 && e->barrage == 0)
 		{
 			e->yolo = 1;
 			e->etat_machine = e->etat2;
 			e->transition++;
 		}
-		else if ((a.score >= 1000 || a.score >= 500) && e->transition == 1)
+		else if ((a.score >= 1000 || a.score >= 500) && e->transition == 1 && e->barrage == 0)
 		{
 			core_message("transition 2");
 			// exit(0);
@@ -166,9 +170,52 @@ void	analyse_blocage(t_env *e)
 	core_coord(e->cible);
 }
 
-void	construction_barrage()
+int	mur_construit(t_env *e, t_coord a)
 {
-	
+	int i;
+	int j;
+
+	i = a.x;
+	while (i < a.y + 2)
+	{
+		j = 0;
+		while (j < e->plateau.y)
+		{
+			if ((piece_joueur(e->plateau.entite[i][j], e) && piece_ennemie(e->plateau.entite[i][j], e)) == 0)
+			{
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	core_message("mur construit");
+	return ();	
+}
+void	construction_barrage(t_env *e)
+{
+	int i;
+	int j;
+
+	t_coord debut = piece_joueur_plus_haute(e->plateau, e);
+	i = debut.x;
+	while (i < debut.x + 2)
+	{
+		j = 0;
+		while (j < e->plateau.y)
+		{
+			if (placement_possible(i, j, e) == 1)
+			{
+				e->reponse.x = i;
+				e->reponse.y = j;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+	e->loop = 0;
+	return ;
 }
 
 void	ai(t_env *e)
@@ -176,29 +223,32 @@ void	ai(t_env *e)
 	t_list *score;
 	t_entite a;
 	
-	e->liste_coup = ai_recuperation_liste_coups(e);
-	if (e->liste_coup != NULL)
-	{
-		// analyse de l'attaque ennemie
-		analyse_blocage(e);
-		if (e->etat_machine == REMPLISSAGE)
-		{
-			e->remplissage = direction_ennemie(e);
-			e->etat_machine = direction_remplissage(e->remplissage, e->cote_ennemie);
-			core_message("remplissage : cote : etat machine");
-			core_direction(e->remplissage);
-			core_direction(e->cote_ennemie);
-			core_etat(e->etat_machine);
-			core_message("");
-		}
-		ai_action(e);
-		lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
-		a = (*(t_entite *)e->liste_coup->content);
-		// core_entite(a);
-		e->reponse.x = a.reponse.x;
-		e->reponse.y = a.reponse.y;
-		transition_etat(e);
-	}
-	else
-		e->loop = 0;
+	construction_barrage(e);
+	core_coord(e->reponse);
+	// e->liste_coup = ai_recuperation_liste_coups(e);
+	// if (e->liste_coup != NULL)
+	// {
+	// 	// analyse de l'attaque ennemie
+	// 	// analyse_blocage(e);
+	// 	if (e->barrage)
+	// 	// if (e->etat_machine == REMPLISSAGE)
+	// 	// {
+	// 	// 	e->remplissage = direction_ennemie(e);
+	// 	// 	e->etat_machine = direction_remplissage(e->remplissage, e->cote_ennemie);
+	// 	// 	core_message("remplissage : cote : etat machine");
+	// 	// 	core_direction(e->remplissage);
+	// 	// 	core_direction(e->cote_ennemie);
+	// 	// 	core_etat(e->etat_machine);
+	// 	// 	core_message("");
+	// 	// }
+	// 	// ai_action(e);
+	// 	// lst_bubble_sort(&(e->liste_coup), sort_best_move_p1);
+	// 	// a = (*(t_entite *)e->liste_coup->content);
+	// 	// core_entite(a);
+	// 	// e->reponse.x = a.reponse.x;
+	// 	// e->reponse.y = a.reponse.y;
+	// 	// transition_etat(e);
+	// }
+	// else
+	// 	e->loop = 0;
 }
